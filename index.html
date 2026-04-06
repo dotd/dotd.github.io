@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dotan Di Castro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #fafaf8;
+      --color-text: #1a1a1a;
+      --color-text-secondary: #555;
+      --color-accent: #2a2a2a;
+      --color-border: #e0ddd8;
+      --color-tag-bg: #f0eeea;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration-color: var(--color-border);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: var(--color-text);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 250, 248, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text);
+    }
+
+    /* Sections */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 10rem 0 5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 800px;
+    }
+
+    .hero p {
+      margin-top: 2rem;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      max-width: 680px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--color-border);
+      margin: 4rem 0;
+    }
+
+    /* Section styling */
+    section {
+      padding: 2rem 0;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Two column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Experience timeline */
+    .timeline-item {
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-role {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .timeline-org {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Tags / chips */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--color-tag-bg);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    /* Stats row */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Selected work */
+    .papers-list {
+      list-style: none;
+    }
+
+    .papers-list li {
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--color-border);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    .papers-list li:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .paper-title {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .paper-venue {
+      font-family: var(--font-serif);
+      font-style: italic;
+    }
+
+    /* Education */
+    .edu-item {
+      padding: 1rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .edu-item:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .edu-degree {
+      font-weight: 600;
+    }
+
+    .edu-school {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .edu-detail {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      font-style: italic;
+    }
+
+    /* Links section */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .link-card {
+      display: block;
+      padding: 1.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .link-card:hover {
+      background: var(--color-tag-bg);
+      border-color: #ccc;
+    }
+
+    .link-card-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .link-card-desc {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding: 3rem 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+      }
+
+      .hero {
+        padding: 8rem 0 3rem;
+      }
+
+      .timeline-header {
+        flex-direction: column;
+      }
+
+      .timeline-date {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.8rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Dotan Di Castro</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <h1>Building autonomous systems that bridge AI research and real-world impact.</h1>
+      <p>
+        I am an AI researcher and engineering leader specializing in reinforcement learning,
+        robotics, and autonomous systems. With a PhD from the Technion and over fifteen years
+        of experience spanning academia, startups, and industry research labs, I work at the
+        intersection of machine learning theory and hands-on system building &mdash; turning
+        research ideas into robots that operate in the physical world.
+      </p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="divider"></div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div>
+        <div class="stat-number">~2,100</div>
+        <div class="stat-label">Citations</div>
+      </div>
+      <div>
+        <div class="stat-number">~50</div>
+        <div class="stat-label">Journal &amp; conference papers</div>
+      </div>
+      <div>
+        <div class="stat-number">~52</div>
+        <div class="stat-label">Patents (US, EU, JP)</div>
+      </div>
+      <div>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Years in AI research</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="two-col">
+        <div>
+          <p class="section-label">About</p>
+          <h2 class="section-title">AI that works in the real world</h2>
+        </div>
+        <div>
+          <p>
+            I am an AI expert specializing in Reinforcement Learning, Robotics, Time Series, and
+            Computer Vision. My main interest is building autonomous systems &mdash; whether virtual
+            or physical &mdash; across both high-tech and traditional industries.
+          </p>
+          <br>
+          <p>
+            Currently, I lead the Autonomous group at ForSight Robotics, where my team transforms
+            human-operated surgical robots into autonomous ones. Previously, I founded and led the
+            Bosch AI Research Lab in Israel, guiding 15 research scientists and engineers on projects
+            spanning autonomous dozers, robotic manipulation, scheduling, and video prediction.
+          </p>
+          <br>
+          <p>
+            I serve as an Area Chair and reviewer at leading AI conferences including NeurIPS, ICML,
+            ICLR, and AISTATS, and have co-organized workshops at RSS and XAI.
+          </p>
+          <div class="tags">
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">Autonomous Systems</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Experience -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've worked</h2>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Head of Autonomous</span>
+          <span class="timeline-date">2025 &ndash; Present</span>
+        </div>
+        <div class="timeline-org">ForSight Robotics, Israel</div>
+        <p class="timeline-desc">
+          Managing a group of scientists transforming a human-operated sophisticated surgical robot
+          into an autonomous system.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Head of Robotics Lab</span>
+          <span class="timeline-date">2018 &ndash; 2025</span>
+        </div>
+        <div class="timeline-org">Bosch AI Research, Israel</div>
+        <p class="timeline-desc">
+          Founded and led the Israeli research organization for Bosch AI. Guided 15 research scientists,
+          engineers, and 10 interns. Notable projects: RL for autonomous dozers, smart item picking with
+          robotic arms, scheduling with RL, robotic assembly, video prediction, and battery optimization.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Senior Research Scientist</span>
+          <span class="timeline-date">2013 &ndash; 2018</span>
+        </div>
+        <div class="timeline-org">Yahoo! Labs, Haifa, Israel</div>
+        <p class="timeline-desc">
+          Worked on Yahoo Mail and Ads products. Technical lead of Automatic Extraction.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">CTO</span>
+          <span class="timeline-date">2012 &ndash; 2013</span>
+        </div>
+        <div class="timeline-org">Modana (Startup)</div>
+        <p class="timeline-desc">
+          Developed a context-aware product for mobile sensing using smartphones.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-header">
+          <span class="timeline-role">Research Scientist</span>
+          <span class="timeline-date">2009 &ndash; 2012</span>
+        </div>
+        <div class="timeline-org">Pulsar Investments Inc.</div>
+        <p class="timeline-desc">
+          Research scientist in an algorithmic trading startup. Main market: CME.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Research -->
+    <section id="research">
+      <p class="section-label">Research</p>
+      <h2 class="section-title">Selected publications</h2>
+
+      <ul class="papers-list">
+        <li>
+          <span class="paper-title">Policy gradients with variance related risk criteria.</span>
+          D. Di Castro, A. Tamar, S. Mannor.
+          <span class="paper-venue">ICML, 2012.</span>
+        </li>
+        <li>
+          <span class="paper-title">TD methods for the variance of the reward to go.</span>
+          A. Tamar, D. Di Castro, S. Mannor.
+          <span class="paper-venue">ICML, 2013.</span>
+        </li>
+        <li>
+          <span class="paper-title">Contextual Markov decision processes.</span>
+          A. Hallak, D. Di Castro, S. Mannor.
+          <span class="paper-venue">arXiv, 2015.</span>
+        </li>
+        <li>
+          <span class="paper-title">Learning the variance of the reward-to-go.</span>
+          A. Tamar, D. Di Castro, S. Mannor.
+          <span class="paper-venue">JMLR, 2016.</span>
+        </li>
+        <li>
+          <span class="paper-title">Enforcing k-anonymity in web mail auditing.</span>
+          D. Di Castro, L. Lewin-Eytan, Y. Maarek, R. Wolff.
+          <span class="paper-venue">WSDM, 2016.</span>
+        </li>
+        <li>
+          <span class="paper-title">InsertionNet &mdash; a scalable solution for insertion.</span>
+          O. Spector, D. Di Castro.
+          <span class="paper-venue">IEEE Robot. Autom. Lett., 2021.</span>
+        </li>
+        <li>
+          <span class="paper-title">SOLO: Search online, learn offline for combinatorial optimization.</span>
+          J. Oren, C. Ross, M. Lefarov, F. Richter, A. Taitler, Z. Feldman, D. Di Castro, et al.
+          <span class="paper-venue">SoCS, 2021.</span>
+        </li>
+        <li>
+          <span class="paper-title">InsertionNet 2.0: Minimal contact multi-step insertion using multimodal multiview sensory input.</span>
+          O. Spector, V. Tchuiev, D. Di Castro.
+          <span class="paper-venue">ICRA, 2022.</span>
+        </li>
+        <li>
+          <span class="paper-title">A hybrid approach for learning to shift and grasp with elaborate motion primitives.</span>
+          Z. Feldman, H. Ziesche, N.A. Vien, D. Di Castro.
+          <span class="paper-venue">ICRA, 2022.</span>
+        </li>
+        <li>
+          <span class="paper-title">Beyond data scarcity: A frequency-driven framework for zero-shot forecasting.</span>
+          L. Nochumsohn, M. Moshkovitz, O. Avner, D. Di Castro, O. Azencot.
+          <span class="paper-venue">arXiv, 2024.</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="two-col">
+        <div>
+          <p class="section-label">Education</p>
+          <h2 class="section-title">Academic background</h2>
+        </div>
+        <div>
+          <div class="edu-item">
+            <div class="timeline-header">
+              <span class="edu-degree">Postdoc in Electrical Engineering</span>
+              <span class="timeline-date">2010 &ndash; 2011</span>
+            </div>
+            <div class="edu-school">Technion, Israel &middot; Host: Prof. Shie Mannor</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="timeline-header">
+              <span class="edu-degree">PhD in Electrical Engineering</span>
+              <span class="timeline-date">2006 &ndash; 2010</span>
+            </div>
+            <div class="edu-school">Technion, Israel &middot; Advisor: Prof. Ron Meir</div>
+            <div class="edu-detail">Thesis: Aspects of Actor-Critic Algorithms: Theory and Experiments</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="timeline-header">
+              <span class="edu-degree">MSc in Electrical Engineering</span>
+              <span class="timeline-date">2004 &ndash; 2006</span>
+            </div>
+            <div class="edu-school">Technion, Israel &middot; Advisor: Prof. Ron Meir</div>
+            <div class="edu-detail">Thesis: Population Behavior of Neural Networks</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="timeline-header">
+              <span class="edu-degree">BSc in Electrical Engineering</span>
+              <span class="timeline-date">2000 &ndash; 2004</span>
+            </div>
+            <div class="edu-school">Technion, Israel &middot; Cum Laude</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Connect -->
+    <section id="connect">
+      <p class="section-label">Connect</p>
+      <h2 class="section-title">Get in touch</h2>
+
+      <div class="links-grid">
+        <a href="mailto:dotan.dicastro@gmail.com" class="link-card">
+          <div class="link-card-title">Email</div>
+          <div class="link-card-desc">dotan.dicastro@gmail.com</div>
+        </a>
+        <a href="https://www.linkedin.com/in/dotan-di-castro-b0a99039/" class="link-card" target="_blank" rel="noopener">
+          <div class="link-card-title">LinkedIn</div>
+          <div class="link-card-desc">Professional profile</div>
+        </a>
+        <a href="https://github.com/dotd" class="link-card" target="_blank" rel="noopener">
+          <div class="link-card-title">GitHub</div>
+          <div class="link-card-desc">Code &amp; projects</div>
+        </a>
+        <a href="https://scholar.google.co.il/citations?user=zhQaFaMAAAAJ&hl=en" class="link-card" target="_blank" rel="noopener">
+          <div class="link-card-title">Google Scholar</div>
+          <div class="link-card-desc">Publications &amp; citations</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <span>&copy; 2026 Dotan Di Castro</span>
+        <span>Caesarea, Israel</span>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
