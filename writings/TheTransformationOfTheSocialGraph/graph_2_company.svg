@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title-company">
+  <title id="title-company">The software company: people as first-class nodes, tools as their satellites</title>
+  <style>
+    .person { fill: #2a2a2a; }
+    .tool { fill: #c4bdb1; stroke: #8a8377; stroke-width: 0.7; }
+    .link { stroke: #a8a39a; stroke-width: 1.3; fill: none; }
+    .tool-link { stroke: #cdc7bc; stroke-width: 0.7; fill: none; }
+    .label { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; fill: #888; letter-spacing: 0.12em; text-transform: uppercase; }
+    .toollabel { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 9px; fill: #999; }
+  </style>
+
+  <!-- Edges between people (mixed hierarchy + graph) -->
+  <line class="link" x1="360" y1="80" x2="220" y2="200" />
+  <line class="link" x1="360" y1="80" x2="360" y2="200" />
+  <line class="link" x1="360" y1="80" x2="500" y2="200" />
+  <line class="link" x1="220" y1="200" x2="360" y2="200" />
+  <line class="link" x1="360" y1="200" x2="500" y2="200" />
+  <line class="link" x1="220" y1="200" x2="500" y2="200" />
+  <line class="link" x1="220" y1="200" x2="140" y2="320" />
+  <line class="link" x1="220" y1="200" x2="270" y2="320" />
+  <line class="link" x1="360" y1="200" x2="270" y2="320" />
+  <line class="link" x1="360" y1="200" x2="430" y2="320" />
+  <line class="link" x1="500" y1="200" x2="430" y2="320" />
+  <line class="link" x1="500" y1="200" x2="580" y2="320" />
+  <line class="link" x1="140" y1="320" x2="270" y2="320" />
+  <line class="link" x1="270" y1="320" x2="430" y2="320" />
+  <line class="link" x1="430" y1="320" x2="580" y2="320" />
+  <line class="link" x1="140" y1="320" x2="430" y2="320" />
+
+  <!-- Tool satellites: bottom-row engineers -->
+  <!-- E at (140, 320) -->
+  <line class="tool-link" x1="140" y1="320" x2="78" y2="350" />
+  <line class="tool-link" x1="140" y1="320" x2="98" y2="385" />
+  <line class="tool-link" x1="140" y1="320" x2="160" y2="385" />
+  <line class="tool-link" x1="140" y1="320" x2="88" y2="300" />
+  <rect class="tool" x="74" y="346" width="8" height="8" />
+  <rect class="tool" x="94" y="381" width="8" height="8" />
+  <rect class="tool" x="156" y="381" width="8" height="8" />
+  <rect class="tool" x="84" y="296" width="8" height="8" />
+
+  <!-- E at (270, 320) -->
+  <line class="tool-link" x1="270" y1="320" x2="225" y2="365" />
+  <line class="tool-link" x1="270" y1="320" x2="280" y2="390" />
+  <line class="tool-link" x1="270" y1="320" x2="320" y2="370" />
+  <rect class="tool" x="221" y="361" width="8" height="8" />
+  <rect class="tool" x="276" y="386" width="8" height="8" />
+  <rect class="tool" x="316" y="366" width="8" height="8" />
+
+  <!-- E at (430, 320) -->
+  <line class="tool-link" x1="430" y1="320" x2="380" y2="365" />
+  <line class="tool-link" x1="430" y1="320" x2="430" y2="390" />
+  <line class="tool-link" x1="430" y1="320" x2="478" y2="370" />
+  <line class="tool-link" x1="430" y1="320" x2="400" y2="290" />
+  <rect class="tool" x="376" y="361" width="8" height="8" />
+  <rect class="tool" x="426" y="386" width="8" height="8" />
+  <rect class="tool" x="474" y="366" width="8" height="8" />
+  <rect class="tool" x="396" y="286" width="8" height="8" />
+
+  <!-- E at (580, 320) -->
+  <line class="tool-link" x1="580" y1="320" x2="635" y2="350" />
+  <line class="tool-link" x1="580" y1="320" x2="615" y2="385" />
+  <line class="tool-link" x1="580" y1="320" x2="555" y2="385" />
+  <line class="tool-link" x1="580" y1="320" x2="640" y2="300" />
+  <rect class="tool" x="631" y="346" width="8" height="8" />
+  <rect class="tool" x="611" y="381" width="8" height="8" />
+  <rect class="tool" x="551" y="381" width="8" height="8" />
+  <rect class="tool" x="636" y="296" width="8" height="8" />
+
+  <!-- Tools at mid-tier -->
+  <line class="tool-link" x1="220" y1="200" x2="160" y2="165" />
+  <line class="tool-link" x1="220" y1="200" x2="160" y2="235" />
+  <rect class="tool" x="156" y="161" width="7" height="7" />
+  <rect class="tool" x="156" y="231" width="7" height="7" />
+
+  <line class="tool-link" x1="500" y1="200" x2="560" y2="165" />
+  <line class="tool-link" x1="500" y1="200" x2="560" y2="235" />
+  <rect class="tool" x="557" y="161" width="7" height="7" />
+  <rect class="tool" x="557" y="231" width="7" height="7" />
+
+  <line class="tool-link" x1="360" y1="200" x2="360" y2="135" />
+  <rect class="tool" x="356" y="130" width="7" height="7" />
+
+  <!-- People nodes -->
+  <circle class="person" cx="360" cy="80" r="7" />
+  <circle class="person" cx="220" cy="200" r="7" />
+  <circle class="person" cx="360" cy="200" r="7" />
+  <circle class="person" cx="500" cy="200" r="7" />
+  <circle class="person" cx="140" cy="320" r="7" />
+  <circle class="person" cx="270" cy="320" r="7" />
+  <circle class="person" cx="430" cy="320" r="7" />
+  <circle class="person" cx="580" cy="320" r="7" />
+
+  <!-- A few tool labels (subtle) -->
+  <text class="toollabel" x="68" y="395" text-anchor="middle">cloud</text>
+  <text class="toollabel" x="98" y="403" text-anchor="middle">git</text>
+  <text class="toollabel" x="160" y="403" text-anchor="middle">editor</text>
+  <text class="toollabel" x="478" y="384" text-anchor="middle">robot</text>
+  <text class="toollabel" x="400" y="280" text-anchor="middle">cluster</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 50)">
+    <circle class="person" cx="0" cy="0" r="5" />
+    <text class="label" x="12" y="3">engineer / researcher</text>
+    <rect class="tool" x="-4" y="20" width="8" height="8" />
+    <text class="label" x="12" y="29">tool</text>
+  </g>
+</svg>

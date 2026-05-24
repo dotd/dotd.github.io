@@ -189,6 +189,30 @@
         color: var(--color-text);
       }
 
+      /* Figures */
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        font-style: italic;
+        line-height: 1.5;
+        max-width: 32rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       /* Back link */
       .back-link {
         display: inline-block;
@@ -281,6 +305,14 @@
             camp.
           </p>
 
+          <figure class="figure">
+            <img src="graph_1_tribe.svg" alt="A diagram of the tribe: four dense local clusters of people — hunters, gatherers, elders, children — gathered around a central fire, with faint inter-cluster ties." />
+            <figcaption class="figure-caption">
+              Stage one. The original graph: small, overlapping subgroups,
+              each dense and local, loosely woven together around the fire.
+            </figcaption>
+          </figure>
+
           <p>
             As villages turned into cities and cities into empires, the graph
             stretched. New nodes appeared that no Paleolithic ancestor would
@@ -361,6 +393,16 @@
             machines felt less like a convention than a law of nature.
           </p>
 
+          <figure class="figure">
+            <img src="graph_2_company.svg" alt="A diagram of a software company before 2022: a loose hierarchical-and-graph network of engineer nodes, each surrounded by small square tool satellites — cloud, git, editor, robot, training cluster." />
+            <figcaption class="figure-caption">
+              Stage two. The software company before 2022: engineers form a
+              hybrid hierarchy-and-graph; each is the center of a small fleet
+              of tools — cloud, Git, editor, robot, training cluster — that
+              remain firmly second-class.
+            </figcaption>
+          </figure>
+
           <p>
             Then ChatGPT arrived, and at first it looked like one more entry in
             the arsenal. Another tool, slotted in beside the editor and the
@@ -386,6 +428,16 @@
             when the work was done. This is the pivot point, and we are living
             through it without ceremony.
           </p>
+
+          <figure class="figure">
+            <img src="graph_3_agents.svg" alt="A bipartite diagram: on the left, a sparse round cluster of people forming a small connected graph; on the right, a dense round cluster of agents woven into a tight mesh; a handful of cross-edges run between the two groups — some with arrows at both ends (mutual influence), others with an arrow at only one end (influence in a single direction)." />
+            <figcaption class="figure-caption">
+              Stage three. The pivot, as a bipartite graph. The people remain
+              a small, sparse cluster. The agents form a much denser cluster
+              of their own. A few cross-edges run between the two &mdash;
+              some carry influence in both directions, others only one way.
+            </figcaption>
+          </figure>
 
           <p>
             The constraints on cooperation have, almost overnight, changed

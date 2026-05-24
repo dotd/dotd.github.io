@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-labelledby="title-tribe">
+  <title id="title-tribe">A tribe as one connected social graph, with distinct named subgroups circled</title>
+  <style>
+    .person { fill: #2a2a2a; }
+    .link { stroke: #a8a39a; stroke-width: 1.1; fill: none; }
+    .weak { stroke: #c4bdb1; stroke-width: 0.9; fill: none; }
+    .region { fill: #ebe7df; fill-opacity: 0.55; stroke: #c4bdb1; stroke-width: 1; stroke-dasharray: 4 3; }
+    .grouplabel { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; fill: #6a6660; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
+    .legendlabel { font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; fill: #888; letter-spacing: 0.12em; text-transform: uppercase; }
+  </style>
+
+  <!-- Group regions (drawn first so they sit behind everything) -->
+  <ellipse class="region" cx="180" cy="115" rx="68" ry="48" />
+  <ellipse class="region" cx="540" cy="120" rx="68" ry="50" />
+  <ellipse class="region" cx="195" cy="300" rx="62" ry="44" />
+  <ellipse class="region" cx="525" cy="300" rx="62" ry="44" />
+
+  <!-- Group labels (above/below regions, outside them) -->
+  <text class="grouplabel" x="180" y="50" text-anchor="middle">hunters</text>
+  <text class="grouplabel" x="540" y="50" text-anchor="middle">gatherers</text>
+  <text class="grouplabel" x="195" y="372" text-anchor="middle">elders</text>
+  <text class="grouplabel" x="525" y="372" text-anchor="middle">children</text>
+
+  <!-- Edges: dense within each region, and inter-region through the connective tissue -->
+  <!-- Hunters internal -->
+  <line class="link" x1="140" y1="100" x2="165" y2="85" />
+  <line class="link" x1="165" y1="85" x2="200" y2="95" />
+  <line class="link" x1="200" y1="95" x2="220" y2="115" />
+  <line class="link" x1="140" y1="100" x2="155" y2="135" />
+  <line class="link" x1="155" y1="135" x2="190" y2="140" />
+  <line class="link" x1="190" y1="140" x2="220" y2="115" />
+  <line class="link" x1="180" y1="115" x2="140" y2="100" />
+  <line class="link" x1="180" y1="115" x2="165" y2="85" />
+  <line class="link" x1="180" y1="115" x2="200" y2="95" />
+  <line class="link" x1="180" y1="115" x2="220" y2="115" />
+  <line class="link" x1="180" y1="115" x2="155" y2="135" />
+  <line class="link" x1="180" y1="115" x2="190" y2="140" />
+  <line class="link" x1="165" y1="85" x2="190" y2="140" />
+  <line class="link" x1="200" y1="95" x2="155" y2="135" />
+
+  <!-- Gatherers internal -->
+  <line class="link" x1="490" y1="105" x2="520" y2="90" />
+  <line class="link" x1="520" y1="90" x2="555" y2="95" />
+  <line class="link" x1="555" y1="95" x2="585" y2="115" />
+  <line class="link" x1="585" y1="115" x2="555" y2="145" />
+  <line class="link" x1="555" y1="145" x2="510" y2="140" />
+  <line class="link" x1="510" y1="140" x2="490" y2="105" />
+  <line class="link" x1="530" y1="120" x2="490" y2="105" />
+  <line class="link" x1="530" y1="120" x2="520" y2="90" />
+  <line class="link" x1="530" y1="120" x2="555" y2="95" />
+  <line class="link" x1="530" y1="120" x2="585" y2="115" />
+  <line class="link" x1="530" y1="120" x2="555" y2="145" />
+  <line class="link" x1="530" y1="120" x2="510" y2="140" />
+  <line class="link" x1="520" y1="90" x2="510" y2="140" />
+  <line class="link" x1="555" y1="95" x2="510" y2="140" />
+
+  <!-- Elders internal -->
+  <line class="link" x1="155" y1="285" x2="190" y2="275" />
+  <line class="link" x1="190" y1="275" x2="225" y2="290" />
+  <line class="link" x1="225" y1="290" x2="240" y2="310" />
+  <line class="link" x1="240" y1="310" x2="210" y2="325" />
+  <line class="link" x1="210" y1="325" x2="165" y2="320" />
+  <line class="link" x1="165" y1="320" x2="155" y2="285" />
+  <line class="link" x1="190" y1="275" x2="165" y2="320" />
+  <line class="link" x1="190" y1="275" x2="210" y2="325" />
+  <line class="link" x1="190" y1="275" x2="240" y2="310" />
+  <line class="link" x1="225" y1="290" x2="165" y2="320" />
+  <line class="link" x1="155" y1="285" x2="210" y2="325" />
+  <line class="link" x1="225" y1="290" x2="210" y2="325" />
+
+  <!-- Children internal -->
+  <line class="link" x1="485" y1="285" x2="515" y2="275" />
+  <line class="link" x1="515" y1="275" x2="550" y2="290" />
+  <line class="link" x1="550" y1="290" x2="565" y2="310" />
+  <line class="link" x1="565" y1="310" x2="535" y2="325" />
+  <line class="link" x1="535" y1="325" x2="495" y2="320" />
+  <line class="link" x1="495" y1="320" x2="485" y2="285" />
+  <line class="link" x1="515" y1="275" x2="495" y2="320" />
+  <line class="link" x1="515" y1="275" x2="535" y2="325" />
+  <line class="link" x1="515" y1="275" x2="565" y2="310" />
+  <line class="link" x1="550" y1="290" x2="495" y2="320" />
+  <line class="link" x1="485" y1="285" x2="535" y2="325" />
+  <line class="link" x1="550" y1="290" x2="535" y2="325" />
+
+  <!-- Connective tissue: floater nodes between regions, knitting the tribe into one cloud -->
+  <line class="weak" x1="220" y1="115" x2="310" y2="165" />
+  <line class="weak" x1="310" y1="165" x2="410" y2="165" />
+  <line class="weak" x1="410" y1="165" x2="490" y2="105" />
+  <line class="weak" x1="310" y1="165" x2="360" y2="220" />
+  <line class="weak" x1="410" y1="165" x2="360" y2="220" />
+  <line class="weak" x1="360" y1="220" x2="310" y2="260" />
+  <line class="weak" x1="360" y1="220" x2="410" y2="260" />
+  <line class="weak" x1="310" y1="260" x2="240" y2="310" />
+  <line class="weak" x1="410" y1="260" x2="485" y2="285" />
+  <line class="weak" x1="310" y1="260" x2="225" y2="290" />
+  <line class="weak" x1="410" y1="260" x2="495" y2="320" />
+  <line class="weak" x1="310" y1="165" x2="310" y2="260" />
+  <line class="weak" x1="410" y1="165" x2="410" y2="260" />
+  <line class="weak" x1="220" y1="115" x2="240" y2="310" />
+  <line class="weak" x1="585" y1="115" x2="565" y2="310" />
+  <line class="weak" x1="190" y1="140" x2="155" y2="285" />
+  <line class="weak" x1="555" y1="145" x2="485" y2="285" />
+
+  <!-- Hunters nodes -->
+  <circle class="person" cx="140" cy="100" r="4.5" />
+  <circle class="person" cx="165" cy="85" r="4.5" />
+  <circle class="person" cx="200" cy="95" r="4.5" />
+  <circle class="person" cx="220" cy="115" r="4.5" />
+  <circle class="person" cx="155" cy="135" r="4.5" />
+  <circle class="person" cx="190" cy="140" r="4.5" />
+  <circle class="person" cx="180" cy="115" r="4.5" />
+
+  <!-- Gatherers nodes -->
+  <circle class="person" cx="490" cy="105" r="4.5" />
+  <circle class="person" cx="520" cy="90" r="4.5" />
+  <circle class="person" cx="555" cy="95" r="4.5" />
+  <circle class="person" cx="585" cy="115" r="4.5" />
+  <circle class="person" cx="510" cy="140" r="4.5" />
+  <circle class="person" cx="555" cy="145" r="4.5" />
+  <circle class="person" cx="530" cy="120" r="4.5" />
+
+  <!-- Elders nodes -->
+  <circle class="person" cx="155" cy="285" r="4.5" />
+  <circle class="person" cx="190" cy="275" r="4.5" />
+  <circle class="person" cx="225" cy="290" r="4.5" />
+  <circle class="person" cx="240" cy="310" r="4.5" />
+  <circle class="person" cx="210" cy="325" r="4.5" />
+  <circle class="person" cx="165" cy="320" r="4.5" />
+
+  <!-- Children nodes -->
+  <circle class="person" cx="485" cy="285" r="4.5" />
+  <circle class="person" cx="515" cy="275" r="4.5" />
+  <circle class="person" cx="550" cy="290" r="4.5" />
+  <circle class="person" cx="565" cy="310" r="4.5" />
+  <circle class="person" cx="535" cy="325" r="4.5" />
+  <circle class="person" cx="495" cy="320" r="4.5" />
+
+  <!-- Floater nodes (unaffiliated members of the tribe) -->
+  <circle class="person" cx="310" cy="165" r="4.5" />
+  <circle class="person" cx="410" cy="165" r="4.5" />
+  <circle class="person" cx="360" cy="220" r="4.5" />
+  <circle class="person" cx="310" cy="260" r="4.5" />
+  <circle class="person" cx="410" cy="260" r="4.5" />
+
+  <!-- Legend -->
+  <g transform="translate(40, 365)">
+    <circle class="person" cx="0" cy="0" r="4" />
+    <text class="legendlabel" x="12" y="3">person · one tribe</text>
+  </g>
+</svg>
