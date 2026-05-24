@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Transformation of the Social Graph &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      /* Layout */
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Article header */
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      /* Article body */
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      /* Back link */
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p {
+          font-size: 1.08rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Article -->
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; Technology</div>
+          <h1>The Transformation of the Social Graph</h1>
+          <p class="article-deck">
+            For ten thousand years, cooperation meant people. Then, almost
+            without ceremony, the team became a fleet of agents — and the
+            center of gravity quietly moved.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <p>
+            Ten thousand years ago, a human being belonged to a handful of
+            small, overlapping circles. There was the tribe, the band of
+            hunters, the mothers gathered near the fire, the elders who
+            remembered the floods, the children who would one day inherit the
+            names. These were the original social graphs: dense, local, and
+            built on a single resource &mdash; the time and attention of other
+            people. You could only know as many faces as your evenings could
+            hold. Cooperation was warm, slow, and bounded by the size of the
+            camp.
+          </p>
+
+          <p>
+            As villages turned into cities and cities into empires, the graph
+            stretched. New nodes appeared that no Paleolithic ancestor would
+            have recognized: the merchant who never met the farmer whose grain
+            he sold, the bureaucrat who counted soldiers he would never command,
+            the priest who spoke for gods nobody had seen. The graph thickened
+            with strangers. To keep it from collapsing under its own weight,
+            societies invented something deceptively simple &mdash; hierarchy. A
+            pyramid is a compression algorithm for trust: it lets a king
+            coordinate a million people he cannot name by passing instructions
+            down a tree of intermediaries.
+          </p>
+
+          <p>
+            By the nineteenth century, the same shape had migrated into the new
+            institution that would come to define modern life: the enterprise.
+            Railways, steel mills, trading houses, and later the multinational
+            corporation arranged themselves in tiers &mdash; a chief executive
+            at the top, layers of managers in the middle, workers at the base.
+            The org chart was not just an administrative convenience; it was a
+            worldview. It told you who could speak to whom, whose signature
+            mattered, where ideas were allowed to originate and where they were
+            merely executed. For more than a hundred years, this was the
+            dominant grammar of cooperative work.
+          </p>
+
+          <p>
+            Software companies inherited the grammar almost without thinking. A
+            CTO at the top, directors below, engineering managers, tech leads,
+            senior engineers, juniors. But something subtle was happening
+            underneath the chart. The hierarchy was still there on the wall, yet
+            the actual flow of work had become a graph &mdash; a web of pull
+            requests, shared services, Slack threads, on-call rotations, and
+            informal channels that ignored the pyramid almost entirely. The org
+            chart said tree; the work said network. Companies pretended this was
+            a contradiction to be solved. In practice, the hybrid was the source
+            of their power.
+          </p>
+
+          <p>
+            The reason the graph worked was that each node &mdash; each engineer
+            &mdash; was no longer just a person. By the late 2010s, a single
+            developer sat on top of a vertiginous stack of tools. There was the
+            cloud, which had quietly turned the data center into an API call.
+            There was Git, which had turned the entire history of a codebase
+            into a graph of its own. There were editors that could autocomplete
+            a thought, package managers that pulled in the work of strangers,
+            dashboards that watched production at three in the morning so that
+            humans did not have to. Each engineer was, in effect, a small
+            command center wired into a planet-scale machine.
+          </p>
+
+          <p>
+            Specialized domains amplified this even further. In the robotics
+            world, the engineer's &ldquo;tool&rdquo; was not just a compiler
+            &mdash; it was the robot itself, a physical extension of the team,
+            mediated by simulators, ROS graphs, motion planners, and fleets of
+            sensors that streamed terabytes of the real world back into the
+            codebase every night. In data and machine learning, the tool was a
+            training cluster the size of a small town's power budget. In
+            finance, it was a matching engine that moved more money in a second
+            than the company's payroll did in a year. The pre-2022 picture was
+            clear: a mixed hierarchical-and-graph society of human nodes, each
+            one wielding a quietly enormous arsenal.
+          </p>
+
+          <p>
+            And there was no ambiguity, in that picture, about who counted. The
+            first-class citizens of the graph were the people &mdash; the
+            engineers, the researchers, the scientists who argued in front of
+            whiteboards and signed off on releases. The tools, no matter how
+            vast or expensive, were second-class: instruments held in human
+            hands, named after the humans who wrote them, credited in papers
+            whose authors were all carbon. This was so obvious it barely needed
+            saying, and for that reason it was rarely said. It also seemed
+            permanent. A compiler did not have a seat at the standup. A training
+            cluster did not get promoted. The hierarchy between people and their
+            machines felt less like a convention than a law of nature.
+          </p>
+
+          <p>
+            Then ChatGPT arrived, and at first it looked like one more entry in
+            the arsenal. Another tool, slotted in beside the editor and the
+            terminal. For a while that framing held. Through 2023 and into 2024,
+            the model was something you talked to in a side panel. It wrote a
+            function, drafted an email, summarized a meeting. But underneath the
+            chat window, a quieter revolution was assembling itself: the Model
+            Context Protocol, the agentic loops, the tool-calling standards, the
+            long-running tasks that could read a repository and propose a
+            change. Bit by bit, the chat box was growing hands.
+          </p>
+
+          <p>
+            When Claude Code and its peers arrived in earnest, the framing
+            finally cracked. The thing on the other side of the prompt was no
+            longer a tool the engineer used &mdash; it was something closer to a
+            colleague the engineer dispatched. And once you can dispatch one,
+            you can dispatch ten, or a hundred, in parallel. The graph that had
+            taken ten thousand years to evolve &mdash; tribes, cities,
+            corporations, teams &mdash; quietly inverted. For each engineer, the
+            surrounding &ldquo;team&rdquo; was no longer a group of other
+            people. It was a fleet of agents, instantiated on demand, dissolved
+            when the work was done. This is the pivot point, and we are living
+            through it without ceremony.
+          </p>
+
+          <p>
+            The constraints on cooperation have, almost overnight, changed
+            shape. For most of history, the binding limit on what a group could
+            accomplish was the number of humans you could recruit, coordinate,
+            and pay. Now, for a growing class of work, that limit has receded.
+            What bounds an engineer's output today is, in rough order, three
+            things: how much money is available to spend on inference, how much
+            cloud capacity can be summoned, and &mdash; crucially &mdash; how
+            clearly the product people, the designers, and the executives can
+            express what production at scale actually needs. Articulation has
+            become the scarce resource. The person who can say precisely what
+            should exist is suddenly more valuable than the person who can type
+            it.
+          </p>
+
+          <p>
+            For a brief and strange interval, the relationship will run both
+            ways. Agents will serve the business, but people will also serve the
+            agents &mdash; teaching them, demonstrating, correcting, supplying
+            the worked examples that machines still need in order to generalize.
+            Robotics offers the clearest preview: today, human operators are
+            sent into warehouses and kitchens and operating rooms to show robots
+            how a task is done, frame by frame, so that the robots can one day
+            do it without them. The same pattern is forming in software, in
+            design, in customer support, in legal work. It is an unusual
+            transitional contract: the apprentices in this arrangement are the
+            machines, and the masters are, for now, us. The next phase &mdash;
+            in which machines plan, test, ship, manufacture, and manipulate the
+            world with little intermediate human hand &mdash; is no longer a
+            distant claim. It is the natural extrapolation of a graph that has
+            been quietly rewriting itself since the first tribe sat down around
+            the first fire.
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <!-- Footer -->
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
