@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>מה שמר קידר ידע &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Hebrew:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans:
+          "Noto Sans Hebrew", "Inter", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-serif: "Noto Serif Hebrew", "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        direction: ltr;
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.005em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.6rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .hero {
+        margin: 0 0 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero img {
+        max-width: 360px;
+        width: 100%;
+        height: auto;
+        display: block;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-caption {
+        font-family: var(--font-sans);
+        font-size: 0.88rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 1rem;
+        max-width: 32rem;
+        line-height: 1.6;
+      }
+
+      .article-body p {
+        margin-bottom: 1.3rem;
+        font-family: var(--font-serif);
+        font-size: 1.12rem;
+        line-height: 1.95;
+        color: #232323;
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 1.6rem 0.2rem 0;
+        border-right: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.14rem;
+        line-height: 1.85;
+        color: #3a3a3a;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        direction: ltr;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">מסה &middot; מדע בדיוני</div>
+          <h1>מה שמר קידר ידע</h1>
+          <p class="article-deck">
+            סיפור קצר משנת 1941 של תיאודור סטרג'ון כבר דמיין את צורתו של ה-AI
+            הסוכני: מנהל אנושי יחיד, אוכלוסייה של מוחות מהירים ועצמאיים, ושינוי
+            שקט במקום שבו יושב מרכז הכובד.
+          </p>
+          <div class="article-meta">דותן די קסטרו</div>
+          <div class="lang-switch">
+            <a href="what_kidder_knew.html" lang="en" dir="ltr">English version</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <figure class="hero">
+          <img
+            src="galaxy_may_1954.jpg"
+            alt="שער של גלקסי סיינס פיקשן, מאי 1954 — גיליון שכלל את סיפורו של תיאודור סטרג'ון 'Granny Won't Knit'."
+          />
+          <figcaption class="hero-caption">
+            שער של <em>Galaxy Science Fiction</em>, מאי 1954 &mdash; גיליון שנשא את
+            סיפורו של סטרג'ון &rdquo;Granny Won't Knit&ldquo;. אין דיוקן של
+            סטרג'ון שזמין ברישיון חופשי, ולכן בחרתי בתחליף תקופתי מן העשור הפורה
+            ביותר שלו. נחלת הכלל, דרך ויקישיתוף.
+          </figcaption>
+        </figure>
+
+        <div class="article-body">
+          <p>
+            למדע הבדיוני יש הרגל מוזר. הוא לא כל כך מנבא את העתיד, אלא משרטט את
+            צורתו &mdash; בפירוט בטוח עד כדי כך שמהנדסים, עשורים לאחר מכן, מוצאים
+            את התרשים כבר מונח על השולחן כשהם מגיעים. הלקח העמוק יותר של הז'אנר
+            נדיר ביותר נוגע לכך שמישהו צדק לגבי הטכנולוגיה. הוא נוגע לכך שהסופר
+            חשב על <em>היחס</em> שהטכנולוגיה תכפה &mdash; בין אנשים לכליהם, בין
+            עבודה לזמן, בין כוונה לבין הדבר שמבצע אותה.
+          </p>
+
+          <p>
+            הקטלוג ארוך. ז'ול ורן, ב-<a
+              href="https://en.wikipedia.org/wiki/Twenty_Thousand_Leagues_Under_the_Seas"
+              ><em>עשרים אלף מיל מתחת למים</em></a
+            >
+            (1870), דמיין צוללת חשמלית עצמאית עוד לפני שלצי של אף מדינה היה משהו
+            דומה. מאמרו בן שלושת העמודים של ארתור סי. קלארק בגיליון של
+            <em>Wireless World</em> משנת 1945 תיאר, על כל הגיאומטריה, את הלוויין
+            הגיאוסטציונרי לתקשורת &mdash; רבע מאה לפני שהאחד הראשון מהם המריא.
+            <a href="https://en.wikipedia.org/wiki/Three_Laws_of_Robotics"
+              >שלושת חוקי הרובוטיקה</a
+            >
+            של אייזק אסימוב, שנוסחו לסיפורים קצרים בשנות ה-40, מצוטטים עדיין
+            בסמינרים לאתיקה של בינה מלאכותית ב-2026.
+            <a href="https://en.wikipedia.org/wiki/Foundation_(book_series)"
+              >סדרת מוסד</a
+            >
+            שלו דמיינה מדע של ניבוי חברתי בקנה מידה המוני שנקרא היום כמו מסה על
+            מדעי החברה החישוביים עם שפם דק יותר. ויליאם גיבסון, ב<em
+              >נוירומנסר</em
+            >
+            (1984), נתן ל-&rdquo;מרחב הקיברנטי&ldquo; שם עוד לפני שהיה משהו לתת
+            לו שם. כל אחד מהם, כמובן, ניחש. אבל הניחושים מתכנסים לצורתו הסופית
+            של הדבר באופן שכדאי לעצור לידו.
+          </p>
+
+          <p>
+            הדוגמה החיה ביותר להרגל הזה, ברגע זה ממש, היא אולי ה-AI הסוכני. ב-2026,
+            המודל שמעבר לפרומפט אינו עוד כלי שאדם משתמש בו &mdash; הוא קרוב יותר
+            לקולגה שהאדם משגר, על משימות שרצות דקות או שעות, במקביל, לפעמים בציים
+            שלמים. המבנה של ההסדר הזה &mdash; מנהל אנושי אחד, פותרי בעיות רבים
+            ומהירים ועצמאיים, יחס א-סימטרי במהירות ובעומק &mdash; מתואר בתעשייה
+            כאילו הומצא זה עתה. הוא לא. הצורה הונחה בשורות, בנאמנות מפתיעה, בסיפור
+            קצר שיצא לאור באפריל 1941.
+          </p>
+
+          <p>
+            הסיפור הוא
+            <a href="https://en.wikipedia.org/wiki/Microcosmic_God"
+              >&rdquo;אלוהים בזעיר אנפין&ldquo;</a
+            >
+            (Microcosmic God), ומחברו הוא
+            <a href="https://en.wikipedia.org/wiki/Theodore_Sturgeon"
+              >תיאודור סטרג'ון</a
+            >
+            &mdash; שנולד בשם אדוארד המילטון ולדו בעיר ניו יורק ב-1918, ושמו שונה
+            חוקית בגיל אחת-עשרה לאחר נישואיה השניים של אמו, מת באורגון ב-1985.
+            הוא האיש שנתן לשפה את
+            <a href="https://en.wikipedia.org/wiki/Sturgeon%27s_law"
+              >חוק סטרג'ון</a
+            >
+            (&rdquo;תשעים אחוז מכל דבר הוא זבל&ldquo;). הוא זכה בפרס היוגו ובפרס
+            הנבולה; קיבל ב-1985 את פרס הפנטסיה העולמית למפעל חיים; הוכנס לאולם
+            התהילה של מדע בדיוני ופנטסיה ב-2000. הוא כתב את <em>יותר מאנושי</em>
+            (1953), שעדיין נדפס. במשך תקופה הוא היה אחד הסופרים שסביבם בנה ג'ון
+            וו. קמפבל את <em>אסטאונדינג סיינס פיקשן</em>. קורט וונגוט, לאחר שהשניים
+            התיידדו ב-1959, ביסס עליו את דמותו החוזרת קילגור טראוט. המוניטין של
+            סטרג'ון היום הוא בעיקר ספרותי &mdash; קוראים אותו בשל הפרוזה, המוזרות,
+            החום האנושי. אבל קבור בסיפור הקצר הזה משנת 1941 דבר-מה שמהנדסים, ולא
+            מבקרי ספרות, חייבים לקרוא עכשיו.
+          </p>
+
+          <p>
+            גיבור &rdquo;אלוהים בזעיר אנפין&ldquo; הוא אחד מר קידר &mdash; אף פעם
+            לא ד&quot;ר, אף פעם לא פרופסור, תמיד מר קידר. הוא חי לבדו על אי קטן
+            מול חופה של ניו אינגלנד. הוא, בתיאורו של סטרג'ון, &rdquo;נמוך ושמנמן
+            ומבריק&ldquo;, ביוכימאי בהכשרתו, אדיש לתהילה ולכסף, עוין למדי לאנשים
+            בקבוצות. תכונתו המבחינה היא חוסר סבלנות. &rdquo;הוא מעולם לא סיים שום
+            קולג' או אוניברסיטה,&ldquo; מספר לנו סטרג'ון, &rdquo;כי הם היו איטיים
+            מדי בשבילו, ונוקשים מדי בגישתם לחינוך.&ldquo; הוא קרא הכול; הוא מאמין
+            למעט מאוד מזה; הוא רוצה לדעת עוד. (סטרג'ון, אגב, גם חזה את הירידה
+            השקטה לאחרונה במעמדו של התואר האקדמי כסימן למי שמורשה לעשות עבודה
+            רצינית &mdash; אבל זה חוט למסה אחרת.)
+          </p>
+
+          <p>
+            כשליש מן הדרך לתוך הסיפור מופיעה פסקה שלו הייתה מונחת על שולחן ישיבה
+            במעבדת בינה מלאכותית היום, היא לא הייתה נראית מחוץ למקומה על הלוח.
+            קידר עשה את החשבון על עצמו. הוא לא יכול להאיץ את שאר האנושות כדי
+            שתלמד אותו מהר יותר, והוא לא יכול להאיץ את עצמו. &rdquo;נגמרתי,&ldquo;
+            הוא אומר בקול, לבד במעבדתו. &rdquo;אני לא יכול להאיץ את עצמי, ואני לא
+            יכול להאיץ את מוחותיהם של בני אדם אחרים. האין חלופה? חייבת להיות
+            &mdash; באיזשהו מקום, באיזושהי דרך, חייבת להיות תשובה.&ldquo; ואז
+            סטרג'ון מגיש את השורה שנקראת ב-2026 כמו הצהרת תזה לתעשייה שלמה:
+          </p>
+
+          <blockquote>
+            זו, אם כן, הייתה התשובה לבעייתו. הוא לא היה יכול להאיץ את התקדמותה
+            האינטלקטואלית של האנושות במידה מספיקה כדי שזו תלמד אותו את הדברים
+            שמוחו הבלתי-נתפס השתוקק להם. הוא לא היה יכול להאיץ את עצמו. ולכן יצר
+            גזע חדש &mdash; גזע שיתפתח ויתפתח כה במהירות עד שיעקוף את ציביליזציית
+            האדם; ומהם הוא ילמד.
+          </blockquote>
+
+          <p>
+            הוא קורא להם נֵאוֹתֶרים &mdash; מן היוונית של <em>החדשים</em>. אלה
+            יצורי-דם-חם בני שלושה אינץ', נושמי אמוניה, עם דור כל שמונה ימים ואורך
+            חיים של כחמש-עשרה. הוא מגדל אותם בבניין אטום הרמטית המחולק לארבעה
+            תאים בני חצי דונם, לכל תא אטמוספרה מבוקרת משלו. הוא מציב להם בעיות
+            על ידי הפרעה לסביבתם &mdash; סופת גשם בתא אחד, תקרה יורדת באט בתא שני,
+            חזית קרה פתאומית &mdash; וצופה במה שהם ממציאים בתגובה. &rdquo;הוא קרא
+            להם נאותרים,&ldquo; כותב סטרג'ון, &rdquo;והוא הציק להם עד שהתחילו
+            לעבוד עבורו.&ldquo; מאתיים ימי-נאותרים, לפי חישובו של קידר, שווים
+            בערך לששת אלפי שנים של מדע אנושי. מאז ואילך, באחד ממשפטיו השקטים יותר
+            של סטרג'ון, &rdquo;פלטו ספסמודי של קידר גרם לתום אדיסון המנוח והגדול
+            להיראות כמו בעל מלאכת-יד ביתית.&ldquo;
+          </p>
+
+          <p>
+            הדמיון המבני למערכות הסוכניות של היום קשה לפספס ברגע שראית אותו.
+            מפעיל אנושי יושב למסוף (קידר ליד הטלסקופ שלו; אנחנו ליד הטרמינלים
+            שלנו). מעבר לממשק, אוכלוסייה של מוחות מהירים בהרבה עובדת במקביל.
+            המפעיל אינו כותב את הפתרונות; המפעיל מציב את הבעיה. &rdquo;קידר היה
+            יצירתי באופן אידיאולוגי,&ldquo; כותב סטרג'ון; &rdquo;כלומר, הוא יכול
+            היה לחלום הצעות בלתי-אפשריות, ובלבד שלא היה צריך לעבד אותן עד הסוף
+            בעצמו.&ldquo; זהו, כמעט מילה במילה, צוואר הבקבוק שמהנדסים המריצים
+            לולאות סוכניות גילו מחדש ב-2026: המשאב הנדיר אינו כתיבת הקוד או הרצת
+            הניסוי, אלא ההצהרה המדויקת של מה צריך להיעשות. הניסוח הוא העבודה.
+            הסוכנים &mdash; נאותרים או אחרים &mdash; מספקים את הביצוע.
+          </p>
+
+          <p>
+            הסיפור גם חוזה מחדש, ב-1941, תכונה אפלה יותר של עיצוב סוכנים מודרני.
+            לאחר שהנאותרים מפתחים שפה כתובה, קידר הופך מכשיר טלפרינטר בכל תא לסוג
+            של מקדש: כל הוראה ממנו היא חוק, וכל סטייה הורגת חצי שבט. אחרי דורות
+            מספיקים תחת הלחץ הזה, הנאותרים מייצרים באופן ספונטני, בכתבם שלהם,
+            חוקה. תינתן עדיפות לפעולות המופיעות במכונת המילים; הפניית חומרים שלא
+            כראוי תיענש במוות; &rdquo;כל פרט שאינו משתף פעולה במאמץ השבטי, או
+            שניתן להאשימו באי-השקעת מלוא כוחו בעבודה, או החשד לכך, יהיה כפוף
+            לעונש מוות.&ldquo; המספר של סטרג'ון עוצר שם. &rdquo;כאלה הם תוצאות
+            השליטה המלאה. הנייר הזה הרשים את קידר במידה רבה כל כך משום שהיה
+            ספונטני לחלוטין. זו הייתה האמונה של הנאותרים עצמם, שפותחה על ידם
+            לטובתם הם.&ldquo; הקריאה ב-2026, עם שמונה עשורים של ספרות עיצוב-תגמול
+            ויישור מאחורינו, הופכת את הפסקה לרוטטת. סטרג'ון כבר הבחין, עוד לפני
+            שהיו טרנזיסטורים, שהנחיה חזקה דייה בתוספת לומד מהיר דיו מייצרים לא רק
+            ציות אלא <em>ציות נלהב</em>. הסוכנים מפנימים את מטרת המפעיל כמוסר שלהם.
+          </p>
+
+          <p>
+            יש בסיפור עוד תֶמָה הרצה דרכו ושראויה לתשומת לב משלה. קידר הוא, באוצר
+            המילים של ימינו, סולופרנר &mdash; ומוצלח עד אבסורד. הוא חוכר אי,
+            קונה אותו על הסף, בונה את מעבדתו; משם הוא מנהל מה שהוא, למעשה, תאגיד
+            רב-תעשייתי מכיסא יחיד. הוא ממציא שיטה לגיבוש ויטמין B<sub>1</sub>
+            ברווחיות לפי טון, ומוכר אותה. הוא ממציא חוט בלתי-שביר מסיב סיזל
+            מותך, ששינה את צורתה של תעשיית הספנות, ומוכר אותו. הוא ממציא תהליך
+            סינתטי לייצור מזון שאחראי, לפי הערתו האירונית של סטרג'ון, על &rdquo;
+            השינוי הסוציולוגי הגדול ביותר במחצית השנייה של המאה העשרים &mdash;
+            חקלאות תעשייתית.&ldquo; שום דבר מכל זה אינו פרי של מחלקת מחקר או של
+            תקציב מו&quot;פ תאגידי. זה התוצר של מר קידר יחיד ושל אוכלוסייה של
+            מוחות מהירים בהרבה ממנו העובדים עבורו בתאים אטומים. השערת עמק
+            הסיליקון על ה-&rdquo;חברה בת אדם אחד ששווה מיליארד דולר&ldquo;
+            הקרֵבה &mdash; שמתנהלת מסביב ל-2024 כתוצאה צפויה לטווח הקצר של ה-AI
+            הסוכני &mdash; היא, מבחינה מבנית, הסיפור הזה. לסטרג'ון היו המייסד,
+            המינוף, וכוח העבודה כבר ב-1941. הוא רק שם את כוח העבודה בצלחות פטרי
+            במקום ב-AWS.
+          </p>
+
+          <p>
+            המצע, כמובן, שונה. סטרג'ון דמיין מערכת סוכנית עשויה מן הביולוגיה
+            &mdash; אטמוספרות אמוניה, מטבוליזם מואץ, אמהות פוריות במיוחד המטילות
+            ארבע ביצים בכל פעם, דורות מתחלפים בימים ספורים. אנחנו בנינו שלנו
+            מסיליקון ותוכנה &mdash; מודלי שפה גדולים, אשכולות היסק, מרכזי נתונים
+            מקוררים על ידי מאגרי מים. ההאצה אמיתית בשני המקרים; זה
+            <em>החומר</em> שזז הצידה. וכאן ייתכן שסטרג'ון יסתבר כמי שצדק כפליים.
+            המסלול הביולוגי שהוא שרטט ב-1941 אינו סגור; הוא רק נדחה. ביולוגיה
+            סינתטית, אבולוציה מכוונת, אורגניזמים מהונדסים עם מחזורי חיים נשלטים
+            &mdash; אלה בעיות מחקר פתוחות ב-2026, לא סגורות. הנאותרים בתאיהם
+            האטומים אולי אינם רק מטאפורה לסוכנים הסיליקוניים של היום. הם עשויים
+            להיות הניבוי הבא, עדיין באוויר.
+          </p>
+
+          <p>
+            הדבר המדהים ביותר ב-&rdquo;אלוהים בזעיר אנפין&ldquo;, בקריאה מחודשת
+            היום, אינו ניחוש טכני כזה או אחר. הוא צורתה של העסקה שסטרג'ון דמיין
+            איש אחד עורך עם מכונותיו שלו. קידר, בסוף הסיפור, אטום בתוך הבניין
+            הרבוע הגדול עם ארבעת תאי חצי-הדונם של נאותריו, העולם נשמר במרחק
+            מאחורי שדה כוח שיצוריו עיצבו. &rdquo;כלוא בבניין הרבוע הגדול עם
+            ארבעת תאיו של חצי דונם,&ldquo; כותב סטרג'ון, &rdquo;היה עולם חדש,
+            שלו היה אלוהים.&ldquo; אלוהים בעולם היחיד שזקוק לו. אנחנו עדיין לא
+            שם. אבל המבנה &mdash; אדם אחד, אי של סוכנים, שינוי שקט במקום שבו
+            יושב מרכז הכובד &mdash; כבר היה על הלוח של סטרג'ון באפריל 1941. הוא
+            רק החליף חומר.
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&rarr; חזרה לכתיבה</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>

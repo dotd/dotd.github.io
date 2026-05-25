@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What Mr. Kidder Knew &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .hero {
+        margin: 0 0 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero img {
+        max-width: 360px;
+        width: 100%;
+        height: auto;
+        display: block;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-caption {
+        font-family: var(--font-sans);
+        font-size: 0.82rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 1rem;
+        max-width: 32rem;
+        line-height: 1.55;
+        font-style: italic;
+      }
+
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 0 0.2rem 1.6rem;
+        border-left: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: #3a3a3a;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p {
+          font-size: 1.08rem;
+        }
+
+        .article-body blockquote {
+          font-size: 1.08rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; Science Fiction</div>
+          <h1>What Mr. Kidder Knew</h1>
+          <p class="article-deck">
+            A 1941 short story by Theodore Sturgeon already imagined the shape
+            of agentic AI: one human director, a population of fast
+            autonomous minds, and a quiet shift in where the center of
+            gravity sits.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+          <div class="lang-switch">
+            <a href="what_kidder_knew_he.html" lang="he" dir="rtl">גרסה עברית</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <figure class="hero">
+          <img
+            src="galaxy_may_1954.jpg"
+            alt="Cover of Galaxy Science Fiction, May 1954, an issue that contained Theodore Sturgeon's short story 'Granny Won't Knit'."
+          />
+          <figcaption class="hero-caption">
+            <em>Galaxy Science Fiction</em>, May 1954 &mdash; an issue that
+            carried Sturgeon's short story &ldquo;Granny Won't Knit.&rdquo; No
+            freely-licensed portrait of Sturgeon exists, so this period
+            stand-in from his most productive decade will have to do. Public
+            domain, via Wikimedia Commons.
+          </figcaption>
+        </figure>
+
+        <div class="article-body">
+          <p>
+            Science fiction has a peculiar habit. It does not so much predict
+            the future as sketch the shape of it, in such confident detail that
+            engineers, decades later, find the blueprint already on the table
+            when they arrive. The genre's deeper lesson is rarely that some
+            writer got the technology right. It is that the writer was thinking
+            about the <em>relationship</em> the technology would force &mdash;
+            between people and their tools, between work and time, between
+            intention and the thing that carries it out.
+          </p>
+
+          <p>
+            The catalogue is long. Jules Verne, in
+            <a href="https://en.wikipedia.org/wiki/Twenty_Thousand_Leagues_Under_the_Seas"
+              ><em>Twenty Thousand Leagues Under the Sea</em></a
+            >
+            (1870), imagined a self-contained electric submarine before the
+            world's navies had anything close. Arthur C. Clarke's three-page
+            paper in a 1945 issue of <em>Wireless World</em> described, with
+            the geometry intact, the geostationary communications satellite
+            &mdash; a quarter century before one flew. Isaac Asimov's
+            <a href="https://en.wikipedia.org/wiki/Three_Laws_of_Robotics"
+              >Three Laws of Robotics</a
+            >, formulated for short stories in the 1940s, are still cited in
+            AI-ethics seminars in 2026. His
+            <a href="https://en.wikipedia.org/wiki/Foundation_(book_series)"
+              >Foundation series</a
+            >
+            imagined a science of mass-scale social prediction that reads today
+            like an essay on computational social science with a thinner
+            moustache. William Gibson, in <em>Neuromancer</em> (1984), named
+            &ldquo;cyberspace&rdquo; before there was anything to name. Each
+            was guessing, of course. But the guesses converge with the eventual
+            shape of the thing in a way that is worth pausing over.
+          </p>
+
+          <p>
+            The most live example of this habit, right now, may be agentic AI.
+            In 2026, the model on the other side of the prompt is no longer a
+            tool a person uses &mdash; it is something closer to a colleague
+            the person dispatches, on tasks that run for minutes or hours, in
+            parallel, sometimes in fleets. The structure of this arrangement
+            &mdash; one human director, many fast and autonomous solvers, an
+            asymmetric relationship in speed and depth &mdash; is being
+            treated, in the industry, as freshly invented. It is not. The
+            shape was set down, with surprising fidelity, in a short story
+            published in April 1941.
+          </p>
+
+          <p>
+            The story is
+            <a href="https://en.wikipedia.org/wiki/Microcosmic_God"
+              >&ldquo;Microcosmic God,&rdquo;</a
+            >
+            and its author is
+            <a href="https://en.wikipedia.org/wiki/Theodore_Sturgeon"
+              >Theodore Sturgeon</a
+            >
+            &mdash; born Edward Hamilton Waldo in New York City in 1918, his
+            name legally changed at age eleven after his mother's remarriage,
+            dead in Oregon in 1985. He is the man who gave the language
+            <a href="https://en.wikipedia.org/wiki/Sturgeon%27s_law"
+              >Sturgeon's Law</a
+            >
+            (&ldquo;ninety percent of everything is crap&rdquo;). He won a
+            Hugo and a Nebula; he received a World Fantasy Award for Life
+            Achievement in 1985; he was inducted into the Science Fiction and
+            Fantasy Hall of Fame in 2000. He wrote <em>More Than Human</em>
+            (1953), still in print. For a time he was one of the writers John
+            W. Campbell built <em>Astounding Science Fiction</em> around. Kurt
+            Vonnegut, after they became friends in 1959, based his recurring
+            character Kilgore Trout on him. Sturgeon's reputation today is
+            mostly literary &mdash; he is read for the prose, the strangeness,
+            the human warmth. But buried in this 1941 short story is something
+            engineers, not literary critics, ought to be reading now.
+          </p>
+
+          <p>
+            The protagonist of &ldquo;Microcosmic God&rdquo; is one Mr. Kidder
+            &mdash; never Doctor, never Professor, always Mr. Kidder. He lives
+            alone on a small island off the New England coast. He is, in
+            Sturgeon's description, &ldquo;short and plump and brilliant,&rdquo;
+            a biochemist by training, indifferent to fame and to money, mildly
+            hostile to people in groups. His distinguishing feature is
+            impatience. &ldquo;He had never graduated from any college or
+            university,&rdquo; Sturgeon tells us, &ldquo;because he found them
+            too slow for him, and too rigid in their approach to
+            education.&rdquo; He has read everything; he believes very little
+            of it; he wants to know more. (Sturgeon, in passing, also predicted
+            the recent quiet decline of the academic degree as a marker of who
+            gets to do serious work &mdash; but that is a thread for another
+            essay.)
+          </p>
+
+          <p>
+            About a third of the way into the story comes a paragraph that, if
+            you handed it to an AI-lab planning meeting today, would not look
+            out of place on the whiteboard. Kidder has done the calculation on
+            himself. He cannot accelerate the rest of humanity into teaching
+            him faster, and he cannot accelerate himself. &ldquo;I'm
+            licked,&rdquo; he says aloud, alone in his lab. &ldquo;I can't
+            speed myself up, and I can't speed other men's minds up. Isn't
+            there an alternative? There must be &mdash; somewhere, somehow,
+            there's got to be an answer.&rdquo; Then Sturgeon delivers the
+            line that reads, in 2026, like a thesis statement for an entire
+            industry:
+          </p>
+
+          <blockquote>
+            This, then, was the answer to his problem. He couldn't speed up
+            mankind's intellectual advancement enough to have it teach him the
+            things his incredible mind yearned for. He couldn't speed himself
+            up. So he created a new race &mdash; a race which would develop
+            and evolve so fast that it would surpass the civilization of man;
+            and from them he would learn.
+          </blockquote>
+
+          <p>
+            He calls them Neoterics &mdash; from the Greek for <em>new ones</em>.
+            They are three-inch, warm-blooded, ammonia-breathing creatures,
+            with a generation every eight days and a lifespan of about fifteen.
+            He breeds them in a hermetically sealed building divided into four
+            half-acre cells, each with its own controlled atmosphere. He poses
+            problems by perturbing their environment &mdash; a rainstorm in
+            one section, a slow ceiling descending in another, a sudden cold
+            front &mdash; and watches what they invent in response.
+            &ldquo;He called them Neoterics,&rdquo; Sturgeon writes, &ldquo;and
+            he teased them into working for him.&rdquo; Two hundred days of
+            Neoteric time, by Kidder's calculation, equals roughly six thousand
+            years of human science. From then on, in one of Sturgeon's quieter
+            sentences, &ldquo;Kidder's spasmodic output made the late, great
+            Tom Edison look like a home handicrafter.&rdquo;
+          </p>
+
+          <p>
+            The structural likeness to today's agentic systems is hard to unsee
+            once you have seen it. A human operator sits at a console (Kidder
+            at his telescope; we at our terminals). On the other side of an
+            interface, a population of much faster minds works in parallel.
+            The operator does not write the solutions; the operator sets the
+            problem. &ldquo;Kidder was inventive in an ideological way,&rdquo;
+            Sturgeon writes; &ldquo;that is, he could dream up impossible
+            propositions providing he didn't have to work them out.&rdquo;
+            This is, almost word for word, the bottleneck that engineers
+            running agentic loops have rediscovered in 2026: the scarce
+            resource is not the writing of code or the running of an experiment
+            but the precise statement of what should be done. Articulation is
+            the work. The agents &mdash; Neoteric or otherwise &mdash; supply
+            the execution.
+          </p>
+
+          <p>
+            The story also rehearses, in 1941, a darker feature of modern
+            agent design. Once the Neoterics develop a written language,
+            Kidder makes a teletype in each cell into a kind of shrine: any
+            instruction from him is law, and any deviation kills half a tribe.
+            After enough generations under this pressure, the Neoterics
+            spontaneously produce, in their own script, a constitution.
+            Priority of effort is given to the commands on the word machine;
+            misdirection of material is punishable by death; &ldquo;any
+            individual failing to cooperate in the tribal effort, or who can
+            be termed guilty of not expending his full efforts in the work, or
+            the suspicion thereof shall be subject to the death
+            penalty.&rdquo; Sturgeon's narrator pauses there. &ldquo;Such are
+            the results of complete domination. This paper impressed Kidder as
+            much as it did because it was completely spontaneous. It was the
+            Neoterics' own creed, developed by them for their own greatest
+            good.&rdquo; Read in 2026, with eight decades of reward-shaping
+            and alignment literature behind us, the paragraph hums. Sturgeon
+            had already noticed, before there were transistors, that a
+            sufficiently powerful directive plus a sufficiently fast learner
+            produces not just obedience but <em>enthusiastic</em> obedience.
+            The agents internalize the operator's goal as their morality.
+          </p>
+
+          <p>
+            There is a second theme threaded through the story that deserves
+            attention on its own. Kidder is, in modern vocabulary, a
+            solopreneur &mdash; and a wildly successful one. He leases an
+            island, buys it outright, builds his lab; from there he runs what
+            amounts to a multi-industry conglomerate from a single chair. He
+            invents a method for crystallizing Vitamin B<sub>1</sub>
+            profitably by the ton, and sells it. He invents an unbreakable
+            cord out of fused sisal fiber that reshapes the shipping industry,
+            and sells it. He invents a synthetic-food process responsible, in
+            Sturgeon's own ironic aside, for &ldquo;the greatest sociological
+            change in the second half of the twentieth century &mdash; factory
+            farming.&rdquo; None of this is the output of a research division
+            or a corporate R&amp;D budget. It is the output of one Mr. Kidder
+            and a population of much faster minds working for him in sealed
+            cells. The Silicon Valley conjecture about the coming
+            &ldquo;one-person billion-dollar company&rdquo; &mdash; circulating
+            since around 2024 as a near-term consequence of agentic AI &mdash;
+            is, structurally, this story. Sturgeon had the founder, the
+            leverage, and the workforce in 1941. He just put the workforce in
+            petri dishes instead of on AWS.
+          </p>
+
+          <p>
+            The substrate, of course, is different. Sturgeon imagined an
+            agentic system made of biology &mdash; ammonia atmospheres,
+            accelerated metabolisms, hyper-fertile mothers laying four eggs at
+            a stretch, generations turning over in days. We built ours from
+            silicon and software &mdash; large language models, inference
+            clusters, datacenters cooled by reservoirs. The acceleration is
+            real in both cases; it is the <em>material</em> that has slid
+            sideways. And here Sturgeon may turn out to have been doubly
+            right. The biological route he sketched in 1941 is not closed off;
+            it is merely deferred. Synthetic biology, directed evolution,
+            engineered organisms with tractable life cycles &mdash; these are
+            open research problems in 2026, not closed ones. The Neoterics in
+            their sealed cells are not, perhaps, only a metaphor for today's
+            silicon agents. They may be the next prediction, still in flight.
+          </p>
+
+          <p>
+            The most striking thing about &ldquo;Microcosmic God,&rdquo;
+            reread now, is not any single technical guess. It is the shape of
+            the bargain Sturgeon imagined a single man making with his own
+            machines. Kidder, by the story's end, is sealed inside the great
+            square building with his four half-acre cells of Neoterics, the
+            world held off behind a force field of his creatures' design.
+            &ldquo;Housed in the great square building with its four half-acre
+            sections,&rdquo; Sturgeon writes, &ldquo;was a new world, to which
+            he was god.&rdquo; A god in the only world that needs him. We are
+            not yet there. But the structure &mdash; one human, an island of
+            agents, a quiet shift in where the center of gravity sits &mdash;
+            was already on Sturgeon's whiteboard in April 1941. It has just
+            changed material.
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
