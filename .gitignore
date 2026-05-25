@@ -1,0 +1,8 @@
+# macOS Finder metadata
+.DS_Store
+
+# Local scratch
+tmp/
+
+# Source PDF used for research only — not for redistribution
+writings/microcosmic_god/MICROCOSMIC GOD.pdf
