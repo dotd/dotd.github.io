@@ -218,6 +218,28 @@
         color: var(--color-text);
       }
 
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        line-height: 1.6;
+        max-width: 32rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .article-body a {
         text-decoration: underline;
         text-decoration-color: #c4bdb1;
@@ -446,6 +468,20 @@
             שנשלפות מהתפלגות ידועה; קולמוגורוב אמר לכם מהי תכולת המידע הפנימית
             של <em>המחרוזת הזו</em>, היושבת על השולחן שלפניכם.
           </p>
+
+          <figure class="figure">
+            <img
+              src="shortest_program_diagram.svg"
+              alt="איור של סיבוכיות קולמוגורוב: תוכנית קטנה p מצד שמאל עם כמה שורות קוד קצרות, חץ עם הכיתוב 'outputs and halts', ושורה של תאים מצד ימין המכילה את המחרוזת הבינארית 0 1 0 1 0 1 .... סוגריים מתחת לתוכנית מראים שאורך p קטן; סוגריים מתחת למחרוזת הבינארית מראים שאורכה גדול הרבה יותר. כותרת תחתונה: K(x) שווה לאורך p הקצרה ביותר שמפיקה את x ועוצרת."
+            />
+            <figcaption class="figure-caption">
+              התמונה במשפט אחד. תוכנית <em>p</em> &mdash; קטע קוד קטן הרץ על
+              מכונת טיורינג אוניברסלית &mdash; מריצה ומדפיסה מחרוזת בינארית
+              <em>x</em>. אורכה של <em>p</em> יכול להיות קצר בהרבה מאורכה של
+              <em>x</em>. <em>K(x)</em> הוא אורך התוכנית <em>p</em> הקצרה
+              ביותר מסוג זה.
+            </figcaption>
+          </figure>
 
           <h2>אימון כדחיסה</h2>
 

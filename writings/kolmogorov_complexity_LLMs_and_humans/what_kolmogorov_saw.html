@@ -211,6 +211,29 @@
         letter-spacing: -0.005em;
       }
 
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        font-style: italic;
+        line-height: 1.5;
+        max-width: 32rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .article-body p:first-of-type::first-letter {
         font-family: var(--font-serif);
         font-weight: 600;
@@ -476,6 +499,20 @@
             Kolmogorov told you the intrinsic information content of
             <em>this</em> string, sitting on the desk in front of you.
           </p>
+
+          <figure class="figure">
+            <img
+              src="shortest_program_diagram.svg"
+              alt="Illustration of Kolmogorov complexity: a small program p on the left with a few short lines of code, an arrow labeled 'outputs and halts', and a row of cells on the right containing the binary string 0 1 0 1 0 1 ... A bracket below shows the length of p as small; a bracket below the binary string shows its length as much larger. Bottom caption: K(x) equals the length of the shortest p that outputs x and halts."
+            />
+            <figcaption class="figure-caption">
+              The picture in one line. A program <em>p</em> &mdash; some small
+              piece of code on a universal Turing machine &mdash; runs and
+              prints a binary string <em>x</em>. The length of <em>p</em> can
+              be much shorter than the length of <em>x</em>.
+              <em>K(x)</em> is the length of the shortest such <em>p</em>.
+            </figcaption>
+          </figure>
 
           <h2>Training as Compression</h2>
 
