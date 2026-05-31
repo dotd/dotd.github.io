@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Surgeon&rsquo;s New Hands &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 38rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body h2 {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.55rem;
+        line-height: 1.3;
+        margin-top: 3rem;
+        margin-bottom: 0.6rem;
+        color: var(--color-text);
+        letter-spacing: -0.005em;
+      }
+
+      .article-body h3 {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 1.05rem;
+        line-height: 1.35;
+        margin-top: 2.2rem;
+        margin-bottom: 0.6rem;
+        color: var(--color-text);
+        letter-spacing: 0.01em;
+      }
+
+      .part-label {
+        font-family: var(--font-sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--color-text-secondary);
+        display: block;
+        margin-top: 3rem;
+        margin-bottom: -0.4rem;
+      }
+
+      .article-body ul {
+        margin: 0 0 1.4rem 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: #232323;
+      }
+
+      .article-body ul li {
+        margin-bottom: 0.6rem;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      .article-body em {
+        font-style: italic;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .table-wrap {
+        margin: 2.2rem 0;
+        overflow-x: auto;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        font-family: var(--font-sans);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      table th,
+      table td {
+        text-align: left;
+        padding: 0.7rem 0.8rem;
+        border-bottom: 1px solid var(--color-border);
+        vertical-align: top;
+      }
+
+      table th {
+        font-weight: 600;
+        color: var(--color-text);
+        border-bottom: 2px solid #cfcabf;
+        background: var(--color-tag-bg);
+      }
+
+      table td:first-child {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .article-footnote {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+        font-style: italic;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p,
+        .article-body ul {
+          font-size: 1.08rem;
+        }
+
+        table {
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; Robotics &amp; AI</div>
+          <h1>The Surgeon&rsquo;s New Hands</h1>
+          <p class="article-deck">
+            On the slow climb from teleoperation to autonomy in the operating
+            room &mdash; what the leading robotics companies actually do, where
+            the money is going, and why the decisive asset turns out to be not
+            the machine but the data it leaves behind.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+          <div class="lang-switch">
+            <a href="the_surgeons_new_hands_he.html" lang="he" dir="rtl">גרסה עברית</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <p>
+            There are two very different machines a person can mean when they
+            say &ldquo;surgical robot.&rdquo; The first steadies a surgeon&rsquo;s
+            hands: it scales motion, filters tremor, and rotates a wristed
+            instrument inside a body cavity through an incision the width of a
+            pencil &mdash; but every millimeter of that motion originates in a
+            human hand on a console a few feet away. The second machine knows
+            where to cut. It holds a plan, perceives the tissue in front of it,
+            and executes a step of the procedure while the surgeon watches.
+            Almost every robot in clinical use today is the first kind. Almost
+            every dollar of ambition in the field is aimed at the second.
+          </p>
+
+          <p>
+            The distance between those two machines is the subject of this
+            essay. I write it as someone who works inside this industry rather
+            than above it, so take what follows as informed postulation about a
+            trajectory, not prophecy. The trajectory itself, though, is
+            unusually legible right now. The taxonomy that describes it is
+            published and cited, the companies climbing it report their numbers
+            every quarter, the startups attacking its hardest rungs raise rounds
+            that hit the wire with dates and dollar figures attached, and
+            &mdash; for the first time &mdash; academic labs have shown a robot
+            performing a full phase of a real procedure on living-adjacent
+            tissue with no hand on the controls. The pieces are on the table.
+            What remains is to read them in the right order.
+          </p>
+
+          <span class="part-label">Part I</span>
+          <h2>The autonomy ladder</h2>
+
+          <p>
+            The most useful frame for the whole field is borrowed,
+            deliberately, from cars. In 2017 a group of medical-robotics
+            researchers led by Guang-Zhong Yang published a short paper in
+            <em>Science Robotics</em> proposing a six-level scale of surgical
+            autonomy, explicitly modeled on the SAE levels that the automotive
+            world uses to talk about self-driving
+            (<a href="https://www.science.org/doi/10.1126/scirobotics.aam8638">Yang et al., 2017</a>).
+            It has become the field&rsquo;s shared vocabulary, and it is worth
+            stating precisely because almost every confusion in the popular
+            coverage of &ldquo;robot surgeons&rdquo; comes from sliding between
+            its rungs.
+          </p>
+
+          <ul>
+            <li>
+              <strong>Level 0 &mdash; No autonomy.</strong> The robot does
+              exactly what the surgeon commands. Motion scaling, tremor
+              filtering, and tool tracking all live here, because the output is
+              still the surgeon&rsquo;s intended motion, merely cleaned up. This
+              is teleoperation.
+            </li>
+            <li>
+              <strong>Level 1 &mdash; Robot assistance.</strong> The robot
+              provides continuous physical or cognitive guidance while the human
+              stays in control throughout &mdash; a virtual fixture, an active
+              constraint, a &ldquo;wall&rdquo; the instrument cannot cross.
+            </li>
+            <li>
+              <strong>Level 2 &mdash; Task autonomy.</strong> The robot
+              autonomously executes a discrete, surgeon-initiated task &mdash; a
+              suture line, a bone cut &mdash; under supervision. The human
+              approves at the start; the robot carries it out.
+            </li>
+            <li>
+              <strong>Level 3 &mdash; Conditional autonomy.</strong> The robot
+              generates strategy, not just motion: it plans a task and adapts the
+              plan during execution, while the surgeon selects, approves, and
+              supervises.
+            </li>
+            <li>
+              <strong>Level 4 &mdash; High autonomy.</strong> The robot makes
+              clinical decisions and executes them under the oversight of a
+              qualified surgeon.
+            </li>
+            <li>
+              <strong>Level 5 &mdash; Full autonomy.</strong> A robot performs
+              the whole operation with no human input. The &ldquo;robotic
+              surgeon&rdquo; of the headlines.
+            </li>
+          </ul>
+
+          <p>
+            Two things make this ladder the right backbone for everything that
+            follows. The first is that we can say, with citation rather than
+            vibe, exactly where the commercial field sits. A 2024 systematic
+            review in <em>npj Digital Medicine</em> examined every FDA-cleared
+            surgical robot &mdash; forty-nine systems &mdash; and classified them
+            against this scale. Eighty-six percent are at <strong>Level 1</strong>.
+            The single highest level reached by any cleared system is
+            <strong>Level 3</strong>, attained by a small number of orthopedic
+            systems that mill bone against a patient-specific plan
+            (<a href="https://www.nature.com/articles/s41746-024-01102-y">Han et al., 2024</a>).
+            Nothing on the market is at Level 4 or 5. The flagship soft-tissue
+            robots that define the public image of robotic surgery &mdash; the
+            ones doing prostatectomies and hysterectomies by the millions &mdash;
+            are Level 1. They are, in the strict sense, not autonomous at all.
+          </p>
+
+          <p>
+            The second reason the ladder matters is that the rungs are not evenly
+            spaced, and the gap that matters is the one between rigid anatomy and
+            soft tissue. A femur does not move while you cut it. Bowel, fat, and
+            blood vessels deform continuously, bleed, and slide out of plane; a
+            plan computed a second ago is wrong now. This is why the only fielded
+            systems above Level 1 work on bone, and why a robot that autonomously
+            sutures soft tissue in a living body remains, in 2026, a research
+            result rather than a product. Surgery is the hardest possible domain
+            for the autonomy ladder for reasons that compound: the cost of an
+            error is irreversible, the workspace is deformable and occluded, the
+            regulator sits in the room in the form of a clearance file and a
+            liability regime, and the demonstrations you would need to train a
+            policy are scarce, proprietary, and recorded inside an environment
+            that punishes experimentation.
+          </p>
+
+          <p>
+            It is worth situating this against the rest of robotics, because
+            surgery is both behind and ahead. Behind, because warehouse arms and
+            even cars have reached commercial Level 2&ndash;4 autonomy in their
+            domains while surgery has not. Ahead, because the value density of a
+            single surgical task is so high that the field can fund a decade of
+            research toward automating a few minutes of work. The broader
+            robotics world has, over the last three years, gone through a
+            methodological turn that surgery is now importing wholesale: the
+            shift from hand-coded control to <em>learning from demonstration</em>,
+            and then to <em>vision-language-action models</em> &mdash; large
+            neural policies, trained on demonstrations and web-scale data, that
+            map what a robot sees and is told directly onto what it does. Google
+            DeepMind&rsquo;s RT-2 in 2023, then Physical Intelligence&rsquo;s
+            &pi;&#8320; in 2024, showed that a single learned model could
+            generalize across tasks and embodiments. The reason this matters for
+            the operating room is not analogy. It is personnel: the same
+            researchers are now publishing surgical results. Hold that thread;
+            Part IV pulls on it.
+          </p>
+
+          <span class="part-label">Part II</span>
+          <h2>The landscape today</h2>
+
+          <p>
+            If almost everything in clinical use is Level 1, then a survey of the
+            leaders is really a survey of two things &mdash; who controls the
+            installed base of teleoperated systems, and who has pushed furthest
+            up the bone-cutting branch of the ladder. Here are the five companies
+            that define the field, each read against the autonomy scale and
+            against the question that turns out to matter most by the end of this
+            essay: what data does the machine leave behind?
+          </p>
+
+          <p>
+            <strong>Intuitive Surgical</strong> is the incumbent by a margin that
+            is hard to overstate. Its da Vinci system &mdash; now in its fifth
+            generation, cleared by the FDA in March 2024 &mdash; had an installed
+            base of <strong>11,106 systems</strong> worldwide at the end of 2025,
+            up twelve percent on the year, alongside 954 of its Ion
+            robotic-bronchoscopy systems. Surgeons performed roughly
+            <strong>3.15 million da Vinci procedures in 2025</strong>, pushing the
+            cumulative lifetime count toward seventeen million, and the company
+            booked about <strong>$10 billion in revenue</strong>
+            (<a href="https://isrg.intuitive.com/news-releases/news-release-details/intuitive-announces-preliminary-fourth-quarter-and-full-year-5">Intuitive Q4/FY2025 results</a>;
+            figures preliminary). On the autonomy ladder, da Vinci is
+            <strong>Level 0</strong> &mdash; pure teleoperation. Its most notable
+            recent addition, Force Feedback on da Vinci 5, gives surgeons a sense
+            of touch for the first time but adds no autonomy. What it adds, as we
+            will see, is a new stream of data.
+          </p>
+
+          <p>
+            <strong>Medtronic</strong> is the most credible challenger in soft
+            tissue, and its big moment arrived late in 2025: on December 3, the
+            FDA cleared its <strong>Hugo</strong> system for urologic procedures,
+            on the strength of a 137-patient trial, with the first US commercial
+            case performed at the Cleveland Clinic
+            (<a href="https://news.medtronic.com/2025-12-03-Medtronic-announces-FDA-clearance-of-Hugo-TM-robotic-assisted-surgery-system-for-urologic-surgical-procedures">Medtronic, Dec 2025</a>).
+            Hugo had carried a European CE mark since 2021 and is deployed across
+            more than thirty countries. Architecturally it is modular &mdash;
+            independent arm carts and an open console &mdash; but on the ladder it
+            is <strong>Level 0</strong>, a direct teleoperated competitor to da
+            Vinci. The contest between Hugo and da Vinci is not about autonomy. It
+            is about breaking a near-monopoly.
+          </p>
+
+          <p>
+            <strong>Stryker</strong> sits on the other branch of the tree, and it
+            is the most genuinely autonomous of the mainstream systems &mdash;
+            though with an important caveat. Its <strong>Mako</strong> platform,
+            with more than three thousand robots installed and over 1.5 million
+            procedures performed across forty-five countries, works in
+            orthopedics: a preoperative CT scan becomes a three-dimensional model,
+            which becomes a patient-specific cutting plan, which the robotic arm
+            then enforces. Inside the planned region the surgeon moves the saw
+            freely; at the boundary the arm resists like a wall and the tool
+            deactivates
+            (<a href="https://www.stryker.com/us/en/joint-replacement/systems/Mako_SmartRobotics_Overview.html">Stryker</a>).
+            This is <strong>Level 1</strong> &mdash; robot assistance through an
+            active constraint &mdash; and it is the ceiling for mainstream
+            commercial systems. The caveat matters enough to state plainly:
+            Stryker is explicit that the arm moves <em>in tandem with the
+            surgeon&rsquo;s hand</em> and makes no autonomous motion. It is
+            bounded, shared control, not a robot that cuts by itself. The line
+            between &ldquo;enforces a plan&rdquo; and &ldquo;executes a
+            plan&rdquo; is exactly the line between Level 1 and Level 2, and no
+            cleared soft-tissue system has crossed it.
+          </p>
+
+          <p>
+            <strong>Johnson &amp; Johnson MedTech</strong> is the giant that has
+            taken longest to arrive, and 2025&ndash;26 is finally its inflection.
+            Its soft-tissue robot, <strong>Ottava</strong>, distinguished by four
+            arms integrated directly into the operating table, completed its first
+            investigational human cases in early 2025 and was submitted to the FDA
+            for clearance in January 2026 &mdash; not yet on the market
+            (<a href="https://www.massdevice.com/johnson-johnson-medtech-submits-ottava-fda/">MassDevice</a>).
+            Its endoluminal system, <strong>Monarch</strong>, received clearance
+            for robotic lung biopsy in March 2025, paired with an AI navigation
+            update built with Nvidia and GE Healthcare. Ottava is
+            <strong>Level 0</strong>; Monarch is <strong>Level 0&ndash;1</strong>.
+            J&amp;J&rsquo;s bet is distribution and integration, not autonomy
+            &mdash; but it brings the deepest pockets in medtech to the table.
+          </p>
+
+          <p>
+            The fifth slot belongs jointly to two systems that bracket the
+            field&rsquo;s two directions. <strong>CMR Surgical&rsquo;s
+            Versius</strong>, a British modular system designed around small
+            independent arm carts, won FDA de novo authorization in October 2024
+            and a 510(k) clearance for its Versius Plus generation in December
+            2025, with a US launch planned for 2026 and more than forty thousand
+            procedures already performed outside the US
+            (<a href="https://www.medtechdive.com/news/CMR-Surgical-FDA-clearance-Versius-Plus-robot/808140/">MedTech Dive</a>).
+            It is <strong>Level 0</strong> &mdash; the scrappy, portable,
+            cost-focused challenger to the da Vinci/Hugo duopoly in soft tissue.
+            <strong>Zimmer Biomet&rsquo;s ROSA</strong>, by contrast, lives on
+            Stryker&rsquo;s branch: a robotic platform spanning knee, hip, and
+            shoulder replacement plus neurosurgery, with roughly two thousand
+            installations and an enhanced ROSA Knee cleared in November 2025
+            (<a href="https://www.prnewswire.com/news-releases/zimmer-biomet-receives-us-fda-clearance-for-enhanced-version-of-rosa-knee-robotic-technology-302615106.html">Zimmer Biomet</a>).
+            Like Mako it is <strong>Level 1</strong>, but it reaches its plan
+            differently &mdash; historically through intraoperative registration
+            rather than a mandatory preoperative CT, a real technical contrast in
+            how much imaging the autonomy depends on. Between them, Versius and
+            ROSA show the whole shape of the market: one race to make
+            teleoperation cheaper and more accessible, another to push bounded
+            autonomy deeper into structured anatomy.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>System</th>
+                  <th>Specialty</th>
+                  <th>Autonomy</th>
+                  <th>Differentiator</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Intuitive</td>
+                  <td>da Vinci 5, Ion</td>
+                  <td>Soft tissue, lung</td>
+                  <td>Level 0 (teleop)</td>
+                  <td>Installed base + data flywheel (~17M procedures)</td>
+                </tr>
+                <tr>
+                  <td>Medtronic</td>
+                  <td>Hugo RAS</td>
+                  <td>Urology, gynae, general</td>
+                  <td>Level 0 (teleop)</td>
+                  <td>Modular challenger; US-cleared Dec 2025</td>
+                </tr>
+                <tr>
+                  <td>Stryker</td>
+                  <td>Mako</td>
+                  <td>Orthopedics (knee/hip)</td>
+                  <td>Level 1 (constraint)</td>
+                  <td>CT plan + haptic boundary; highest mainstream autonomy</td>
+                </tr>
+                <tr>
+                  <td>J&amp;J MedTech</td>
+                  <td>Ottava, Monarch</td>
+                  <td>Soft tissue, endoluminal</td>
+                  <td>Level 0&ndash;1</td>
+                  <td>Table-integrated arms; FDA submission Jan 2026</td>
+                </tr>
+                <tr>
+                  <td>CMR / Zimmer</td>
+                  <td>Versius / ROSA</td>
+                  <td>Soft tissue / ortho-neuro</td>
+                  <td>Level 0 / Level 1</td>
+                  <td>Portable challenger / imageless ortho planning</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Step back from the table and a pattern asserts itself. The thing that
+            separates the leaders is not kinematics &mdash; the arms are, by now,
+            a solved and commoditizing problem. It is the installed base and the
+            regulatory file: the thousands of placed systems, the millions of
+            logged procedures, the trial data that turns into a clearance.
+            Intuitive&rsquo;s moat is not that da Vinci moves better than Hugo. It
+            is that seventeen million procedures have flowed through da Vinci
+            consoles, and every one of them left a trace. Hold that observation
+            too. It is the hinge of the whole argument.
+          </p>
+
+          <span class="part-label">Part III</span>
+          <h2>The open frontier</h2>
+
+          <p>
+            If the incumbents own teleoperation, the open frontier &mdash; where
+            venture money and startup energy concentrate &mdash; is everything
+            teleoperation does not yet do: reach anatomies the big systems ignore,
+            drive the cost low enough for an outpatient surgery center, and
+            automate the individual steps of a procedure. The market they are
+            chasing is large and growing fast, though precisely how large depends
+            on whom you ask: analyst estimates of the 2025 surgical-robotics
+            market cluster between roughly <strong>$10 billion and $14
+            billion</strong>, with compound growth rates in the mid-teens, and a
+            long tail of more aggressive projections that should be read
+            skeptically
+            (<a href="https://www.precedenceresearch.com/surgical-robotics-market">Precedence</a>,
+            <a href="https://www.marketsandmarkets.com/Market-Reports/surgical-robots-market-256618532.html">MarketsandMarkets</a>).
+            Venture funding for robotics broadly crossed three billion dollars in
+            2024 even as deal counts fell &mdash; capital concentrating into
+            fewer, larger rounds, a sign of a field consolidating around its more
+            credible bets. It is more illuminating to organize the frontier not by
+            company but by the problem each is attacking.
+          </p>
+
+          <p>
+            <strong>Cost and access.</strong> The first problem is that a da Vinci
+            costs more than most hospitals on earth can justify, which confines
+            robotic surgery to wealthy systems and high-volume procedures. A
+            cluster of companies is attacking this with lighter, modular, cheaper
+            machines aimed at ambulatory surgery centers. Switzerland&rsquo;s
+            <strong>Distalmotion</strong> raised a <strong>$150 million</strong>
+            Series G in November 2025 for its Dexter system; CMR raised more than
+            <strong>$200 million</strong> in April 2025; <strong>Moon
+            Surgical</strong>, backed by Sofinnova and Nvidia&rsquo;s venture arm,
+            built its Maestro system around existing laparoscopic tools; and
+            China&rsquo;s <strong>Ronovo</strong> took a <strong>$67
+            million</strong> round led by J&amp;J&rsquo;s venture arm in September
+            2025. The thesis is unglamorous and enormous: robotic surgery has
+            barely penetrated its addressable market, and whoever makes it
+            affordable inherits the rest.
+          </p>
+
+          <p>
+            <strong>New anatomies.</strong> The flagship systems concentrate on
+            the abdomen and pelvis. Whole specialties &mdash; the eye, the brain,
+            the vasculature, the microscopic structures of reconstructive surgery
+            &mdash; remain barely touched, and they are where some of the most
+            ambitious startups live. The clearest example is ophthalmic surgery:
+            <strong>ForSight Robotics</strong>, building its Oryom platform for
+            cataract and other eye procedures, raised a <strong>$125
+            million</strong> Series B in June 2025, bringing its total to $195
+            million, with backing that includes da Vinci&rsquo;s own founding
+            figure Fred Moll
+            (<a href="https://www.businesswire.com/news/home/20250624465565/en/">Business Wire</a>,
+            <a href="https://www.therobotreport.com/forsight-robotics-raises-125m-for-cataract-surgery-tech/">The Robot Report</a>).
+            Cataract surgery is the most common surgical procedure in the world
+            and faces a global shortage of surgeons &mdash; exactly the conditions
+            under which automating a delicate, repetitive, high-volume task
+            becomes both valuable and humane. Elsewhere on the anatomical
+            frontier: <strong>Noah Medical</strong> (robotic bronchoscopy, past
+            five thousand procedures), <strong>Medical Microinstruments</strong>
+            (the Symani microsurgery system, a $110 million round in 2024),
+            <strong>Remedy Robotics</strong> (the first remotely operated
+            endovascular procedures), and <strong>Caranx</strong> (the first
+            FDA-authorized AI for real-time guidance of transcatheter heart-valve
+            implantation, cleared in 2025). Each is a wager that a specialty the
+            incumbents skipped is large enough to build a company around.
+          </p>
+
+          <p>
+            <strong>Autonomous sub-tasks and the perception layer.</strong> This
+            is the frontier that bears most directly on the autonomy ladder, and
+            it splits in two. One half is hardware and policy: research groups and
+            a few companies trying to automate discrete steps &mdash; suturing,
+            knot-tying, needle steering, biopsy. A Vanderbilt-led effort won up to
+            <strong>$12 million</strong> from ARPA-H in September 2024 explicitly
+            to build toward a fully autonomous surgical robot. The other half is
+            the software that any autonomy must stand on: machines that
+            <em>understand</em> a surgical scene. <strong>Caresyntax</strong>
+            raised a <strong>$180 million</strong> Series C extension in August
+            2024 for its surgical-intelligence platform; <strong>Proximie</strong>
+            and <strong>Theator</strong> built businesses on capturing and
+            analyzing surgical video; <strong>Activ Surgical</strong>&rsquo;s
+            intelligent-light module reveals blood flow and hidden structures in
+            real time. These companies are, in effect, assembling the eyes and the
+            memory that an autonomous step will eventually require &mdash; and, not
+            incidentally, accumulating the surgical-video corpora that any learned
+            surgical policy will need to be trained on.
+          </p>
+
+          <p>
+            <strong>Adjacencies.</strong> At the edges sit the rehabilitation
+            exoskeletons &mdash; France&rsquo;s <strong>Wandercraft</strong>
+            raised a <strong>$75 million</strong> round in mid-2025 &mdash; and the
+            long-horizon dream of capsule robots, micro-robots, and targeted
+            nano-delivery, which remains almost entirely academic, with no
+            fundable startup category yet. Worth naming as the field&rsquo;s true
+            frontier, worth discounting as a near-term commercial force.
+          </p>
+
+          <p>
+            Read across these four problems and a single bottleneck keeps
+            surfacing under different names. The cost-reducers need to make robots
+            that more surgeons can drive. The new-anatomy companies need to learn
+            to perform delicate tasks well enough to trust a machine with them.
+            The autonomy and perception companies need, explicitly, surgical data
+            at scale. The constraint, again and again, is not actuators or optics.
+            It is <em>validated demonstration</em> &mdash; recordings of expert
+            surgeons doing the task correctly, enough times, labeled well enough,
+            that a machine can learn the task and a regulator can trust the result.
+            Which returns us, by a different road, to the observation at the end of
+            Part II.
+          </p>
+
+          <span class="part-label">Part IV</span>
+          <h2>What the future holds</h2>
+
+          <p>
+            So where does this go? Four claims, in ascending order of consequence.
+          </p>
+
+          <h3>Data is the real moat</h3>
+
+          <p>
+            The first and least appreciated truth is that the durable advantage in
+            this industry is not the robot. It is the corpus the robot generates.
+            Intuitive understands this better than anyone: more than twelve
+            thousand installed systems performing over twenty million cumulative
+            procedures, increasingly captured as synchronized video, instrument
+            kinematics, and &mdash; on da Vinci 5 &mdash; force data, all funneled
+            into an analytics layer the company calls Case Insights
+            (<a href="https://www.intuitive.com/en-us/about-us/newsroom/future-surgical-robotics">Intuitive</a>).
+            No startup corpus, and no academic dataset, comes within orders of
+            magnitude of this. When the field eventually trains the surgical
+            equivalent of a foundation model, the question of who owns the training
+            data has, in large part, already been answered by a decade of
+            teleoperation that nobody at the time framed as data collection. The
+            teleoperated systems of today are, in retrospect, the most expensive
+            and best-instrumented demonstration-gathering apparatus ever built. The
+            autonomy they did not provide, they were quietly making possible.
+          </p>
+
+          <p>
+            This reframes the entire competitive map. Hugo, Ottava, and Versius are
+            not merely fighting da Vinci for procedure share; they are fighting for
+            the right to instrument procedures at all, because every system placed
+            is a data tap that compounds. It also explains the strategic logic of
+            the independent perception companies &mdash; Caresyntax, Theator,
+            Proximie &mdash; as an attempt to build the one surgical-data corpus
+            that is <em>not</em> locked inside a single robot vendor. The next
+            decade of competition in surgical robotics will be, underneath the
+            hardware announcements, a contest over who holds the largest, cleanest,
+            best-labeled record of surgery actually being done.
+          </p>
+
+          <h3>The GPT moment for surgery</h3>
+
+          <p>
+            The second claim is that the methodological turn that produced large
+            language and vision-language-action models is now reaching the
+            operating room &mdash; and that we have already seen the first
+            convincing demonstrations. In 2022, a team at Johns Hopkins led by Axel
+            Krieger showed STAR, the Smart Tissue Autonomous Robot, performing
+            autonomous laparoscopic bowel anastomosis <em>in vivo</em> in pigs
+            &mdash; planning and placing sutures in deformable tissue more
+            consistently than an expert surgeon
+            (<a href="https://www.science.org/doi/10.1126/scirobotics.abj2908">STAR, Science Robotics 2022</a>).
+            STAR was built on classical planning and control. What came next was
+            the learning generation. In 2024, the Surgical Robot Transformer
+            applied imitation learning to a da Vinci, teaching it tissue
+            manipulation, needle handling, and knot-tying from demonstration
+            (<a href="https://arxiv.org/abs/2407.12998">SRT, 2024</a>). And in
+            2025, its successor SRT-H &mdash; a hierarchical, language-conditioned
+            policy &mdash; performed a full phase of a cholecystectomy,
+            autonomously clipping and cutting the cystic duct and artery,
+            succeeding on all eight unseen <em>ex vivo</em> gallbladders and
+            recovering from its own errors through a high-level policy that reasons
+            in language
+            (<a href="https://www.science.org/doi/10.1126/scirobotics.adt5254">SRT-H, Science Robotics 2025</a>).
+            The names on those papers &mdash; Chelsea Finn among them &mdash; are
+            the same names on the general-robotics foundation-model papers. This is
+            not analogy; it is the same research program, pointed at tissue.
+          </p>
+
+          <p>
+            The honest framing is bounded. These are research results on animal
+            tissue, not products, not humans, and the leap from a clean
+            <em>ex vivo</em> gallbladder to a bleeding, breathing patient with
+            anomalous anatomy is exactly the kind of leap that has humbled
+            self-driving cars for fifteen years. A surgical foundation model
+            &mdash; a single policy that understands many procedures, generalizes
+            across anatomies, and proposes the next step &mdash; is plausibly the
+            thing that carries the field from Level 1 to supervised Level 2 and 3.
+            It is not, on any near horizon, the thing that produces a Level 5 robot
+            operating unattended. What it unlocks first is narrow and supervised:
+            the robot performs the suture line, the clip, the routine sub-step, and
+            the surgeon supervises and intervenes &mdash; autonomy as an extra pair
+            of trained hands, not a replacement for the head.
+          </p>
+
+          <h3>The human as teacher</h3>
+
+          <p>
+            The third claim is the strangest, and it generalizes a pattern visible
+            across all of robotics. To climb the ladder, these systems must learn
+            from demonstration &mdash; which means that, for a transitional period
+            whose length nobody knows, the surgeon&rsquo;s job quietly acquires a
+            second nature. The surgeon is no longer only operating. The surgeon is
+            <em>teaching</em>, frame by frame, every time an instrument moves under
+            a recording system that will later be used to train a policy to do what
+            that instrument just did. The apprentice in this arrangement is the
+            machine, and the master, for now, is the human whose skill is being
+            slowly transcribed into a model. It is an unusual contract, and it runs
+            against the grain of how we imagine automation: the expert is not
+            displaced so much as conscripted as a teacher of their own eventual
+            stand-in.
+          </p>
+
+          <p>
+            This has consequences worth naming. It changes surgical training,
+            because a model that has absorbed the technique of the best surgeons
+            can, in principle, coach the median one toward that standard &mdash;
+            compressing the long apprenticeship of surgery the way a good textbook
+            compresses a field. It changes the geography of expertise, because a
+            specialist&rsquo;s skill, once captured in a policy, becomes deployable
+            to a rural hospital that could never recruit that specialist &mdash; the
+            same flattening that put a world-class chess engine on a phone. And it
+            presses on the surgeon&rsquo;s identity in a way the profession has not
+            yet metabolized: what does it mean to spend a career mastering a craft
+            while simultaneously, with every case, recording the demonstrations that
+            will let a machine perform parts of it? The likely near-term answer is
+            reassuring and the long-term answer is open: for years, the human
+            supervises, corrects, and handles the cases the model cannot, while the
+            model absorbs the cases it can.
+          </p>
+
+          <h3>The shape of the climb</h3>
+
+          <p>
+            Which leaves the forward claim, stated as sharply as I can make it.
+            Medicine will be among the <em>last</em> domains to reach full autonomy
+            and among the <em>most transformed</em> by partial autonomy. The two
+            halves of that sentence are not in tension; they are the whole point.
+            Full autonomy &mdash; a Level 5 robot operating a human being unattended
+            &mdash; is held back not by any single missing technology but by the
+            convergence of everything hard at once: deformable tissue, irreversible
+            error, a liability regime with no answer yet to the question of who is
+            responsible when a learned policy is wrong, a reimbursement system that
+            pays for procedures and not for autonomy, and a trust threshold that
+            medicine, rightly, sets higher than any other field. Those forces will
+            set the <em>pace</em>, and the pace will be slow.
+          </p>
+
+          <p>
+            But they will not change the <em>direction</em>, and the transformation
+            along the way will be profound long before Level 5 ever arrives.
+            Supervised autonomy at Levels 2 and 3 &mdash; the robot performing
+            trusted sub-steps under a watching surgeon &mdash; is within reach of
+            today&rsquo;s methods, as the 2017 paper predicted and the 2025 results
+            begin to confirm. The inflection that decides when it arrives is not a
+            breakthrough in hardware; the arms are good enough already. It is the
+            corpus &mdash; the accumulated, validated record of surgery being done,
+            which the incumbents have been gathering for a decade without calling it
+            that, and which the startups and the academic labs are now racing to
+            build outside the incumbents&rsquo; walls. The surgeon&rsquo;s new hands
+            already exist on a thousand consoles. What they are still waiting for is
+            not better hands. It is the memory of every operation that came before
+            &mdash; and the patience of a field that, more than any other, has
+            earned the right to climb its ladder one careful rung at a time.
+          </p>
+
+          <p class="article-footnote">
+            Sources are linked inline. Company figures are as reported in
+            2025&ndash;2026 filings and press releases; Intuitive&rsquo;s full-year
+            2025 numbers are preliminary. The surgical-autonomy levels are an
+            academic framework, not a regulatory one, and constraint-based
+            orthopedic systems should not be read as performing autonomous cutting.
+          </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
