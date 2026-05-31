@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>זכרון בין אוזניים לאבן &mdash; Dotan Di Castro</title>
+    <title>Memory Between Ears and Stone &mdash; Dotan Di Castro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Hebrew:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -26,10 +26,8 @@
         --color-accent: #2a2a2a;
         --color-border: #e0ddd8;
         --color-tag-bg: #f0eeea;
-        --font-sans:
-          "Noto Sans Hebrew", "Inter", -apple-system, BlinkMacSystemFont,
-          sans-serif;
-        --font-serif: "Noto Serif Hebrew", "Newsreader", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
       }
 
       html {
@@ -41,7 +39,7 @@
         font-family: var(--font-sans);
         background: var(--color-bg);
         color: var(--color-text);
-        line-height: 1.9;
+        line-height: 1.8;
         -webkit-font-smoothing: antialiased;
       }
 
@@ -67,7 +65,6 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--color-border);
-        direction: ltr;
       }
 
       .nav-inner {
@@ -80,11 +77,6 @@
       }
 
       .nav-logo {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
         font-weight: 700;
         font-size: 1.1rem;
         text-decoration: none;
@@ -98,11 +90,6 @@
       }
 
       .nav-links a {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
         font-size: 0.9rem;
         font-weight: 500;
         text-decoration: none;
@@ -131,7 +118,7 @@
         font-family: var(--font-serif);
         font-size: clamp(1.8rem, 4vw, 2.6rem);
         font-weight: 500;
-        line-height: 1.4;
+        line-height: 1.3;
         letter-spacing: -0.01em;
       }
 
@@ -139,6 +126,18 @@
         margin-top: 1rem;
         font-size: 0.9rem;
         color: var(--color-text-secondary);
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
       }
 
       .divider {
@@ -155,13 +154,13 @@
         font-weight: 500;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
-        line-height: 1.4;
+        line-height: 1.3;
       }
 
       .article-body p {
         margin-bottom: 1.2rem;
         font-size: 1.05rem;
-        line-height: 2;
+        line-height: 1.85;
       }
 
       /* Back link */
@@ -190,7 +189,6 @@
         align-items: center;
         font-size: 0.85rem;
         color: var(--color-text-secondary);
-        direction: ltr;
       }
 
       /* Responsive */
@@ -223,8 +221,11 @@
     <article>
       <header class="article-header">
         <div class="container">
-          <h1>זכרון בין אוזניים לאבן: הסיפור האבולוציוני של הזיכרון החיצוני</h1>
-          <div class="article-meta">דותן די קסטרו</div>
+          <h1>Memory Between Ears and Stone: The Evolutionary Story of External Memory</h1>
+          <div class="article-meta">By Dotan Di Castro</div>
+          <div class="lang-switch">
+            <a href="external_memory_he.html" lang="he" dir="rtl">גרסה עברית</a>
+          </div>
         </div>
       </header>
 
@@ -232,202 +233,292 @@
         <div class="divider"></div>
 
         <div class="article-body">
-          <h2>לפני חמישים אלף שנה: כשהעולם היה הזיכרון</h2>
+          <h2>Fifty Thousand Years Ago: When the World Was the Memory</h2>
 
           <p>
-            לפני עשרות אלפי שנים, הזיכרון האנושי לא היה שונה מהותית מזה של כל
-            בעל חיים אחר — הוא היה ביולוגי, אישי, ועמד במות כל פרט. אך בשלב
-            כלשהו, עשה האדם גילוי עמוק: הוא יכול לגרום לסביבה לזכור עבורו. צייד
-            שהוריד ענף ושבר אותו בצומת דרכים יצר חץ שיכוון אותו חזרה אל המחנה.
-            אישה שסידרה ערמת אבנים בכניסה למערה הנחתה את ילדיה לדעת שהאם שבה.
-            ציורים על קירות מערות, כמו אלו של לאסקו ואלטמירה, לא היו רק אמנות —
-            הם היו מאגרי מידע: איזה חיה מסוכנת, איפה נמצאת, איך היא נראית בריצה.
-            ערמות אבנים מסומנות ציינו מסלולי הגירה; חריצים בעצמות מנו לוחות שנה
-            עונתיים; צמתים ופצעים על גופם של אנשים שימשו כמפות חיות. כל אחד מהם
-            מייצג אותה תובנה מהפכנית: ניתן לאחסן ידע מחוץ לגוף, ולשחזר אותו
-            מאוחר יותר. הסכום הכולל של "הידע שניתן להעביר" גדל פתאום מעבר לתחום
-            הזיכרון הביולוגי הגולמי.
+            Tens of thousands of years ago, human memory was not fundamentally
+            different from that of any other animal &mdash; it was biological,
+            personal, and died with each individual. But at some point, humans
+            made a profound discovery: they could make the environment remember
+            for them. A hunter who broke a branch at a crossroads created an
+            arrow that would guide him back to camp. A woman who arranged a
+            pile of stones at the entrance to a cave told her children that
+            mother had returned. Cave paintings, like those of Lascaux and
+            Altamira, were not merely art &mdash; they were databases: which
+            animal is dangerous, where it lives, how it looks while running.
+            Marked stone heaps marked migration routes; notches in bones
+            counted seasonal calendars; knots and scars on people's bodies
+            served as living maps. Each of them represents the same
+            revolutionary insight: knowledge can be stored outside the body
+            and retrieved later. The total sum of &ldquo;transmissible
+            knowledge&rdquo; suddenly grew beyond the realm of raw biological
+            memory.
           </p>
 
-          <img src="Cave_scene1.png" alt="ציורי מערה" style="width: 100%; border-radius: 8px; margin: 1.5rem 0;">
+          <img src="Cave_scene1.png" alt="Cave paintings" style="width: 100%; border-radius: 8px; margin: 1.5rem 0;" />
 
-          <h2>המצאת הכתב: הדחיסה הגדולה הראשונה</h2>
+          <h2>The Invention of Writing: The First Great Compression</h2>
           <p>
-            כשהסומרים המציאו את הכתב הקוני לפני כ-5,000 שנה, הם לא רק יצרו שיטת
-            תיעוד — הם ביצעו את פעולת הדחיסה הראשונה בהיסטוריה האנושית. לפני
-            הכתב, כל ידע שרצו להעביר לדורות הבאים דרש שחזור פיזי: מורה ותלמיד,
-            דור ודור, פה לאוזן. הכתב שינה את המשוואה כולה. כעת, אמת שאורכה שנים
-            של ניסיון אנושי יכלה להיכנס לשורה אחת של סימנים. חוק שחייב שופטים
-            לזכור בעל פה יכול היה להיות מרוכז בלוח חרס. פרטי חשבונות הדגנים של
-            אלפי בתי אב, שבעבר דרשו אנשי זיכרון ייעודיים — "מנהלי ידע" ביולוגיים
-            — כובשו לכמה שורות של טקסט. זאת הייתה לא רק שיטת אחסון חדשה, אלא
-            שינוי אנתרופולוגי עמוק: לראשונה, הזיכרון הפך לתשתית ציבורית. הוא
-            ניתן להעתקה, הפצה, ותיקון. והחשוב מכל — שיעורו היחסי של הזיכרון
-            ה"חי" שבמוחו של האדם הבודד, מול הזיכרון הכולל של החברה, החל לקטון
-            בצורה שלא תיעצר עוד.
+            When the Sumerians invented cuneiform some 5,000 years ago, they
+            did not merely create a system of record-keeping &mdash; they
+            performed the first act of compression in human history. Before
+            writing, any knowledge to be passed to future generations required
+            physical reenactment: teacher and student, generation upon
+            generation, mouth to ear. Writing changed the entire equation. Now
+            a truth that had taken years of human experience could fit on a
+            single line of signs. A law that required judges to remember it by
+            heart could be condensed onto a clay tablet. The grain-account
+            details of thousands of households, which had previously required
+            dedicated memory specialists &mdash; biological &ldquo;knowledge
+            managers&rdquo; &mdash; were captured in a few lines of text. This
+            was not just a new storage method, but a deep anthropological
+            shift: for the first time, memory became public infrastructure. It
+            was copyable, distributable, and correctable. And most important
+            &mdash; the relative share of the &ldquo;live&rdquo; memory in any
+            individual's head, against the total memory of society, began to
+            shrink in a way that has not stopped since.
           </p>
-          <h2>הספר: דחיסה שצריך מפתח לפתוח אותה</h2>
+
+          <h2>The Book: A Compression That Needs a Key to Open</h2>
           <p>
-            אך הכתב, ולאחריו הספר, חשפו פרדוקס מרתק. ספר אינו פשוט "זיכרון
-            מאוחסן" — הוא זיכרון דחוס, ודחיסה דורשת מפתח שחרור. קחו ספר לימוד
-            לתואר שני במתמטיקה — נאמר, גאומטריה דיפרנציאלית או תורת המידה. עבור
-            מרבית בני האדם, הדפים הללו הם לא יותר מסימנים זרים על נייר. המידע
-            טמון שם, אך הוא אטום לחלוטין — כמו קובץ מוצפן ללא סיסמה. אך אותו ספר
-            בידיו של סטודנט שסיים שנתיים של אלגברה לינארית, אנליזה ממשית,
-            וטופולוגיה — הופך לכלי של כוח יוצא דופן. כל משפט קצר נפתח אצלו
-            לשרשרת של תובנות. כל הוכחה דחוסה משתחזרת בתוך מוחו לנוף שלם של
-            רעיונות. הספר אינו מעביר אינפורמציה לבד — הוא מעביר אינפורמציה כשהוא
-            פוגש ניסיון, וצירוף זה מוליד ידע שאינו טריוויאלי בשום פנים. בכך,
-            הספר הוא בעצם ממשק: נקודת חיבור בין זיכרון חיצוני דחוס לבין הזיכרון
-            הפנימי שנבנה לאורך שנות לימוד. ככל שהזיכרון הפנימי עשיר יותר — כך
-            הספר "מוריד" יותר לתוך תודעת הקורא, כמו אות דחוסה שנפתחת לכל גודלה
-            רק בסביבה שיש לה את האלגוריתם המתאים לפענח אותה.
+            But writing, and after it the book, exposed a fascinating
+            paradox. A book is not simply &ldquo;stored memory&rdquo; &mdash;
+            it is compressed memory, and compression requires a decompression
+            key. Take a graduate-level mathematics textbook &mdash; say,
+            differential geometry or measure theory. For most human beings,
+            those pages are no more than foreign signs on paper. The
+            information is lying there, but it is completely opaque &mdash;
+            like an encrypted file without a password. But that same book, in
+            the hands of a student who has completed two years of linear
+            algebra, real analysis, and topology, becomes a tool of
+            extraordinary power. Each short theorem unfolds for them into a
+            chain of insights. Each compressed proof reconstructs in their
+            mind into an entire landscape of ideas. The book does not transmit
+            information alone &mdash; it transmits information when it meets
+            experience, and that combination produces knowledge that is by no
+            means trivial. In this sense, the book is essentially an
+            interface: a connection point between compressed external memory
+            and the internal memory built up over years of study. The richer
+            the internal memory, the more the book &ldquo;downloads&rdquo;
+            into the reader's consciousness &mdash; like a compressed signal
+            that opens to its full size only in an environment that has the
+            algorithm to decode it.
           </p>
-          <h2>מכבש הדפוס: כשהידע הפך ליציב</h2>
+
+          <h2>The Printing Press: When Knowledge Became Stable</h2>
           <p>
-            עד המאה החמש-עשרה, גם לאחר המצאת הכתב, עדיין שרר בעולם הידע אויב
-            סמוי: השגיאה. כל ספר שהועתק ביד על ידי סופר — ולו המיומן ביותר — נשא
-            בחובו סטייה קלה מן המקור. מילה שהוחלפה, מספר שהתחלף, פסקה שהושמטה
-            בהיסעף עין. לאורך דורות של העתקה, הטקסטים "נשחקו" — כמו צילום של
-            צילום של צילום. כאשר גוטנברג הפעיל את מכבש הדפוס שלו בשנות ה-1450,
-            הוא שינה משהו יסודי: הידע הפך ליציב. אלף עותקים של אותו ספר היו זהים
-            זה לזה עד לאות האחרונה. אך השינוי לא עצר שם. זמן ייצורו של ספר צנח
-            ממה שנדרשו לו ימים שלמים של עמל ידני — לשעות ספורות עבור עשרות
-            עותקים בו-זמנית. פתאום נפתח הידע לסדר גודל אחד נוסף של הפצה: לא עוד
-            מנזרים ובתי מלוכה שמחזיקים ספרים כבסוד יקר, אלא אוניברסיטאות,
-            סוחרים, ורופאים שיכלו כולם להחזיק בידיהם את אותו טקסט מדויק. הדפוס
-            לא רק האיץ את הפצת הידע — הוא שינה את טיבו. ידע שניתן לשחזר בצורה
-            מדויקת ולהפיצו לרחבי יבשת הפך, לראשונה בהיסטוריה, לתשתית ציבורית
-            אמינה שעליה ניתן לבנות.
+            Until the fifteenth century, even after the invention of writing,
+            a hidden enemy still reigned in the world of knowledge: error.
+            Every book copied by a scribe &mdash; even the most skilled
+            &mdash; carried a slight deviation from the original. A word
+            swapped, a number misplaced, a paragraph dropped by a wandering
+            eye. Over generations of copying, texts &ldquo;wore down&rdquo;
+            &mdash; like a photocopy of a photocopy of a photocopy. When
+            Gutenberg operated his printing press in the 1450s, he changed
+            something fundamental: knowledge became stable. A thousand copies
+            of the same book were identical to the last letter. But the change
+            did not stop there. The production time of a book plummeted from
+            whole days of manual labor to a few hours for dozens of copies at
+            once. Suddenly knowledge opened to another order of magnitude of
+            distribution: no longer just monasteries and royal courts holding
+            books as a precious secret, but universities, merchants, and
+            physicians who could all hold in their hands the same exact text.
+            The press did not merely accelerate the spread of knowledge
+            &mdash; it changed its nature. Knowledge that could be reproduced
+            exactly and distributed across a continent became, for the first
+            time in history, a reliable public infrastructure on which one
+            could build.
           </p>
-          <h2>הדפוס כמנוע של מנועים</h2>
+
+          <h2>The Press as an Engine of Engines</h2>
           <p>
-            אך ההשפעה העמוקה של הדפוס לא הייתה רק בכך שהוא העתיק ספרים מהר יותר
-            — אלא בכך שהוא יצר לראשונה תשתית שבה הידע האנושי יכול לצבור תאוצה.
-            לפני הדפוס, כל מדען או פילוסוף שרצה לבנות על עבודתו של קודמו נדרש
-            לעיתים קרובות להשיג את הטקסט המקורי בעצמו, או להסתמך על ציטוטים מפי
-            אחרים — שגם הם אולי הכירו רק גרסה מועתקת ומשובשת. הדפוס שינה זאת מן
-            היסוד. מדענים באנגליה ובאיטליה ובהולנד יכלו עתה לקרוא את אותה מהדורה
-            מדויקת של אותו ניסוי, ולהגיב עליה, ולפרסם את תגובתם — ואחרים יכלו
-            לקרוא גם אותה. הידע הפסיק להיות שרשרת של מסירה אחד-לאחד, והפך לרשת.
-            המהפכה המדעית של המאות השש-עשרה והשבע-עשרה — קופרניקוס, גלילאו,
-            ניוטון — אינה מקרה. היא פרחה בדיוק בדור שבו הדפוס הגיע לבשלות מלאה.
-            פתאום יכול היה ניוטון לעמוד על כתפי ענקים — לא כמטאפורה, אלא כמשימה
-            טכנית אפשרית: לקרוא, להבין, ולהמשיך. הדפוס לא רק הפיץ ידע — הוא הפך
-            את הידע האנושי למצטבר.
+            But the press's deep impact was not only that it copied books
+            faster &mdash; it was that, for the first time, it created the
+            infrastructure on which human knowledge could accumulate momentum.
+            Before the press, any scientist or philosopher who wanted to build
+            on a predecessor's work often needed to obtain the original text
+            himself, or rely on quotations from others &mdash; who themselves
+            perhaps knew only a copied, garbled version. The press changed
+            this from the ground up. Scientists in England and Italy and the
+            Netherlands could now read the same exact edition of the same
+            experiment, respond to it, and publish their response &mdash; and
+            others could read that too. Knowledge ceased to be a chain of
+            one-to-one transmission and became a network. The Scientific
+            Revolution of the sixteenth and seventeenth centuries &mdash;
+            Copernicus, Galileo, Newton &mdash; is no accident. It bloomed
+            precisely in the generation in which the press reached full
+            maturity. Suddenly Newton could stand on the shoulders of giants
+            &mdash; not as a metaphor, but as a technically feasible task:
+            read, understand, and continue. The press did not merely spread
+            knowledge &mdash; it made human knowledge cumulative.
           </p>
-          <h2>מן הדפוס אל הדיגיטל: שלוש מאות שנה של האצה</h2>
+
+          <h2>From Press to Digital: Three Centuries of Acceleration</h2>
           <p>
-            בשלוש המאות שחלפו בין גוטנברג למחשב הראשון, לא עמד הידע האנושי על
-            מקומו — הוא האיץ בהתמדה, גל אחר גל. כל טכנולוגיה חדשה של תיעוד והפצה
-            הוסיפה שכבה נוספת על גבי הדפוס: כתבי עת מדעיים, שהחלו להופיע במאה
-            השבע-עשרה, יצרו לראשונה מנגנון של עדכון מתמשך — במקום ספר שמתפרסם
-            אחת לשנים, מאמר שמופץ תוך שבועות. הטלגרף והטלפון קיצרו את מרחקי
-            ההעברה של מידע מחודשים לשניות. הרדיו והטלוויזיה הפכו את ההפצה
-            להמונית באופן שגוטנברג עצמו לא היה מדמיין. ובכל אחת מן הקפיצות הללו
-            חזר אותו תבנית: יותר ידע, מהיר יותר, ליותר אנשים, עם פחות אובדן
-            ועיוות בדרך. אך לאורך כל התקופה הזו, עדיין שרר מגבלה עמוקה אחת: הידע
-            נותר פיזי. ספרים תפסו מקום. ארכיונים תפסו בניינים. העתקה דרשה נייר
-            ודיו. קטלוגים דרשו ספרנים. בשנות ה-1940 וה-1950, כשנולדו המחשבים
-            הראשונים, עמד העולם על סף מעבר שלא היה כמוהו מאז הדפוס — מעבר שבו
-            המגבלה הפיזית של הידע תתמוסס כמעט לחלוטין.
+            In the three centuries between Gutenberg and the first computer,
+            human knowledge did not stand still &mdash; it accelerated
+            steadily, wave after wave. Every new technology of record and
+            distribution added another layer on top of the press: scientific
+            journals, which began to appear in the seventeenth century,
+            created for the first time a mechanism of continuous update
+            &mdash; instead of a book published once in years, a paper
+            distributed within weeks. The telegraph and the telephone
+            shortened the transit distances of information from months to
+            seconds. Radio and television made distribution massive in a way
+            Gutenberg himself could not have imagined. And in each of these
+            leaps the same pattern recurred: more knowledge, faster, to more
+            people, with less loss and distortion along the way. But
+            throughout this period one deep limitation still reigned:
+            knowledge remained physical. Books took space. Archives took
+            buildings. Copying required paper and ink. Catalogs required
+            librarians. In the 1940s and 1950s, when the first computers were
+            born, the world stood on the verge of a transition unlike any
+            since the press &mdash; a transition in which the physical
+            limitation of knowledge would dissolve almost completely.
           </p>
-          <h2>הידע הדיגיטלי: כשהמידע פשט את גופו</h2>
+
+          <h2>Digital Knowledge: When Information Shed Its Body</h2>
           <p>
-            המהפכה הדיגיטלית עשתה לידע משהו שלא אירע לו מעולם — היא ניתקה אותו
-            לחלוטין מן החומר. ספר תופס מקום, נשחק, נשרף, ומגיע לקורא אחד בכל רגע
-            נתון. קובץ דיגיטלי אינו עושה דבר מאלה. העתקתו אינה עולה כלום, אינה
-            לוקחת זמן בר-משמעות, ואינה יוצרת גרסה נחותה מן המקור — ההעתק מושלם
-            כמו המקור בדיוק, ללא יוצא מן הכלל. אך הדיגיטל לא רק שחרר את הידע מן
-            החומר — הוא שינה את יחסי הגודל כולם. ספרייה לאומית שמכילה מיליוני
-            כרכים ודורשת בניין ענק, צוות של מאות עובדים, ותקציב של מדינה — נכנסת
-            כולה לכונן קשיח שניתן להחזיק בכף היד. ואז הגיע האינטרנט, וביטל גם את
-            מגבלת המרחק. ידע שיוצר בטוקיו זמין באותה שנייה בתל אביב ובבואנוס
-            איירס. אנציקלופדיה שנדרשו לבנותה עשרות שנים ומאות מומחים — מתעדכנת
-            עכשיו ברצף אחד חי, על ידי מיליוני אנשים, בכל שפה בו-זמנית. אך מעבר
-            לכל אלה, הדיגיטל הביא עמו חידוש שהוא אולי העמוק מכולם: הידע הפך
-            לניתן לחיפוש. לא עוד ספרן שזוכר היכן נמצא הדבר — אלא שאילתה של שנייה
-            אחת שמוצאת מחט בתוך ערמת שחת של מיליארדי עמודים. לאט לאט, המגבלה
-            שנותרה לא הייתה עוד איפה הידע מאוחסן, ולא כמה ממנו קיים — אלא מי
-            יכול להבין אותו.
+            The digital revolution did something to knowledge that had never
+            happened before &mdash; it severed it completely from matter. A
+            book takes space, wears out, burns, and reaches one reader at any
+            moment. A digital file does none of these. Copying it costs
+            nothing, takes no meaningful time, and produces no version
+            inferior to the original &mdash; the copy is as perfect as the
+            original, exactly, without exception. But the digital did not
+            merely free knowledge from matter &mdash; it changed all the
+            proportions. A national library that contains millions of volumes
+            and requires a vast building, a staff of hundreds, and a state
+            budget &mdash; fits entirely on a hard drive that can be held in
+            the palm of a hand. Then came the internet, and abolished the
+            limitation of distance, too. Knowledge created in Tokyo is
+            available in the same second in Tel Aviv and Buenos Aires. An
+            encyclopedia that took decades to build and hundreds of experts
+            &mdash; is now updated as one continuous living stream, by
+            millions of people, in every language simultaneously. But beyond
+            all this, the digital brought with it an innovation that is
+            perhaps the deepest of all: knowledge became searchable. No longer
+            a librarian who remembers where a thing is &mdash; but a
+            one-second query that finds a needle in a haystack of billions of
+            pages. Slowly, the remaining limitation was no longer where
+            knowledge is stored, nor how much of it exists &mdash; but who
+            could understand it.
           </p>
-          <h2>מכלי אחסון לכלי חשיבה</h2>
+
+          <h2>From Storage Tools to Thinking Tools</h2>
           <p>
-            עד כה, כל הטכנולוגיות שתיארנו — מן החריץ בעצם הממותה ועד האינטרנט —
-            עסקו בעיקרן בשאלה אחת: היכן מאחסנים ידע, וכיצד מעבירים אותו. המחשב
-            האישי פתח בשקט פרק חדש לחלוטין. לראשונה, הכלי לא רק אחסן ידע — הוא
-            יכול היה לפעול עליו. גיליון אלקטרוני אינו רק מחסן מספרים — הוא מחשב
-            אותם, מגלה תבניות, ומציג תוצאות שאדם היה זקוק לשעות כדי להגיע אליהן.
-            מעבד תמלילים אינו רק מכונת כתיבה מתוחכמת — הוא מארגן, מחפש, ומציע.
-            ובאה תוכנת ניתוח נתונים, ואחריה מנועי החיפוש, ואחריהם מיליוני
-            אפליקציות שכל אחת מהן היא למעשה ידע מקובע בצורת פעולה: ידע רפואי
-            שנהפך לאפליקציית אבחון, ידע גיאוגרפי שנהפך לניווט, ידע פיננסי שנהפך
-            לתכנון תקציב אוטומטי. האנושות גילתה שניתן לא רק לאחסן ידע בסביבה
-            החיצונית — אלא לגרום לסביבה החיצונית לחשוב עם הידע הזה, ולעשות זאת
-            מהר וללא עייפות. החלק של המוח האנושי בסך המעבוד של הידע האנושי — לא
-            רק באחסון אלא גם בעיבוד — החל לקטון בצורה שניתן למדוד.
+            So far, all the technologies we have described &mdash; from the
+            notch in the mammoth bone to the internet &mdash; have dealt
+            mainly with one question: where to store knowledge and how to
+            transmit it. The personal computer quietly opened an entirely new
+            chapter. For the first time, the tool did not merely store
+            knowledge &mdash; it could act on it. A spreadsheet is not just a
+            number store &mdash; it computes them, reveals patterns, and
+            presents results that a person would need hours to reach. A word
+            processor is not just a sophisticated typewriter &mdash; it
+            organizes, searches, and suggests. Then came data-analysis
+            software, and after it search engines, and after them millions of
+            applications, each of which is in effect knowledge embedded as
+            action: medical knowledge that becomes a diagnostic app,
+            geographic knowledge that becomes navigation, financial knowledge
+            that becomes automatic budget planning. Humanity discovered that
+            it could not only store knowledge in the external environment
+            &mdash; it could make the external environment think with that
+            knowledge, and do so fast and without fatigue. The share of the
+            human brain in the total processing of human knowledge &mdash;
+            not only in storage but also in processing &mdash; began to
+            shrink in a measurable way.
           </p>
-          <h2>צוואר הבקבוק: מי יכול לבנות את הכלים</h2>
+
+          <h2>The Bottleneck: Who Can Build the Tools</h2>
           <p>
-            אך כאן נתקלת המהפכה הדיגיטלית במגבלה חדשה — ומפתיעה. הידע עצמו הפך
-            נגיש לכולם, אך היכולת לבנות כלים שפועלים על הידע נותרה נחלתם של
-            מעטים. כתיבת קוד — כלומר, יצירת מה שנוכל לקרוא לו "אופרטורים על
-            מידע", מניפולציות שמעבדות ידע, מסננות אותו, מחשבות אותו, ומציגות
-            אותו בצורה חדשה — דורשת מיומנות שנרכשת על פני שנים. מתכנת שרוצה
-            לבנות כלי שמנתח נתוני רפואה, או שמארגן מחקרים לפי נושא, או שמחפש
-            תבניות בתוך מסד נתונים ענק — נדרש לשנות לימוד, ואז לימים ושבועות של
-            עבודה עבור כל כלי חדש. ומרבית האנשים שיש להם את הידע הנחוץ — הרופא
-            שיודע מה שאלות רפואיות חשובות, הכלכלן שיודע אילו תבניות כלכליות
-            מעניינות — אינם יודעים לכתוב קוד. ומי שיודע לכתוב קוד, לרוב אינו
-            רופא ואינו כלכלן. כך נוצר פער: הידע קיים, הכלים לעבד אותו קיימים, אך
-            היכולת ליצור אופרטורים חדשים על ידע חדש נותרת מרוכזת בידי מיעוט קטן
-            של אנשים, שכל אחד מהם מוגבל עוד בצוואר הבקבוק של הזמן.
+            But here the digital revolution ran into a new &mdash; and
+            surprising &mdash; limitation. Knowledge itself became accessible
+            to all, but the ability to build tools that operate on knowledge
+            remained the province of the few. Writing code &mdash; that is,
+            creating what we might call &ldquo;operators on information,&rdquo;
+            manipulations that process knowledge, filter it, compute it, and
+            present it in a new form &mdash; requires a skill acquired over
+            years. A programmer who wants to build a tool that analyzes
+            medical data, or organizes research by topic, or searches for
+            patterns in a vast database &mdash; needs years of training, and
+            then days and weeks of work for each new tool. And most of the
+            people who have the necessary knowledge &mdash; the doctor who
+            knows which medical questions are important, the economist who
+            knows which economic patterns are interesting &mdash; do not know
+            how to write code. And those who know how to write code are
+            mostly not doctors and not economists. So a gap was created: the
+            knowledge exists, the tools to process it exist, but the ability
+            to create new operators on new knowledge remained concentrated in
+            the hands of a small minority, each of whom is further
+            constrained by the bottleneck of time.
           </p>
-          <h2>מודלי השפה: כשגם החשיבה יצאה מן הראש</h2>
+
+          <h2>Language Models: When Thinking Also Left the Head</h2>
           <p>
-            ואז הגיעו מודלי השפה, וסגרו את הלולאה באופן שאיש לא ציפה לו במלואו.
-            עד אותו רגע, תהליך ההוצאה של הידע האנושי אל הסביבה החיצונית עבר שני
-            שלבים: ראשית, הידע עצמו — העובדות, התיאוריות, הנתונים — יצא החוצה,
-            מן המוח אל הלוח, אל הספר, אל השרת. שנית, ראינו כי גם העיבוד של הידע
-            החל לעבור החוצה, אך נתקע בצוואר הבקבוק של מי שיכול לכתוב קוד. מודלי
-            השפה פרצו את צוואר הבקבוק הזה לחלוטין. כעת, מי שצריך אופרטור חדש על
-            ידע — כלי שמנתח, מסכם, מארגן, משווה, מתרגם, מסיק — אינו זקוק עוד
-            לשנות לימוד ולשבועות של פיתוח. הוא זקוק לדקות של שיחה. הרופא יכול
-            לבנות כלי ניתוח בלי ללמוד תכנות. הכלכלן יכול להפיק תבניות ממסד
-            נתונים בלי לדעת SQL. זוהי שנת 2026, והדבר המדהים ביותר אינו המהירות
-            — אלא הרמה. הידע שמודלי השפה צברו, והפעולות הדיגיטליות שהם מסוגלים
-            לבצע, עולים בפועל על יכולותיו של רוב מכריע של בני האדם ברוב תחומי
-            הידע. לרגע ההיסטורי הזה יש משמעות עמוקה: לא רק שהחלק היחסי של
-            הזיכרון האנושי בסך הזיכרון הכולל הולך ומצטמק — עכשיו גם החלק היחסי
-            של החשיבה האנושית בסך החשיבה הכוללת החל לקטון, ובמהירות שלא ראינו
-            כמותה מעולם.
+            Then came the language models, and closed the loop in a way no
+            one quite anticipated in full. Until that moment, the process of
+            taking human knowledge out into the external environment had
+            passed through two stages: first, the knowledge itself &mdash;
+            the facts, the theories, the data &mdash; went out, from the
+            brain to the tablet, to the book, to the server. Second, as we
+            saw, the processing of knowledge also began to move outward, but
+            got stuck at the bottleneck of those who could write code.
+            Language models broke that bottleneck completely. Now, anyone who
+            needs a new operator on knowledge &mdash; a tool that analyzes,
+            summarizes, organizes, compares, translates, infers &mdash; no
+            longer needs years of study and weeks of development. They need
+            minutes of conversation. The doctor can build an analysis tool
+            without learning to program. The economist can extract patterns
+            from a database without knowing SQL. It is the year 2026, and the
+            most remarkable thing is not the speed &mdash; it is the level.
+            The knowledge that language models have accumulated, and the
+            digital operations they are capable of performing, in practice
+            exceed the abilities of the vast majority of human beings in most
+            domains of knowledge. This historical moment carries a deep
+            meaning: not only is the relative share of human memory in the
+            total memory steadily shrinking &mdash; now, also, the relative
+            share of human thinking in the total thinking has begun to
+            shrink, at a speed we have never seen before.
           </p>
-          <h2>אברא כדברא: שובו של הקסם</h2>
+
+          <h2>Avra K'davra: The Return of Magic</h2>
           <p>
-            אך הסיפור אינו נגמר בחשיבה. לפני חמישים אלף שנה, הצייד שבר ענף —
-            ובמחווה פשוטה זו ביצע את האקט הראשון של הוצאת הידע אל העולם. הסימן
-            הפיזי בסביבה לא רק ייצג כוונה — הוא מימש אותה. מאז אותו ענף שבור,
-            עברה האנושות מסע ארוך של הוצאת יכולות מתוכה החוצה: תחילה הזיכרון,
-            אחר כך הידע, אחר כך החשיבה. אך תמיד נותר פער אחרון בין המחשבה לבין
-            המציאות הפיזית — פער שמילאו ידי האדם, ומכונותיו, ועמלו. עידן
-            הרובוטיקה הוא הצעד הבא בסדרה הזו. כשם שמודלי השפה הוציאו את
-            האופרטורים על הידע מתוך מוחות המתכנתים — כך הרובוטים מוציאים את
-            האופרטורים על העולם הפיזי מתוך ידי האדם. בניית בניינים, ייצור
-            מכונות, עיבוד חומרים, ניהול מלחמות — כל אלה הופכים בהדרגה לפעולות
-            שמקורן בכוונה, ולא בעמל. והשלב הבא, שכבר ניתן להבחין בקצהו, הוא
-            העמוק ביותר: עולם שבו המחשבה עצמה יוצרת מציאות — שבו כוונה, מעובדת
-            במחשב ומיושמת ברובוט, הופכת ישירות לחפץ, למבנה, למערכת. זהו אברא
-            כדברא — בארמית המקורית: "אברא" מלשון "אבראה", אצור, ו"כדברא" מלשון
-            "כדיבורא", כדיבורי. מה שאומר פי — ייברא. האנושות, שהתחילה בענף שבור
-            על קרקע יער, מגיעה בשנת 2026 אל סף עידן שבו המרחק בין המחשבה לבין
-            המציאות מצטמצם עד כדי אפס. לא בכדי קראו הקדמונים לזה קסם. אנחנו פשוט
-            גילינו שהקסם היה תמיד שם — הוא רק חיכה לטכנולוגיה המתאימה.
+            But the story does not end with thinking. Fifty thousand years
+            ago, the hunter broke a branch &mdash; and in that simple gesture
+            performed the first act of taking knowledge out into the world.
+            The physical sign in the environment did not merely represent
+            intention &mdash; it embodied it. Since that broken branch,
+            humanity has gone on a long journey of taking capabilities out of
+            itself: first memory, then knowledge, then thinking. But always
+            one last gap remained between thought and physical reality
+            &mdash; a gap filled by human hands, and machines, and labor.
+            The age of robotics is the next step in this series. Just as
+            language models took the operators-on-knowledge out of programmers'
+            brains &mdash; so robots take the operators-on-the-physical-world
+            out of human hands. Building buildings, manufacturing machines,
+            processing materials, waging wars &mdash; all of these are
+            gradually becoming actions that originate in intention, not in
+            toil. And the next stage, the edge of which is already visible,
+            is the deepest: a world in which thought itself creates reality
+            &mdash; in which intention, processed in a computer and applied
+            by a robot, becomes directly an object, a structure, a system.
+            This is <em>Avra K'davra</em> &mdash; in the original Aramaic:
+            &ldquo;Avra&rdquo; from &ldquo;<em>ev'ra</em>,&rdquo; I will
+            create, and &ldquo;K'davra&rdquo; from &ldquo;<em>k'divura</em>,&rdquo;
+            like my word. What my mouth speaks &mdash; will be created.
+            Humanity, which began with a broken branch on the forest floor,
+            arrives in 2026 at the threshold of an era in which the distance
+            between thought and reality is shrinking to nearly zero. It is
+            not by chance that the ancients called this magic. We simply
+            discovered that the magic was always there &mdash; it had only
+            been waiting for the right technology.
           </p>
         </div>
 
         <div class="divider"></div>
 
-        <a href="../../writings.html" class="back-link">&larr; חזרה לכתיבה</a>
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
 
         <!-- Footer -->
         <footer>
