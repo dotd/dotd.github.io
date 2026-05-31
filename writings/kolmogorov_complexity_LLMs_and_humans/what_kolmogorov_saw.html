@@ -234,6 +234,14 @@
         margin-right: auto;
       }
 
+      .figure-number {
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--color-text);
+        margin-right: 0.25rem;
+      }
+
       .article-body p:first-of-type::first-letter {
         font-family: var(--font-serif);
         font-weight: 600;
@@ -506,6 +514,7 @@
               alt="Illustration of Kolmogorov complexity: a small program p on the left with a few short lines of code, an arrow labeled 'outputs and halts', and a row of cells on the right containing the binary string 0 1 0 1 0 1 ... A bracket below shows the length of p as small; a bracket below the binary string shows its length as much larger. Bottom caption: K(x) equals the length of the shortest p that outputs x and halts."
             />
             <figcaption class="figure-caption">
+              <span class="figure-number">Figure 1.</span>
               The picture in one line. A program <em>p</em> &mdash; some small
               piece of code on a universal Turing machine &mdash; runs and
               prints a binary string <em>x</em>. The length of <em>p</em> can
@@ -573,6 +582,21 @@
             <em>K</em>-complexity world that modern machine learning actually
             lives in.
           </p>
+
+          <figure class="figure">
+            <img
+              src="kf_function_diagram.svg"
+              alt="Illustration of the K(f) extension: three input boxes labeled x1, x2, x3 on the left, an ellipsis below them; a central program box with code lines inside, labeled 'program f (weights)' and a bracket showing |f|; three output boxes labeled y1, y2, y3 on the right, an ellipsis below them. Three arrows go from each input into the same program, and three arrows leave the program toward the matching output. Bottom caption: K(f) equals the length of the shortest program f such that f(x_i) equals y_i for every pair."
+            />
+            <figcaption class="figure-caption">
+              <span class="figure-number">Figure 2.</span>
+              The same picture, raised one level. A single program
+              <em>f</em> &mdash; the weights &mdash; consumes many inputs
+              <em>x&#x1D62;</em> and produces the matching outputs
+              <em>y&#x1D62;</em>. <em>K(f)</em> is the length of the shortest
+              such program.
+            </figcaption>
+          </figure>
 
           <h2>Hallucination, by Another Name</h2>
 
