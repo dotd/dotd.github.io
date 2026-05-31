@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analogies of AI: the Final Ring of AI? &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .hero {
+        margin: 0 0 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero img {
+        max-width: 320px;
+        width: 100%;
+        height: auto;
+        display: block;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-caption {
+        font-family: var(--font-sans);
+        font-size: 0.82rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 1rem;
+        max-width: 32rem;
+        line-height: 1.55;
+        font-style: italic;
+      }
+
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 0 0.2rem 1.6rem;
+        border-left: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: #3a3a3a;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .references {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        font-family: var(--font-sans);
+      }
+
+      .references h2 {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .references ol {
+        padding-left: 1.2rem;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: #3a3a3a;
+      }
+
+      .references li {
+        margin-bottom: 0.6rem;
+      }
+
+      .references a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 2px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p {
+          font-size: 1.08rem;
+        }
+
+        .article-body blockquote {
+          font-size: 1.08rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; Mathematics &amp; AI</div>
+          <h1>Analogies of AI: the Final Ring of AI?</h1>
+          <p class="article-deck">
+            Banach drew a four-rung ladder of mathematical seeing, with the top
+            rung at the edge of imagination. Modern AI is climbing it &mdash;
+            not as a single mind, but at scale.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+          <div class="lang-switch">
+            <a href="banach_analogies_he.html" lang="he" dir="rtl">גרסה עברית</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <figure class="hero">
+          <img
+            src="banach_portrait.jpg"
+            alt="Portrait photograph of Stefan Banach, undated, before 1945."
+          />
+          <figcaption class="hero-caption">
+            Stefan Banach (1892&ndash;1945). Photograph published in
+            <em>Warszawski Kalendarz Ilustrowany 1967</em>; photographer unknown.
+            Public domain, via Wikimedia Commons.
+          </figcaption>
+        </figure>
+
+        <div class="article-body">
+          <blockquote>
+            A mathematician is a person who can find analogies between theorems;
+            a better mathematician is one who can see analogies between proofs;
+            the best mathematician can notice analogies between theories. One
+            can imagine that the ultimate mathematician is one who can see
+            analogies between analogies.
+            <br />
+            &mdash; Stefan Banach, quoted in Stanis&#322;aw Ulam,
+            <a href="https://en.wikipedia.org/wiki/Adventures_of_a_Mathematician"
+              ><em>Adventures of a Mathematician</em></a
+            >
+            (1976)
+          </blockquote>
+
+          <p>
+            Banach's hierarchy describes a ladder of mathematical ability, but
+            it also describes something more general &mdash; a ladder of
+            scientific seeing. To find an analogy between two theorems is to
+            spot a local rhyme. To find one between proofs is to spot a method
+            that travels. Between theories &mdash; to spot a hidden
+            architecture. Between analogies &mdash; to glimpse the architecture
+            of architectures, the shape that the shapes themselves share.
+            Banach placed this last rung at the edge of imagination. He thought
+            one or two people per generation might reach it.
+          </p>
+
+          <p>
+            He was, by the standards of his own taxonomy, near the top.
+            <a href="https://en.wikipedia.org/wiki/Stefan_Banach"
+              >Stefan Banach</a
+            >
+            was born in Krak&oacute;w in 1892, the illegitimate son of a railway
+            clerk and a mother who disappeared from his life before his second
+            birthday. He was raised by a laundress, educated partly by himself,
+            and trained in mathematics in the back rooms of caf&eacute;s and
+            the margins of books he could not always afford. The decisive
+            moment of his life was, by all accounts, an accident. In a
+            Krak&oacute;w park in 1916,
+            <a href="https://en.wikipedia.org/wiki/Hugo_Steinhaus"
+              >Hugo Steinhaus</a
+            >
+            overheard two young men on a bench discussing Lebesgue integration,
+            walked over, and discovered Banach. Steinhaus would later say that
+            Banach was his greatest mathematical discovery.
+          </p>
+
+          <p>
+            From there the story compresses. PhD in 1920. The founding of
+            <a href="https://en.wikipedia.org/wiki/Functional_analysis"
+              >functional analysis</a
+            >
+            as a discipline &mdash;
+            <a href="https://en.wikipedia.org/wiki/Banach_space"
+              >Banach spaces</a
+            >, the
+            <a
+              href="https://en.wikipedia.org/wiki/Hahn%E2%80%93Banach_theorem"
+              >Hahn&ndash;Banach theorem</a
+            >, the
+            <a
+              href="https://en.wikipedia.org/wiki/Uniform_boundedness_principle"
+              >Banach&ndash;Steinhaus principle</a
+            >, the
+            <a
+              href="https://en.wikipedia.org/wiki/Banach%E2%80%93Alaoglu_theorem"
+              >Banach&ndash;Alaoglu theorem</a
+            >, the
+            <a
+              href="https://en.wikipedia.org/wiki/Banach_fixed-point_theorem"
+              >fixed-point theorem</a
+            >
+            that bears his name. The
+            <a
+              href="https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox"
+              >Banach&ndash;Tarski paradox</a
+            >, in 1924, in which a sphere is taken apart and reassembled into
+            two spheres of the same size &mdash; geometry's gentle assault on
+            intuition. And, through the 1930s, the
+            <a href="https://en.wikipedia.org/wiki/Scottish_Caf%C3%A9"
+              >Scottish Caf&eacute;</a
+            >
+            in Lw&oacute;w, where Banach and his circle scribbled open problems
+            onto a marble-topped table and eventually into a thick notebook the
+            waitress kept behind the counter &mdash; the
+            <a href="https://en.wikipedia.org/wiki/Scottish_Book"
+              ><em>Scottish Book</em></a
+            >, the most famous physical artifact in twentieth-century
+            mathematics.
+          </p>
+
+          <p>
+            The war ended Lw&oacute;w's golden age. Under Nazi occupation
+            Banach survived, like many other Polish intellectuals, by feeding
+            lice at
+            <a href="https://en.wikipedia.org/wiki/Rudolf_Weigl"
+              >Rudolf Weigl's typhus-vaccine institute</a
+            >
+            &mdash; a job that conferred a precious German work permit and
+            saved his life for a few more years. He died of lung cancer in
+            August 1945, weeks after the war ended, never having seen
+            Lw&oacute;w become Lviv. His ladder remained.
+          </p>
+
+          <p>
+            Eighty years later, the rungs are being climbed at a pace that
+            would have astonished him &mdash; by systems that do not, in any
+            conventional sense, understand what they are doing.
+          </p>
+
+          <p>
+            The kinds of analogies modern AI finds are no longer the kind a
+            single human can hold in mind.
+            <a href="https://www.nature.com/articles/s41586-021-03819-2"
+              >AlphaFold</a
+            >, in 2020, looked across hundreds of millions of evolutionary
+            sequences and noticed an analogy between covariation in amino-acid
+            columns and three-dimensional contact in folded proteins &mdash;
+            an analogy that had been suspected for fifty years and never made
+            to deliver. The protein-folding problem,
+            <a
+              href="https://www.nobelprize.org/prizes/chemistry/1972/anfinsen/lecture/"
+              >posed by Anfinsen in 1972</a
+            >
+            and immovable for half a century, was substantially solved by a
+            system trained to recognize patterns across an entire kingdom of
+            biology at once.
+            <a href="https://www.nature.com/articles/s41586-022-05172-4"
+              >AlphaTensor</a
+            >, in 2022, searched the space of bilinear algorithms and surfaced
+            new ways of multiplying matrices faster than
+            <a href="https://en.wikipedia.org/wiki/Strassen_algorithm"
+              >Strassen</a
+            >
+            &mdash; methods that had eluded human algebraists since 1969.
+            <a href="https://www.nature.com/articles/s41586-023-06924-6"
+              >FunSearch</a
+            >
+            found new constructions for the cap-set problem;
+            <a href="https://www.nature.com/articles/s41586-023-06747-5"
+              >AlphaGeometry</a
+            >
+            took medals at the International Mathematical Olympiad by proposing
+            auxiliary constructions humans had stopped looking for.
+            <a href="https://www.nature.com/articles/s41586-023-06735-9"
+              >Materials models</a
+            >
+            proposed hundreds of thousands of stable crystal structures, more
+            than the entire previous history of solid-state physics had
+            catalogued. The move, in each case, is the same: a sweep across a
+            corpus too large for any individual to hold, and the recovery of a
+            pattern that, in retrospect, was always there.
+          </p>
+
+          <p>
+            These are Banach's first two rungs at industrial scale. Analogies
+            between theorems and between proofs &mdash; between sequences and
+            structures, between configurations and energies, between problems
+            and the tactics that crack them &mdash; have become tractable in a
+            way no previous generation could have imagined. The third rung is
+            also beginning to give. In 2021,
+            <a href="https://www.nature.com/articles/s41586-021-04086-x"
+              >a collaboration between DeepMind and the mathematicians Geordie
+              Williamson and Marc Lackenby</a
+            >
+            produced two non-trivial results &mdash; one in
+            <a
+              href="https://en.wikipedia.org/wiki/Kazhdan%E2%80%93Lusztig_polynomial"
+              >representation theory</a
+            >, one in
+            <a href="https://en.wikipedia.org/wiki/Knot_invariant"
+              >knot theory</a
+            >
+            &mdash; by training neural networks to suggest which variables, in
+            an enormous space of invariants, were related, and letting human
+            mathematicians follow the suggestion to a theorem. The model was,
+            in effect, proposing analogies between theories, and proposing
+            them correctly.
+          </p>
+
+          <p>
+            What remains is Banach's fourth rung. It is a strange rung to
+            reason about, because no one quite knows what an example would
+            look like. The historical candidates &mdash; the
+            <a href="https://en.wikipedia.org/wiki/Langlands_program"
+              >Langlands program</a
+            >,
+            <a
+              href="https://en.wikipedia.org/wiki/Mirror_symmetry_(string_theory)"
+              >mirror symmetry</a
+            >, the parallel between
+            <a
+              href="https://en.wikipedia.org/wiki/Entropy_in_thermodynamics_and_information_theory"
+              >thermodynamics and information</a
+            >, the recurring appearance of the same
+            <a href="https://en.wikipedia.org/wiki/E8_(mathematics)"
+              >exceptional Lie groups</a
+            >
+            in physics, geometry, and combinatorics &mdash; share the property
+            that the human who first glimpsed them could not, at the moment of
+            glimpsing, have said precisely <em>what</em> they had glimpsed.
+            They are pre-theoretic intuitions about structural family
+            resemblance, and they have historically been the province of a
+            handful of mathematicians per generation:
+            <a href="https://en.wikipedia.org/wiki/Alexander_Grothendieck"
+              >Grothendieck</a
+            >,
+            <a href="https://en.wikipedia.org/wiki/Robert_Langlands"
+              >Langlands</a
+            >,
+            <a href="https://en.wikipedia.org/wiki/Alain_Connes"
+              >Connes</a
+            >, a few others.
+          </p>
+
+          <p>
+            But the property that makes this rung rare for humans &mdash; the
+            need to hold thousands of unrelated structures in one mind long
+            enough to feel them rhyme &mdash; is precisely the property that
+            scales naturally in machines. A sufficiently general model trained
+            across enough domains is, structurally, doing nothing else. It is
+            being asked, every gradient step, to compress disparate regimes
+            into a single representation, and a single representation is
+            exactly a structural rhyme made explicit. The reason foundation
+            models surprise us is that they keep finding such rhymes in places
+            &mdash; between code and biology, between protein language and
+            natural language, between physical simulation and game-play
+            &mdash; that no human had reason to look.
+          </p>
+
+          <p>
+            It is too early to say that AI has reached Banach's fourth rung.
+            It is not too early to notice that the architecture of the climb
+            has changed. Banach's ladder was a description of individual
+            genius &mdash; of the rare mind that could hold one more level of
+            abstraction than the previous mind. The ladder remains; the
+            climber does not. What used to be the work of one mathematician
+            per generation is now the routine output of a training run, and
+            the last step, the one Banach placed at the edge of imagination,
+            is no longer obviously out of reach. He drew the ladder. He did
+            not draw the ladder being climbed by something other than us.
+          </p>
+        </div>
+
+        <section class="references">
+          <h2>References</h2>
+          <ol>
+            <li>
+              Ulam, S. M.
+              <em>Adventures of a Mathematician.</em> Scribner, 1976. (Source of
+              the Banach quote.)
+            </li>
+            <li>
+              Ka&#322;u&#380;a, R.
+              <em>Through a Reporter's Eyes: The Life of Stefan Banach.</em>
+              Birkh&auml;user, 1996.
+            </li>
+            <li>
+              Anfinsen, C. B.
+              <a
+                href="https://www.nobelprize.org/prizes/chemistry/1972/anfinsen/lecture/"
+                >&ldquo;Principles that govern the folding of protein
+                chains.&rdquo;</a
+              >
+              Nobel Lecture, 1972.
+            </li>
+            <li>
+              Jumper, J. et al.
+              <a href="https://www.nature.com/articles/s41586-021-03819-2"
+                >&ldquo;Highly accurate protein structure prediction with
+                AlphaFold.&rdquo;</a
+              >
+              <em>Nature</em> 596, 583&ndash;589 (2021).
+            </li>
+            <li>
+              Fawzi, A. et al.
+              <a href="https://www.nature.com/articles/s41586-022-05172-4"
+                >&ldquo;Discovering faster matrix multiplication algorithms
+                with reinforcement learning.&rdquo;</a
+              >
+              <em>Nature</em> 610, 47&ndash;53 (2022).
+            </li>
+            <li>
+              Romera-Paredes, B. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06924-6"
+                >&ldquo;Mathematical discoveries from program search with large
+                language models.&rdquo;</a
+              >
+              <em>Nature</em> 625, 468&ndash;475 (2024).
+            </li>
+            <li>
+              Trinh, T. H. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06747-5"
+                >&ldquo;Solving olympiad geometry without human
+                demonstrations.&rdquo;</a
+              >
+              <em>Nature</em> 625, 476&ndash;482 (2024).
+            </li>
+            <li>
+              Merchant, A. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06735-9"
+                >&ldquo;Scaling deep learning for materials discovery.&rdquo;</a
+              >
+              <em>Nature</em> 624, 80&ndash;85 (2023).
+            </li>
+            <li>
+              Davies, A. et al.
+              <a href="https://www.nature.com/articles/s41586-021-04086-x"
+                >&ldquo;Advancing mathematics by guiding human intuition with
+                AI.&rdquo;</a
+              >
+              <em>Nature</em> 600, 70&ndash;74 (2021).
+            </li>
+          </ol>
+        </section>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>

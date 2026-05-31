@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>אנלוגיות של AI: השלב האחרון? &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Hebrew:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans:
+          "Noto Sans Hebrew", "Inter", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-serif: "Noto Serif Hebrew", "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        direction: ltr;
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.005em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.6rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .hero {
+        margin: 0 0 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero img {
+        max-width: 320px;
+        width: 100%;
+        height: auto;
+        display: block;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-caption {
+        font-family: var(--font-sans);
+        font-size: 0.88rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 1rem;
+        max-width: 32rem;
+        line-height: 1.6;
+      }
+
+      .article-body p {
+        margin-bottom: 1.3rem;
+        font-family: var(--font-serif);
+        font-size: 1.12rem;
+        line-height: 1.95;
+        color: #232323;
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 1.6rem 0.2rem 0;
+        border-right: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.14rem;
+        line-height: 1.85;
+        color: #3a3a3a;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .references {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        font-family: var(--font-sans);
+      }
+
+      .references h2 {
+        font-family: var(--font-sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .references ol {
+        padding-right: 1.2rem;
+        font-size: 0.92rem;
+        line-height: 1.7;
+        color: #3a3a3a;
+      }
+
+      .references li {
+        margin-bottom: 0.6rem;
+      }
+
+      .references a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 2px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        direction: ltr;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">מסה &middot; מתמטיקה ובינה מלאכותית</div>
+          <h1>אנלוגיות של AI: השלב האחרון?</h1>
+          <p class="article-deck">
+            בנאך שרטט סולם בן ארבעה שלבים של ראייה מתמטית, כשהשלב העליון נמצא
+            בקצה הדמיון. ה-AI המודרני מטפס בו &mdash; לא כתודעה יחידה, אלא בקנה
+            מידה.
+          </p>
+          <div class="article-meta">דותן די קסטרו</div>
+          <div class="lang-switch">
+            <a href="banach_analogies.html" lang="en" dir="ltr">English version</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <figure class="hero">
+          <img
+            src="banach_portrait.jpg"
+            alt="תצלום דיוקן של סטפן בנאך, לא מתוארך, לפני 1945."
+          />
+          <figcaption class="hero-caption">
+            סטפן בנאך (1892&ndash;1945). הצילום פורסם ב-<em
+              >Warszawski Kalendarz Ilustrowany 1967</em
+            >; הצלם אינו ידוע. נחלת הכלל, דרך ויקישיתוף.
+          </figcaption>
+        </figure>
+
+        <div class="article-body">
+          <blockquote>
+            מתמטיקאי הוא אדם שמסוגל למצוא אנלוגיות בין משפטים; מתמטיקאי טוב יותר
+            הוא זה שרואה אנלוגיות בין הוכחות; המתמטיקאי הטוב ביותר מבחין
+            באנלוגיות בין תיאוריות. אפשר לדמיין שהמתמטיקאי האולטימטיבי הוא זה
+            שרואה אנלוגיות בין אנלוגיות.
+            <br />
+            &mdash; סטפן בנאך, מצוטט אצל סטניסלב אולם,
+            <a
+              href="https://en.wikipedia.org/wiki/Adventures_of_a_Mathematician"
+              ><em>Adventures of a Mathematician</em></a
+            >
+            (1976)
+          </blockquote>
+
+          <p>
+            ההיררכיה של בנאך מתארת סולם של יכולת מתמטית, אבל היא מתארת גם משהו
+            כללי יותר &mdash; סולם של ראייה מדעית. למצוא אנלוגיה בין שני משפטים
+            הוא לזהות חרוז מקומי. למצוא כזו בין הוכחות הוא לזהות שיטה
+            שמשתלמת. בין תיאוריות &mdash; לזהות ארכיטקטורה נסתרת. בין אנלוגיות
+            &mdash; להבחין בארכיטקטורה של ארכיטקטורות, בצורה שהצורות עצמן חולקות.
+            בנאך הציב את השלב האחרון הזה בקצה הדמיון. הוא חשב שאחד או שניים
+            לדור עשויים להגיע אליו.
+          </p>
+
+          <p>
+            הוא היה עצמו, על-פי הטקסונומיה שלו עצמו, קרוב לראש.
+            <a href="https://en.wikipedia.org/wiki/Stefan_Banach"
+              >סטפן בנאך</a
+            >
+            נולד בקרקוב ב-1892, בנו הבלתי-חוקי של פקיד רכבת ואם שנעלמה מחייו
+            לפני יום הולדתו השני. הוא גודל בידי כובסת, התחנך במידה רבה בעצמו,
+            וקיבל את הכשרתו המתמטית בחדריהם האחוריים של בתי קפה ובשולי ספרים
+            שלא תמיד היה יכול להרשות לעצמו. הרגע המכריע בחייו היה, לפי כל
+            העדויות, מקרי. בפארק בקרקוב ב-1916,
+            <a href="https://en.wikipedia.org/wiki/Hugo_Steinhaus"
+              >הוגו שטיינהאוס</a
+            >
+            שמע במקרה שני צעירים על ספסל דנים באינטגרל לבג, ניגש אליהם וגילה
+            את בנאך. שטיינהאוס יאמר מאוחר יותר שבנאך היה התגלית המתמטית הגדולה
+            ביותר שלו.
+          </p>
+
+          <p>
+            משם הסיפור מתכווץ. דוקטורט ב-1920. ייסודה של ה-<a
+              href="https://en.wikipedia.org/wiki/Functional_analysis"
+              >אנליזה הפונקציונלית</a
+            >
+            כדיסציפלינה &mdash;
+            <a href="https://en.wikipedia.org/wiki/Banach_space"
+              >מרחבי בנאך</a
+            >, <a
+              href="https://en.wikipedia.org/wiki/Hahn%E2%80%93Banach_theorem"
+              >משפט האן&ndash;בנאך</a
+            >, עקרון
+            <a
+              href="https://en.wikipedia.org/wiki/Uniform_boundedness_principle"
+              >בנאך&ndash;שטיינהאוס</a
+            >, משפט
+            <a
+              href="https://en.wikipedia.org/wiki/Banach%E2%80%93Alaoglu_theorem"
+              >בנאך&ndash;אלאוֹגלוּ</a
+            >, ו<a
+              href="https://en.wikipedia.org/wiki/Banach_fixed-point_theorem"
+              >משפט נקודת השבת</a
+            >
+            שנושא את שמו.
+            <a
+              href="https://en.wikipedia.org/wiki/Banach%E2%80%93Tarski_paradox"
+              >פרדוקס בנאך&ndash;טרסקי</a
+            >, ב-1924, שבו כדור מתפרק ומורכב מחדש לשני כדורים בגודל המקורי
+            &mdash; ההתקפה העדינה של הגיאומטריה על האינטואיציה. ובשנות
+            ה-30, ב-<a href="https://en.wikipedia.org/wiki/Scottish_Caf%C3%A9"
+              >בית הקפה הסקוטי</a
+            >
+            בלבוב, שם בנאך וחוגו שרבטו בעיות פתוחות על שולחן שיש ולבסוף לתוך
+            מחברת עבה שהמלצרית שמרה מאחורי הדלפק &mdash;
+            <a href="https://en.wikipedia.org/wiki/Scottish_Book"
+              ><em>הספר הסקוטי</em></a
+            >, החפץ הפיזי המפורסם ביותר במתמטיקה של המאה העשרים.
+          </p>
+
+          <p>
+            המלחמה סיימה את עידן הזהב של לבוב. תחת הכיבוש הנאצי בנאך שרד, כמו
+            אינטלקטואלים פולנים רבים אחרים, באמצעות האכלת כינים ב-<a
+              href="https://en.wikipedia.org/wiki/Rudolf_Weigl"
+              >מכון החיסונים לטיפוס של רודולף ויגל</a
+            >
+            &mdash; עבודה שהקנתה אישור עבודה גרמני יקר ערך ושמרה על חייו לעוד
+            כמה שנים. הוא מת מסרטן ריאות באוגוסט 1945, שבועות אחרי תום
+            המלחמה, מבלי שראה את לבוב הופכת ל-לביב. הסולם שלו נשאר.
+          </p>
+
+          <p>
+            שמונים שנה לאחר מכן, השלבים מטופסים בקצב שהיה מדהים אותו &mdash;
+            על-ידי מערכות שאינן, באף מובן שגור, מבינות את שהן עושות.
+          </p>
+
+          <p>
+            סוגי האנלוגיות שמערכות AI של היום מוצאות אינן עוד מן הסוג שתודעה
+            אנושית יחידה יכולה להחזיק.
+            <a href="https://www.nature.com/articles/s41586-021-03819-2"
+              >AlphaFold</a
+            >, ב-2020, סקרה מאות מיליוני רצפים אבולוציוניים והבחינה באנלוגיה
+            בין שיתופי-שונות בעמודות חומצות אמינו לבין מגע תלת-ממדי בחלבונים
+            מקופלים &mdash; אנלוגיה שנחשדה במשך חמישים שנה ומעולם לא הולידה
+            תוצר. בעיית קיפול החלבון,
+            <a
+              href="https://www.nobelprize.org/prizes/chemistry/1972/anfinsen/lecture/"
+              >שניסח אנפינסן ב-1972</a
+            >
+            ושעמדה ללא תזוזה למשך חצי מאה, נפתרה במידה משמעותית בידי מערכת
+            שהתאמנה לזהות תבניות לרוחב ממלכה ביולוגית שלמה בבת אחת.
+            <a href="https://www.nature.com/articles/s41586-022-05172-4"
+              >AlphaTensor</a
+            >, ב-2022, סרקה את מרחב האלגוריתמים הבילינאריים והעלתה דרכים
+            חדשות לכפול מטריצות מהר יותר מ-<a
+              href="https://en.wikipedia.org/wiki/Strassen_algorithm"
+              >שטראסן</a
+            >
+            &mdash; שיטות שחמקו מאלגבריסטים אנושיים מאז 1969.
+            <a href="https://www.nature.com/articles/s41586-023-06924-6"
+              >FunSearch</a
+            >
+            מצאה בניות חדשות לבעיית קבוצת המכסה (cap-set);
+            <a href="https://www.nature.com/articles/s41586-023-06747-5"
+              >AlphaGeometry</a
+            >
+            זכתה במדליות באולימפיאדת המתמטיקה הבינלאומית בכך שהציעה בנייות
+            עזר שבני אדם הפסיקו לחפש.
+            <a href="https://www.nature.com/articles/s41586-023-06735-9"
+              >מודלים לחומרים</a
+            >
+            הציעו מאות אלפי מבנים גבישיים יציבים &mdash; יותר מכל ההיסטוריה
+            הקודמת של פיזיקת מצב מוצק יחדיו. המהלך, בכל אחד מהמקרים, זהה: סקירה
+            על פני קורפוס גדול מכדי שאדם יחיד יחזיק, וגילוי תבנית שבדיעבד הייתה
+            תמיד שם.
+          </p>
+
+          <p>
+            אלו הם שני השלבים הראשונים של בנאך בקנה מידה תעשייתי. אנלוגיות בין
+            משפטים ובין הוכחות &mdash; בין רצפים למבנים, בין תצורות לאנרגיות,
+            בין בעיות לטקטיקות שפותחות אותן &mdash; הפכו לאפשריות באופן שאף
+            דור קודם לא היה מסוגל לדמיין. השלב השלישי גם הוא מתחיל להיכנע. ב-2021,
+            <a href="https://www.nature.com/articles/s41586-021-04086-x"
+              >שיתוף פעולה בין DeepMind והמתמטיקאים ג'ורדי ויליאמסון ומרק
+              לקנבי</a
+            >
+            הניב שתי תוצאות לא-טריוויאליות &mdash; אחת ב<a
+              href="https://en.wikipedia.org/wiki/Kazhdan%E2%80%93Lusztig_polynomial"
+              >תורת ההצגות</a
+            >, אחת ב<a href="https://en.wikipedia.org/wiki/Knot_invariant"
+              >תורת הקשרים</a
+            >
+            &mdash; על-ידי אימון רשתות נוירונים להציע אילו משתנים, במרחב עצום
+            של אינווריאנטים, קשורים זה לזה, ולתת למתמטיקאים אנושיים לעקוב אחר
+            ההצעה עד למשפט. המודל, למעשה, הציע אנלוגיות בין תיאוריות, והציע
+            אותן נכון.
+          </p>
+
+          <p>
+            מה שנותר הוא השלב הרביעי של בנאך. זהו שלב מוזר לחשוב עליו, משום
+            שאיש אינו יודע בדיוק כיצד דוגמה תיראה. המועמדים ההיסטוריים &mdash;
+            <a href="https://en.wikipedia.org/wiki/Langlands_program"
+              >תוכנית לנגלנדס</a
+            >, <a
+              href="https://en.wikipedia.org/wiki/Mirror_symmetry_(string_theory)"
+              >סימטריית הראי</a
+            >, ההקבלה בין
+            <a
+              href="https://en.wikipedia.org/wiki/Entropy_in_thermodynamics_and_information_theory"
+              >תרמודינמיקה ותורת המידע</a
+            >, הופעתן החוזרת של אותן
+            <a href="https://en.wikipedia.org/wiki/E8_(mathematics)"
+              >חבורות לי יוצאות-דופן</a
+            >
+            בפיזיקה, בגיאומטריה ובקומבינטוריקה &mdash; חולקים את התכונה
+            שהאדם שראה אותן לראשונה לא יכול היה, ברגע הראייה, לומר בדיוק
+            <em>מה</em> ראה. אלו אינטואיציות טרום-תיאורטיות לגבי דמיון מבני
+            משפחתי, והן היו היסטורית נחלתם של קומץ מתמטיקאים לדור:
+            <a href="https://en.wikipedia.org/wiki/Alexander_Grothendieck"
+              >גרותנדיק</a
+            >,
+            <a href="https://en.wikipedia.org/wiki/Robert_Langlands"
+              >לנגלנדס</a
+            >,
+            <a href="https://en.wikipedia.org/wiki/Alain_Connes">קונה</a>,
+            ספורים אחרים.
+          </p>
+
+          <p>
+            אבל התכונה שהופכת את השלב הזה לנדיר עבור בני אדם &mdash; הצורך
+            להחזיק אלפי מבנים בלתי-קשורים בתודעה אחת זמן רב מספיק כדי שיתחילו
+            לחרוז &mdash; היא בדיוק התכונה שמתאפיינת בהתרחבות טבעית במכונות.
+            מודל כללי דיו, מאומן על-פני די תחומים, עושה מבחינה מבנית בדיוק את
+            זה. הוא נדרש, בכל צעד שיפוע, לדחוס משטרים שונים לכדי ייצוג יחיד,
+            וייצוג יחיד הוא בדיוק חרוז מבני שהפך מפורש. הסיבה שמודלי-יסוד
+            מפתיעים אותנו היא שהם ממשיכים למצוא חרוזים כאלה במקומות &mdash;
+            בין קוד וביולוגיה, בין שפת חלבון ושפה טבעית, בין סימולציה פיזיקלית
+            ומשחק &mdash; שאף אדם לא היה לו סיבה להסתכל בהם.
+          </p>
+
+          <p>
+            מוקדם מדי לומר שה-AI הגיע לשלב הרביעי של בנאך. לא מוקדם מדי לציין
+            שהארכיטקטורה של הטיפוס השתנתה. הסולם של בנאך היה תיאור של גאונות
+            יחידנית &mdash; של התודעה הנדירה שיכלה להחזיק רמת הפשטה אחת מעל
+            הקודמת. הסולם נשאר; המטפס לא. מה שהיה בעבר עבודתו של מתמטיקאי
+            אחד לדור הוא היום תוצר שגרתי של הרצת אימון, והצעד האחרון, זה
+            שבנאך הציב בקצה הדמיון, אינו עוד באופן ברור מחוץ להישג יד. הוא
+            שרטט את הסולם. הוא לא שרטט אותו כשהוא מטופס בידי משהו שאינו אנחנו.
+          </p>
+        </div>
+
+        <section class="references">
+          <h2>מקורות</h2>
+          <ol>
+            <li>
+              Ulam, S. M.
+              <em>Adventures of a Mathematician.</em> Scribner, 1976. (מקור
+              הציטוט של בנאך.)
+            </li>
+            <li>
+              Ka&#322;u&#380;a, R.
+              <em>Through a Reporter's Eyes: The Life of Stefan Banach.</em>
+              Birkh&auml;user, 1996.
+            </li>
+            <li>
+              Anfinsen, C. B.
+              <a
+                href="https://www.nobelprize.org/prizes/chemistry/1972/anfinsen/lecture/"
+                >&ldquo;Principles that govern the folding of protein
+                chains.&rdquo;</a
+              >
+              Nobel Lecture, 1972.
+            </li>
+            <li>
+              Jumper, J. et al.
+              <a href="https://www.nature.com/articles/s41586-021-03819-2"
+                >&ldquo;Highly accurate protein structure prediction with
+                AlphaFold.&rdquo;</a
+              >
+              <em>Nature</em> 596, 583&ndash;589 (2021).
+            </li>
+            <li>
+              Fawzi, A. et al.
+              <a href="https://www.nature.com/articles/s41586-022-05172-4"
+                >&ldquo;Discovering faster matrix multiplication algorithms
+                with reinforcement learning.&rdquo;</a
+              >
+              <em>Nature</em> 610, 47&ndash;53 (2022).
+            </li>
+            <li>
+              Romera-Paredes, B. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06924-6"
+                >&ldquo;Mathematical discoveries from program search with large
+                language models.&rdquo;</a
+              >
+              <em>Nature</em> 625, 468&ndash;475 (2024).
+            </li>
+            <li>
+              Trinh, T. H. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06747-5"
+                >&ldquo;Solving olympiad geometry without human
+                demonstrations.&rdquo;</a
+              >
+              <em>Nature</em> 625, 476&ndash;482 (2024).
+            </li>
+            <li>
+              Merchant, A. et al.
+              <a href="https://www.nature.com/articles/s41586-023-06735-9"
+                >&ldquo;Scaling deep learning for materials discovery.&rdquo;</a
+              >
+              <em>Nature</em> 624, 80&ndash;85 (2023).
+            </li>
+            <li>
+              Davies, A. et al.
+              <a href="https://www.nature.com/articles/s41586-021-04086-x"
+                >&ldquo;Advancing mathematics by guiding human intuition with
+                AI.&rdquo;</a
+              >
+              <em>Nature</em> 600, 70&ndash;74 (2021).
+            </li>
+          </ol>
+        </section>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&rarr; חזרה לכתיבה</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
