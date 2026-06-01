@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>קריסת המחסנית ועלייתה &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Hebrew:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans:
+          "Noto Sans Hebrew", "Inter", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-serif: "Noto Serif Hebrew", "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        direction: ltr;
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      /* Layout */
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Article header */
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.005em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.6rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      /* Article body */
+      .article-body p {
+        margin-bottom: 1.3rem;
+        font-family: var(--font-serif);
+        font-size: 1.12rem;
+        line-height: 1.95;
+        color: #232323;
+      }
+
+      .article-body h2 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.4;
+        margin-top: 3rem;
+        margin-bottom: 0.8rem;
+        color: var(--color-text);
+      }
+
+      .article-body ul {
+        margin: 0 1.4rem 1.4rem 0;
+        font-family: var(--font-serif);
+        font-size: 1.12rem;
+        line-height: 1.85;
+        color: #232323;
+      }
+
+      .article-body ul li {
+        margin-bottom: 0.7rem;
+      }
+
+      .article-body em {
+        font-style: italic;
+      }
+
+      /* Back link */
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        direction: ltr;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Article -->
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">מסה &middot; בינה מלאכותית ותעשייה</div>
+          <h1>קריסת המחסנית ועלייתה</h1>
+          <p class="article-deck">
+            על האילוץ המתמוסס שאילץ פעם חברות לבחור שכבה אחת של המחסנית &mdash;
+            ומדוע חברות קטנות ואנכיות עומדות להפוך לצורת ברירת המחדל של תעשייה
+            רצינית.
+          </p>
+          <div class="article-meta">דותן די קסטרו</div>
+          <div class="lang-switch">
+            <a href="collapse_of_the_stack.html" lang="en" dir="ltr">English version</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <p>
+            במשך רובן של חמישים השנים האחרונות, לבנות מוצר רציני פירושו היה לקבל
+            אמת שקטה: סביר שלעולם תחזיק רק בשכבה אחת של המחסנית. אם ייצרת שבבים,
+            לא ייצרת מכשירים. אם ייצרת מכשירים, לא כתבת את התוכנה. אם כתבת את
+            התוכנה, לא טיפלת בהפצה. אם טיפלת בהפצה, ודאי שלא התעסקת ברגולציה. היו
+            יוצאים מן הכלל, כמובן, אך על פי רוב כך פעל העולם. כל שכבה הייתה עולם
+            בפני עצמו &mdash; מאגר הכישרון שלה, דרישות ההון שלה, עשור עקומות
+            הלמידה שלה &mdash; והחברות היחידות שהעזו לפרוש על פני כל המחסנית היו
+            הענקיות. אפל. טסלה. סמסונג. קומץ אחרות. כל היתר בחרו פלח אחד וניסו
+            להיות הטובים בעולם באותו פלח, משום שזו הייתה הדרך הכנה היחידה לשרוד.
+          </p>
+
+          <p>
+            זו לא הייתה בחירה אסטרטגית. זה היה אילוץ פיזי. אינטגרציה אנכית דרשה
+            צבאות &mdash; עשרות אלפי מהנדסים, מעצבים, עורכי דין, אנשי שיווק,
+            מפעילי שרשרת אספקה, אחראי ציות, טכנאים. עלות התיאום של כל כך הרבה בני
+            אדם הייתה כה עצומה, שרק חברות בעלות מאות מיליארדי דולרים בהכנסות יכלו
+            לספוג אותה. כל היתר התמחו, משום שההתמחות הייתה כמעט הדבר היחיד שהכלכלה
+            הרשתה.
+          </p>
+
+          <p>
+            האילוץ הזה מתמוסס לנגד עינינו, ורוב האנשים עדיין לא הפנימו במלואו מה
+            משמעות הדבר.
+          </p>
+
+          <h2>שני פניו של אותו שינוי</h2>
+
+          <p>
+            יש שתי דרכים לראות את מה ש-AI עושה למחסנית, ושתיהן נכונות בעת ובעונה
+            אחת.
+          </p>
+
+          <p>
+            הראייה הראשונה: הענקיות שכבר עושות הכול יעשו כעת את הכול עם חלק קטן מן
+            האנשים. טסלה, בעוד חמש שנים, לא תזדקק לשלש את כוח האדם שלה כדי לשלש את
+            יכולתה. היא תצטרך להחכים לגבי מה שכבר יש לה. אותם מהנדסים, מועצמים על
+            ידי מערכות סוכניות, יעצבו יותר מכוניות, יכתבו יותר קושחה, ינווטו ביותר
+            משטרי רגולציה, ויפעילו יותר מפעלים מאי פעם. הארגון האנכי שורד &mdash;
+            אך צפיפות בני האדם שלו ליחידת תפוקה קורסת. תרשים הארגון מתכווץ בעוד
+            שטח הפנים גדל.
+          </p>
+
+          <p>
+            הראייה השנייה, המעניינת יותר: האנכיות כבר אינה זכותן הבלעדית של
+            הענקיות. חברות קטנות ובינוניות &mdash; אלה שבמשך עשורים נאלצו לבחור
+            שכבה אחת ולחיות בה &mdash; יכולות כעת לפרוש בעצמן על פני כל המחסנית.
+            צוות של ארבעים אנשים יכול לעשות את מה שצוות של ארבעת אלפים נהג לעשות.
+            עדיין לא בכל תחום, אך ביותר תחומים בכל רבעון. הסף להיות בצורת אפל או
+            בצורת טסלה, במיניאטורה, יורד מהר מספיק כדי שאפשר לראות זאת קורה בזמן
+            אמת.
+          </p>
+
+          <p>
+            אלה אינן ראיות סותרות. זוהי אותה תופעה הנראית משני קצותיו של ציר
+            הגודל. הענקיות נעשות רזות יותר; הקטנות נעשות רחבות יותר; והאמצע
+            &mdash; המקום שבו רוב החדשנות האמיתית מתרחשת בפועל &mdash; נעשה מסוגל
+            באופן קיצוני יותר מאי פעם.
+          </p>
+
+          <h2>מה באמת הוזל</h2>
+
+          <p>
+            כדי להבין מדוע זה קורה, צריך להתבונן באילו שכבות AI כבר בלע, או מצוי
+            בתהליך של בליעתן. הרשימה ארוכה ממה שרוב המפעילים מבינים:
+          </p>
+
+          <ul>
+            <li>
+              <strong>ארכיטקטורת תוכנה ומימוש.</strong> מהנדס בכיר עם כלים
+              סוכניים יכול כעת לעצב, להקים ולשלוח מערכות שדרשו פעם צוות של שמונה.
+              לא על ידי החלפת המהנדס, אלא על ידי כיווץ הזמן שבין כוונה לקוד עובד.
+            </li>
+            <li>
+              <strong>חלק נכבד מן העבודה הרגולטורית.</strong> קריאה, מיפוי, ניסוח
+              והצלבה של מסגרות רגולטוריות &mdash; FDA, CE, MDR, ISO, GDPR, מרק
+              האותיות של הענף שלך &mdash; דרשו פעם מומחים ייעודיים או חברות ייעוץ
+              יקרות. מודלים שאומנו על קורפוסים אלה מבצעים כעת את 70% הראשונים של
+              אותה עבודה בשעות במקום בחודשים.
+            </li>
+            <li>
+              <strong>מידול פיננסי, היגיינה חשבונאית ודיווח תפעולי.</strong>
+              עבודת ה-CFO שדרשה פעם מחלקה קטנה מטופלת יותר ויותר בידי מפעיל יחיד
+              עם המחסנית הנכונה.
+            </li>
+            <li>
+              <strong>שיווק, תוכן, מערכות מותג ותקשורת לקוחות.</strong> מה שהיה
+              פעם התקשרות עם משרד פרסום הוא כעת לולאת פרומפט עם עורך אנושי.
+            </li>
+            <li>
+              <strong>תמיכה בעיצוב חומרה.</strong> סקירת סכמות, אופטימיזציית BOM,
+              איטרציה מכנית, ואפילו הבאת קושחה לחיים &mdash; אלה כבר אינם
+              דיסציפלינות ידניות לחלוטין. האדם עדיין בלולאה, אך הלולאה מהירה
+              בהרבה.
+            </li>
+            <li>
+              <strong>תשתית איכות ובדיקות.</strong> יצירת תוכניות בדיקה, כתיבת
+              מתקני בדיקה, ניתוח מצבי כשל &mdash; סוג העבודה שדרש פעם ארגוני QA
+              ייעודיים נבלע בתוך זרימות עבודה סוכניות שהצוות המרכזי מנהל ישירות.
+            </li>
+            <li>
+              <strong>תמיכת לקוחות ומודיעין שטח.</strong> לא רק הסטת פניות; אלא
+              טריאז' אמיתי, ניתוח שורש, וסינתזה של משוב ברמת נאמנות שחברות קטנות
+              מעולם לא יכלו להרשות לעצמן.
+            </li>
+          </ul>
+
+          <p>
+            כשמחברים את כל אלה, מגלים דבר מרשים: השכבות שאילצו היסטורית את החברות
+            להתמחות היו השכבות שדרשו את מירב האנשים לביצוע עבודת ידע הניתנת כעת
+            לדחיסה על ידי AI. השכבות שנותרות אנושיות בעקשנות &mdash; טעם, שיקול
+            דעת, חזון מייסדים, הנדסה פיזית קשה, אמפתיה ללקוח, האומנות
+            הבלתי-ניתנת-לצמצום של המוצר עצמו &mdash; הן בדיוק השכבות שצוות קטן
+            מצטיין בהן. הפיגום היקר סביב האומנות הוא מה שקורס. האומנות עצמה נעשית
+            מרכזית יותר, לא פחות.
+          </p>
+
+          <h2>דוגמה מוחשית: חברת הרובוטיקה הרפואית</h2>
+
+          <p>
+            שקלו חברת רובוטיקה רפואית &mdash; היסטורית אחת הקטגוריות המענישות
+            ביותר שסטארטאפ יכול היה להיכנס אליהן. כדי להביא רובוט כירורגי לשוק
+            ב-2010, נדרשו לכם:
+          </p>
+
+          <ul>
+            <li>צוות חומרה (מכני, חשמלי, בקרה): 40&ndash;80 אנשים.</li>
+            <li>
+              צוות תוכנה (מקושחה נמוכת-רמה ועד ממשק המשתמש שמול המנתח):
+              60&ndash;150 אנשים.
+            </li>
+            <li>
+              צוות רגולציה ואיכות לניווט ב-FDA 510(k) או PMA, בתוספת ISO 13485
+              ו-IEC 62304: 15&ndash;40 אנשים, לעיתים בתוספת יועצים חיצוניים בעלות
+              מיליונים.
+            </li>
+            <li>צוות עניינים קליניים: 10&ndash;30 אנשים.</li>
+            <li>
+              צוות ייצור ושרשרת אספקה: 30+ אנשים עוד לפני ששלחתם יחידה אחת.
+            </li>
+            <li>עמוד שדרה של פיננסים, משאבי אנוש ומשפט: עוד 20&ndash;40.</li>
+          </ul>
+
+          <p>
+            סך הכול: היכן שהוא בין 200 ל-400 אנשים, ו-80&ndash;200 מיליון דולר של
+            הון, רק כדי לנסות את הקטגוריה באופן אמין. רוב החברות שניסו לא שרדו את
+            הפער שבין סבבי הגיוס.
+          </p>
+
+          <p>
+            כיום, את אותה חברה יכול לנסות צוות של 30&ndash;60. לא משום שהבעיה
+            נעשתה קלה יותר &mdash; רובוטים כירורגיים הם עדיין רובוטים כירורגיים,
+            והפיזיקה לא הייתה אדיבה מספיק כדי להרפות &mdash; אלא משום שהשכבות סביב
+            הפיזיקה קרסו:
+          </p>
+
+          <ul>
+            <li>
+              את המסלול הרגולטורי ניתן למפות, לנסח, ולבצע חלקית על ידי צוות קטן עם
+              זרימות עבודה מועצמות-AI שהיו דורשות מחלקה ייעודית.
+            </li>
+            <li>
+              את מחסנית הקושחה וממשק המשתמש ניתן לבנות על ידי קומץ מהנדסים
+              המפעילים כלים סוכניים שמכווצים חודשי עבודה לשבועות.
+            </li>
+            <li>
+              את מערכת האיכות (ISO 13485) ניתן להקים עם חלק קטן מתקורת התיעוד.
+            </li>
+            <li>
+              איטרציה מכנית יכולה להתרחש מהר יותר משום שסקירת עיצוב, סימולציה
+              וניתוח DFM נמצאים יותר ויותר בהישג ידו של כל מהנדס מוכשר עם הכלים
+              הנכונים.
+            </li>
+            <li>
+              פיננסים, משאבי אנוש, משפט ותפעול &mdash; כל העורף המשרדי &mdash;
+              יכולים להתנהל בידי שניים או שלושה אנשים, לא עשרים.
+            </li>
+          </ul>
+
+          <p>
+            האומנות נותרת: הידע הכירורגי, הברק המכני, אובססיית המייסד לתוצאת
+            המטופל. זו עדיין אנושית באופן בלתי-ניתן-לצמצום, קשה באופן
+            בלתי-ניתן-לצמצום, והיא באופן בלתי-ניתן-לצמצום הדבר שקובע אם החברה
+            תצליח. אך העוצמה הדרושה כדי להקיף את אותה אומנות בחברה בת-קיימא קרסה
+            בסדר גודל.
+          </p>
+
+          <h2>מה משמעות הדבר לעשור הבא</h2>
+
+          <p>
+            המשמעות אינה שחברות גדולות ימותו. הן לא. אפל וטסלה ימשיכו להתקיים
+            וימשיכו לשלוט בקטגוריות שבהן יתרונות קנה המידה שלהן מצטברים &mdash;
+            בייחוד בכל מה שתלוי בפריסת הון עצומה, ברשתות הפצה פיזיות, או ביחסי
+            שרשרת אספקה בני עשור. קנה מידה עדיין חשוב היכן שאטומים נעים בנפח
+            פלנטרי.
+          </p>
+
+          <p>
+            המשמעות היא שהקטגוריות שחברות גדולות נהגו להחזיק עליהן מונופול בשל
+            מורכבות המחסנית בלבד פתוחות כעת לקטנות. מכשור רפואי. רובוטיקה תעשייתית.
+            טכנולוגיית הגנה. חומרת אנרגיה. תשתית אקלים. כלי ביו. מוצרים
+            סמוכי-מוליכים-למחצה. בכל מקום שבו צוואר הבקבוק היה &rdquo;צריך 300
+            אנשים רק כדי לנסות את זה&ldquo; &mdash; צוואר הבקבוק נע לעבר
+            &rdquo;צריך 30 אנשים טובים במידה חריגה ומצוידים במידה חריגה&ldquo;.
+          </p>
+
+          <p>
+            זהו השינוי החשוב ביותר באופן שבו מוצרים נבנים מאז עליית מחשוב הענן,
+            והוא מתרחש מהר יותר משעבר מעבר הענן. הענן נדרש לעשור כדי לעצב מחדש את
+            כלכלת התוכנה. AI סוכני מעצב מחדש את כלכלת המוצר &mdash; על פני כל
+            השכבות, כולל הפיזיות &mdash; בקרוב יותר לשלוש שנים.
+          </p>
+
+          <p>
+            ה-SME האנכי כבר אינו אוקסימורון. הוא הופך לצורת ברירת המחדל של הדור
+            הבא של חברות רציניות. צוותים קטנים, מחסניות עמוקות, מועצמות-AI על פני
+            כל שכבה שדרשה פעם צבא. המייסדים שמבינים זאת מוקדם &mdash; שמפסיקים
+            להניח שעליהם לבחור שכבה ומתחילים לשאול איזה מוצר שלם יכלו כעת להחזיק
+            באופן סביר &mdash; הם אלה שיבנו את אפל הבאה, את טסלה הבאה, את עשרת
+            הבאות שלהן.
+          </p>
+
+          <p>
+            אלא שהפעם, הם יעשו זאת עם שישים אנשים במקום שישים אלף.
+          </p>
+
+          <p>
+            וזהו הסיפור האמיתי של מה ש-AI עושה לתעשייה. לא תזוזת משרות. לא רווחי
+            פריון בשוליים. דחיסה יסודית של העוצמה הדרושה לבנות דבר שלם. המחסנית
+            קורסת אל תוך הצוות. הצוות הופך לחברה. והחברה, בפעם הראשונה בהיסטוריה
+            התעשייתית המודרנית, יכולה להיות קטנה ואנכית בעת ובעונה אחת.
+          </p>
+
+          <p>זה מעולם לא היה נכון קודם. כעת זה נכון.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&rarr; חזרה לכתיבה</a>
+
+        <!-- Footer -->
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
