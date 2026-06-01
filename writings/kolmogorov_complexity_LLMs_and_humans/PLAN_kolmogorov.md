@@ -8,5 +8,6 @@ State afterward the Kolmogoroc complexity. First intuitively, and then explain w
 
 Start the essay that the writer (myself) is expressing its own ideas and it is definitely not a formal mathematics, but postulations on the nature of learning and AI.
 
-Also, mention perlman as one of the pupils in kolmogorov schools.
+Also, mention gregory perlman as one of the pupils in kolmogorov schools.
+
 
