@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Collapse and the Rise of the Stack &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 38rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body h2 {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.55rem;
+        line-height: 1.3;
+        margin-top: 3rem;
+        margin-bottom: 0.6rem;
+        color: var(--color-text);
+        letter-spacing: -0.005em;
+      }
+
+      .article-body h3 {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 1.05rem;
+        line-height: 1.35;
+        margin-top: 2.2rem;
+        margin-bottom: 0.6rem;
+        color: var(--color-text);
+        letter-spacing: 0.01em;
+      }
+
+      .part-label {
+        font-family: var(--font-sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--color-text-secondary);
+        display: block;
+        margin-top: 3rem;
+        margin-bottom: -0.4rem;
+      }
+
+      .article-body ul {
+        margin: 0 0 1.4rem 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: #232323;
+      }
+
+      .article-body ul li {
+        margin-bottom: 0.6rem;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      .article-body em {
+        font-style: italic;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .article-footnote {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+        font-style: italic;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p,
+        .article-body ul {
+          font-size: 1.08rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; AI &amp; Industry</div>
+          <h1>The Collapse and the Rise of the Stack</h1>
+          <p class="article-deck">
+            On the dissolving constraint that once forced companies to pick a
+            single layer of the stack &mdash; and why small, vertical companies
+            are about to become the default shape of serious industry.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <p>
+            For most of the last fifty years, building a serious product meant
+            accepting a quiet truth: you would probably only ever own one layer
+            of the stack. If you made chips, you didn&rsquo;t make devices. If
+            you made devices, you didn&rsquo;t make the software. If you made the
+            software, you didn&rsquo;t handle distribution. If you handled
+            distribution, you certainly didn&rsquo;t deal with regulation. There
+            were exceptions, of course, but for the most part that was how the
+            world functioned. Each layer was its own world &mdash; its own talent
+            pool, its own capital requirements, its own decade of learning curves
+            &mdash; and the only companies that dared to span the whole stack
+            were the giants. Apple. Tesla. Samsung. A handful of others. Everyone
+            else picked a slice and tried to be the best in the world at that
+            slice, because that was the only honest way to survive.
+          </p>
+
+          <p>
+            This was not a strategic choice. It was a physical constraint.
+            Vertical integration required armies &mdash; tens of thousands of
+            engineers, designers, lawyers, marketers, supply chain operators,
+            compliance officers, technicians. The cost of coordinating that many
+            humans was so enormous that only companies with hundreds of billions
+            of dollars in revenue could absorb it. The rest of us specialized,
+            because specialization was almost the only thing the economics
+            allowed.
+          </p>
+
+          <p>
+            That constraint is dissolving in front of us, and most people
+            haven&rsquo;t fully registered what it means yet.
+          </p>
+
+          <h2>The two faces of the same shift</h2>
+
+          <p>
+            There are two ways to see what AI is doing to the stack, and they are
+            both true at the same time.
+          </p>
+
+          <p>
+            The first view: the giants who already do everything will now do
+            everything with a fraction of the people. Tesla, in five years, will
+            not need to triple its headcount to triple its capability. It will
+            need to get smarter about what it already has. The same engineers,
+            augmented by agentic systems, will design more cars, write more
+            firmware, navigate more regulatory regimes, and run more factories
+            than they ever could before. The vertical organization survives
+            &mdash; but its human density per unit of output collapses. The org
+            chart shrinks while the surface area grows.
+          </p>
+
+          <p>
+            The second view, which is the more interesting one: verticality is no
+            longer the privilege of giants. Small and medium-sized companies
+            &mdash; the ones that for decades had to pick a single layer and live
+            there &mdash; can now span the entire stack themselves. A team of
+            forty people can do what a team of four thousand used to do. Not in
+            every domain yet, but in more domains every quarter. The threshold
+            for being Apple-shaped or Tesla-shaped, in miniature, is dropping
+            fast enough that you can watch it happen in real time.
+          </p>
+
+          <p>
+            These are not contradictory views. They are the same phenomenon seen
+            from opposite ends of the size spectrum. The giants get leaner; the
+            small get broader; and the middle &mdash; the place where most real
+            innovation actually happens &mdash; becomes radically more capable
+            than it has ever been.
+          </p>
+
+          <h2>What actually got cheap</h2>
+
+          <p>
+            To understand why this is happening, you have to look at which layers
+            AI has already eaten, or is in the process of eating. The list is
+            longer than most operators realize:
+          </p>
+
+          <ul>
+            <li>
+              <strong>Software architecture and implementation.</strong> A senior
+              engineer with agentic tools can now design, scaffold, and ship
+              systems that used to require a team of eight. Not by replacing the
+              engineer, but by collapsing the time between intention and working
+              code.
+            </li>
+            <li>
+              <strong>A large share of regulatory work.</strong> Reading,
+              mapping, drafting, and cross-referencing regulatory frameworks
+              &mdash; FDA, CE, MDR, ISO, GDPR, whatever the alphabet soup of your
+              sector &mdash; used to require dedicated specialists or expensive
+              consultancies. Models trained on these corpora now do the first 70%
+              of that work in hours instead of months.
+            </li>
+            <li>
+              <strong>Financial modeling, accounting hygiene, and operational
+              reporting.</strong> The CFO-adjacent work that used to require a
+              small department is increasingly handled by a single operator with
+              the right stack.
+            </li>
+            <li>
+              <strong>Marketing, content, brand systems, customer
+              communications.</strong> What used to be an agency engagement is
+              now a prompt loop with a human editor.
+            </li>
+            <li>
+              <strong>Hardware design support.</strong> Schematic review, BOM
+              optimization, mechanical iteration, even firmware bring-up &mdash;
+              these are no longer fully manual disciplines. The human is still in
+              the loop, but the loop is dramatically faster.
+            </li>
+            <li>
+              <strong>Quality and test infrastructure.</strong> Generating test
+              plans, writing fixtures, analyzing failure modes &mdash; the kind
+              of work that used to require dedicated QA orgs is being absorbed
+              into agentic workflows that the core team manages directly.
+            </li>
+            <li>
+              <strong>Customer support and field intelligence.</strong> Not just
+              deflection; actual triage, root cause analysis, and feedback
+              synthesis at a fidelity small companies could never previously
+              afford.
+            </li>
+          </ul>
+
+          <p>
+            When you add these up, you discover something remarkable: the layers
+            that historically forced companies to specialize were the layers that
+            required the most people doing knowledge work that is now compressible
+            by AI. The layers that remain stubbornly human &mdash; taste,
+            judgment, founder vision, hard physical engineering, customer empathy,
+            the actual irreducible craft of the product &mdash; are exactly the
+            layers a small team is good at. The expensive scaffolding around the
+            craft is what&rsquo;s collapsing. The craft itself is becoming more
+            central, not less.
+          </p>
+
+          <h2>A concrete example: the medical robotics company</h2>
+
+          <p>
+            Consider a medical robotics company &mdash; historically one of the
+            most punishing categories a startup could enter. To bring a surgical
+            robot to market in 2010, you needed:
+          </p>
+
+          <ul>
+            <li>A hardware team (mechanical, electrical, controls): 40&ndash;80 people.</li>
+            <li>
+              A software team (low-level firmware up through surgeon-facing UI):
+              60&ndash;150 people.
+            </li>
+            <li>
+              A regulatory and quality team to navigate FDA 510(k) or PMA, plus
+              ISO 13485 and IEC 62304: 15&ndash;40 people, often supplemented by
+              external consultants costing millions.
+            </li>
+            <li>A clinical affairs team: 10&ndash;30 people.</li>
+            <li>
+              A manufacturing and supply chain team: 30+ people before
+              you&rsquo;d shipped a single unit.
+            </li>
+            <li>A finance, HR, and legal backbone: another 20&ndash;40.</li>
+          </ul>
+
+          <p>
+            Total: somewhere between 200 and 400 people, and $80&ndash;200M of
+            capital, just to credibly attempt the category. Most companies that
+            tried did not survive the gap between funding rounds.
+          </p>
+
+          <p>
+            Today, the same company can be attempted by a team of 30&ndash;60.
+            Not because the problem got easier &mdash; surgical robots are still
+            surgical robots, and the physics has not been kind enough to relent
+            &mdash; but because the layers around the physics have collapsed:
+          </p>
+
+          <ul>
+            <li>
+              The regulatory pathway can be mapped, drafted, and partially
+              executed by a small team with AI-augmented workflows that would have
+              required a dedicated department.
+            </li>
+            <li>
+              The firmware and UI stack can be built by a handful of engineers
+              operating agentic tools that compress months of work into weeks.
+            </li>
+            <li>
+              The quality system (ISO 13485) can be stood up with a fraction of
+              the documentation overhead.
+            </li>
+            <li>
+              Mechanical iteration can happen faster because design review,
+              simulation, and DFM analysis are increasingly within reach of any
+              competent engineer with the right tools.
+            </li>
+            <li>
+              Finance, HR, legal, and operations &mdash; the entire back office
+              &mdash; can be run by two or three people, not twenty.
+            </li>
+          </ul>
+
+          <p>
+            The craft remains: the surgical knowledge, the mechanical brilliance,
+            the founder&rsquo;s obsession with the patient outcome. That is still
+            irreducibly human, irreducibly hard, and irreducibly the thing that
+            determines whether the company succeeds. But the magnitude required to
+            surround that craft with a viable company has collapsed by an order of
+            magnitude.
+          </p>
+
+          <h2>What this means for the next decade</h2>
+
+          <p>
+            The implication is not that big companies will die. They won&rsquo;t.
+            Apple and Tesla will continue to exist and continue to dominate the
+            categories where their scale advantages compound &mdash; particularly
+            anything that depends on enormous capital deployment, physical
+            distribution networks, or decade-long supply chain relationships.
+            Scale still matters where atoms move at planetary volume.
+          </p>
+
+          <p>
+            The implication is that the categories big companies used to
+            monopolize because of stack complexity alone are now open to small
+            ones. Medical devices. Industrial robotics. Defense tech. Energy
+            hardware. Climate infrastructure. Bio-tools. Semiconductor-adjacent
+            products. Anywhere the bottleneck was &ldquo;you need 300 people to
+            even attempt this&rdquo; &mdash; the bottleneck is moving toward
+            &ldquo;you need 30 people who are unusually good and unusually
+            equipped.&rdquo;
+          </p>
+
+          <p>
+            This is the single most important shift in how products get built
+            since the rise of cloud computing, and it is happening faster than the
+            cloud transition did. Cloud took a decade to reshape software
+            economics. Agentic AI is reshaping product economics &mdash; across
+            all layers, including the physical ones &mdash; in something closer to
+            three years.
+          </p>
+
+          <p>
+            The vertical SME is no longer an oxymoron. It is becoming the default
+            shape of the next generation of serious companies. Small teams, deep
+            stacks, AI-augmented across every layer that used to require an army.
+            The founders who understand this early &mdash; who stop assuming they
+            need to pick a layer and start asking which entire product they could
+            now plausibly own &mdash; are the ones who will build the next Apple,
+            the next Tesla, the next ten of them.
+          </p>
+
+          <p>
+            Except this time, they will do it with sixty people instead of sixty
+            thousand.
+          </p>
+
+          <p>
+            And that is the real story of what AI is doing to industry. Not job
+            displacement. Not productivity gains at the margin. A fundamental
+            compression in the magnitude required to build something whole. The
+            stack is collapsing into the team. The team is becoming the company.
+            And the company, for the first time in modern industrial history, can
+            be small and vertical at the same time.
+          </p>
+
+          <p>That has never been true before. It is true now.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
