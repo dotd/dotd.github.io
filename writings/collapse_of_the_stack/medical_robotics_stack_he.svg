@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 812" role="img" aria-label="המחסנית של חברת הרובוטיקה הרפואית: עשר שכבות מהחומרה הפיזית ועד השוק, מקודדות בצבע לאומנות ליבה, הנדסה ופיגום.">
+  <style>
+    text { font-family: 'Noto Sans Hebrew', 'Inter', -apple-system, sans-serif; }
+    .title { font-size: 23px; font-weight: 700; fill: #1a1a1a; direction: rtl; }
+    .sub { font-size: 13px; fill: #555; direction: rtl; }
+    .lg { font-size: 12px; fill: #555; direction: rtl; }
+    .lt { font-size: 15px; font-weight: 700; fill: #1a1a1a; direction: rtl; }
+    .le { font-size: 12px; fill: #555; direction: rtl; }
+    .num { font-size: 14px; font-weight: 700; fill: #fff; }
+  </style>
+
+  <text class="title" x="802" y="34" text-anchor="end">המחסנית של חברת הרובוטיקה הרפואית</text>
+  <text class="sub" x="802" y="58" text-anchor="end">עשר שכבות שחברה חייבת להחזיק — מהליבה הפיזית ועד השוק.</text>
+
+  <!-- Legend -->
+  <circle cx="795" cy="86" r="7" fill="#5a4a30"/>
+  <text class="lg" x="782" y="90" text-anchor="end">אומנות ליבה — נשארת אנושית</text>
+  <circle cx="545" cy="86" r="7" fill="#786a48"/>
+  <text class="lg" x="532" y="90" text-anchor="end">הנדסה — מואצת ב-AI</text>
+  <circle cx="300" cy="86" r="7" fill="#8f7f58"/>
+  <text class="lg" x="287" y="90" text-anchor="end">פיגום — מתכווץ במהירות</text>
+
+  <!-- Layer 1 -->
+  <rect x="18" y="118" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="149" r="17" fill="#5a4a30"/>
+  <text class="num" x="768" y="154" text-anchor="middle">1</text>
+  <text class="lt" x="734" y="145" text-anchor="end">חומרה מכנית ורובוטית</text>
+  <text class="le" x="734" y="165" text-anchor="end">קינמטיקה, מנועים, מנשקי-קצה ומכשירים; המכונה הפיזית הניתנת לעיקור.</text>
+
+  <!-- Layer 2 -->
+  <rect x="18" y="186" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="217" r="17" fill="#786a48"/>
+  <text class="num" x="768" y="222" text-anchor="middle">2</text>
+  <text class="lt" x="734" y="213" text-anchor="end">אלקטרוניקה, הספק וקושחה</text>
+  <text class="le" x="734" y="233" text-anchor="end">מעגלים, מנהלי מנועים, מחשוב משובץ ולולאות בקרת בטיחות בזמן אמת.</text>
+
+  <!-- Layer 3 -->
+  <rect x="18" y="254" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="285" r="17" fill="#786a48"/>
+  <text class="num" x="768" y="290" text-anchor="middle">3</text>
+  <text class="lt" x="734" y="281" text-anchor="end">תפיסה וחישה</text>
+  <text class="le" x="734" y="301" text-anchor="end">ראייה, הדמיה תוך-ניתוחית (OCT, אולטרסאונד, CT), חישת כוח-מומנט ומיזוג חיישנים.</text>
+
+  <!-- Layer 4 -->
+  <rect x="18" y="322" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="353" r="17" fill="#786a48"/>
+  <text class="num" x="768" y="358" text-anchor="middle">4</text>
+  <text class="lt" x="734" y="349" text-anchor="end">פלטפורמת תוכנה ותווך</text>
+  <text class="le" x="734" y="369" text-anchor="end">תכנון תנועה, פותרני קינמטיקה, רישום, צינורות נתונים ותקשורת התקנים.</text>
+
+  <!-- Layer 5 -->
+  <rect x="18" y="390" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="421" r="17" fill="#786a48"/>
+  <text class="num" x="768" y="426" text-anchor="middle">5</text>
+  <text class="lt" x="734" y="417" text-anchor="end">אוטונומיה, אלגוריתמים ו-AI</text>
+  <text class="le" x="734" y="437" text-anchor="end">הבנת הסצנה הכירורגית, תכנון ומודלי ML — הטיפוס בסולם האוטונומיה.</text>
+
+  <!-- Layer 6 -->
+  <rect x="18" y="458" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="489" r="17" fill="#5a4a30"/>
+  <text class="num" x="768" y="494" text-anchor="middle">6</text>
+  <text class="lt" x="734" y="485" text-anchor="end">יישום קליני וחוויית המנתח</text>
+  <text class="le" x="734" y="505" text-anchor="end">תוכנת הפרוצדורה, הקונסולה וזרימת העבודה שהמנתח מפעיל בפועל.</text>
+
+  <!-- Layer 7 -->
+  <rect x="18" y="526" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="557" r="17" fill="#8f7f58"/>
+  <text class="num" x="768" y="562" text-anchor="middle">7</text>
+  <text class="lt" x="734" y="553" text-anchor="end">איכות ורגולציה</text>
+  <text class="le" x="734" y="573" text-anchor="end">ISO 13485, ISO 14971, IEC 62304 והגשות FDA 510(k)/PMA או CE-MDR.</text>
+
+  <!-- Layer 8 -->
+  <rect x="18" y="594" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="625" r="17" fill="#8f7f58"/>
+  <text class="num" x="768" y="630" text-anchor="middle">8</text>
+  <text class="lt" x="734" y="621" text-anchor="end">עניינים קליניים וראיות</text>
+  <text class="le" x="734" y="641" text-anchor="end">מחקרים פרה-קליניים וגופות, ניסויים קליניים, מובילי דעה והכשרת מנתחים.</text>
+
+  <!-- Layer 9 -->
+  <rect x="18" y="662" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="693" r="17" fill="#8f7f58"/>
+  <text class="num" x="768" y="698" text-anchor="middle">9</text>
+  <text class="lt" x="734" y="689" text-anchor="end">ייצור ושרשרת אספקה</text>
+  <text class="le" x="734" y="709" text-anchor="end">DFM, ייצור בקבלנות, רכש, עיקור וזרם המתכלים.</text>
+
+  <!-- Layer 10 -->
+  <rect x="18" y="730" width="784" height="62" rx="5" fill="#ffffff" stroke="#e7e2da"/>
+  <circle cx="768" cy="761" r="17" fill="#8f7f58"/>
+  <text class="num" x="768" y="766" text-anchor="middle">10</text>
+  <text class="lt" x="734" y="757" text-anchor="end">מסחר, תפעול ועורף</text>
+  <text class="le" x="734" y="777" text-anchor="end">מכירות, הפצה, החזרים ושירות; וכן פיננסים, משאבי אנוש, משפט וקניין רוחני.</text>
+</svg>

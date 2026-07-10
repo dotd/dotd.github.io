@@ -236,6 +236,29 @@
         font-style: italic;
       }
 
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        font-style: italic;
+        line-height: 1.6;
+        max-width: 34rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
       .article-body a {
         text-decoration: underline;
         text-decoration-color: #c4bdb1;
@@ -499,6 +522,18 @@
             capital, just to credibly attempt the category. Most companies that
             tried did not survive the gap between funding rounds.
           </p>
+
+          <figure class="figure">
+            <img src="medical_robotics_stack.svg" alt="A diagram of the medical-robotics stack: ten stacked layers, each numbered and described, color-coded into core craft (mechanical hardware; clinical application and surgeon UX), engineering layers (electronics and firmware; perception; software platform; autonomy and AI), and scaffolding layers (quality and regulatory; clinical affairs; manufacturing; commercial and back office)." />
+            <figcaption class="figure-caption">
+              The roughly ten layers a medical-robotics company must own. The
+              physical craft and surgical judgment (dark) stay human and become
+              more central; the engineering layers (mid) are accelerated by AI
+              with a human in the loop; and the people-heavy scaffolding (light)
+              &mdash; regulatory, clinical, manufacturing, commercial &mdash; is
+              exactly what AI compresses most.
+            </figcaption>
+          </figure>
 
           <p>
             Today, the same company can be attempted by a team of 30&ndash;60.
