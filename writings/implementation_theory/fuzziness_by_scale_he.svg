@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-label="תרשים: הטשטוש הקוונטי במיקום כשבריר מגודלו של הגוף עצמו, מאלקטרון ועד אדם. היחס יורד מכ-40 עבור אלקטרון ועד 3 כפול 10 בחזקת מינוס 25 עבור אדם, וחוצה את 1 בערך במסה של אטום בודד.">
+  <style>
+    text { font-family: 'Noto Sans Hebrew', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .title { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 13px; fill: #555; }
+    .row { font-size: 13px; fill: #1a1a1a; }
+    .val { font-size: 13px; fill: #555; }
+    .tick { font-size: 11px; fill: #555; }
+    .note { font-size: 12px; fill: #555; }
+    .cap { font-size: 12px; font-weight: 600; fill: #555; letter-spacing: 0.04em; }
+  </style>
+
+  <text class="title" x="882" y="34" text-anchor="end">היכן העולם מפסיק להיות מטושטש</text>
+  <text class="sub" x="882" y="58" text-anchor="end">הטשטוש הקוונטי במיקום, כשבריר מגודלו של הגוף עצמו, בטמפרטורת החדר.</text>
+
+  <!-- crossover marker -->
+  <line x1="706.4" y1="92" x2="706.4" y2="378" stroke="#a89878" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text class="note" x="699" y="88" text-anchor="end">הטשטוש = גודל הגוף עצמו</text>
+
+  <!-- rows: labels on the right, bars grow leftwards from x=750 -->
+  <text class="row" x="760" y="116">אלקטרון (באטום)</text>
+  <rect x="741.3" y="100" width="8.7" height="22" fill="#9b8a5f"/>
+  <text class="val" x="20" y="116">&#215;40</text>
+
+  <text class="row" x="760" y="156">אטום מימן</text>
+  <rect x="704.9" y="140" width="45.1" height="22" fill="#9b8a5f"/>
+  <text class="val" x="20" y="156">&#8776; 1</text>
+
+  <text class="row" x="760" y="196">מולקולת C&#8326;&#8320;</text>
+  <rect x="653.2" y="180" width="96.8" height="22" fill="#5a4a30"/>
+  <text class="val" x="20" y="196">4 &#215; 10&#8315;&#179;</text>
+
+  <text class="row" x="760" y="236">נגיף (100 ננומטר)</text>
+  <rect x="547.3" y="220" width="202.7" height="22" fill="#5a4a30"/>
+  <text class="val" x="20" y="236">5 &#215; 10&#8315;&#8312;</text>
+
+  <text class="row" x="760" y="276">גרגר אבק (10 מיקרון)</text>
+  <rect x="436.1" y="260" width="313.9" height="22" fill="#5a4a30"/>
+  <text class="val" x="20" y="276">4 &#215; 10&#8315;&#185;&#178;</text>
+
+  <text class="row" x="760" y="316">נמלה (5 מ&quot;ג)</text>
+  <rect x="305.4" y="300" width="444.6" height="22" fill="#5a4a30"/>
+  <text class="val" x="20" y="316">4 &#215; 10&#8315;&#185;&#8313;</text>
+
+  <text class="row" x="760" y="356">אדם (70 ק&quot;ג)</text>
+  <rect x="172.5" y="340" width="577.5" height="22" fill="#5a4a30"/>
+  <text class="val" x="20" y="356">3 &#215; 10&#8315;&#178;&#8309;</text>
+
+  <!-- axis -->
+  <line x1="140" y1="378" x2="750" y2="378" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="706.4" y1="378" x2="706.4" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="575.7" y1="378" x2="575.7" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="445.0" y1="378" x2="445.0" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="314.3" y1="378" x2="314.3" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="183.6" y1="378" x2="183.6" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <text class="tick" x="706.4" y="402" text-anchor="middle">1</text>
+  <text class="tick" x="575.7" y="402" text-anchor="middle">10&#8315;&#8310;</text>
+  <text class="tick" x="445.0" y="402" text-anchor="middle">10&#8315;&#185;&#178;</text>
+  <text class="tick" x="314.3" y="402" text-anchor="middle">10&#8315;&#185;&#8312;</text>
+  <text class="tick" x="183.6" y="402" text-anchor="middle">10&#8315;&#178;&#8308;</text>
+
+  <text class="cap" x="750" y="430" text-anchor="end">&#8592; החדות שהעולם חייב לתחזק</text>
+</svg>

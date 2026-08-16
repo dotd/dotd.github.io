@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>תורת המימוש: למה הטבע לא שומר את מה שאיש לא מסתכל עליו &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Hebrew:wght@400;500;600;700&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans:
+          "Noto Sans Hebrew", "Inter", -apple-system, BlinkMacSystemFont,
+          sans-serif;
+        --font-serif: "Noto Serif Hebrew", "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+        direction: ltr;
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 500;
+        line-height: 1.35;
+        letter-spacing: -0.005em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.6rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .article-body p {
+        margin-bottom: 1.3rem;
+        font-family: var(--font-serif);
+        font-size: 1.16rem;
+        line-height: 1.95;
+        color: #232323;
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 1.6rem 0.2rem 0;
+        border-right: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-size: 1.16rem;
+        line-height: 1.9;
+        color: #3a3a3a;
+      }
+
+      .article-body em {
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        line-height: 1.7;
+        max-width: 34rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .references {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        font-family: var(--font-sans);
+      }
+
+      .references h2 {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .references ol {
+        padding-right: 1.2rem;
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: #3a3a3a;
+      }
+
+      .references li {
+        margin-bottom: 0.6rem;
+      }
+
+      .references a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 2px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p {
+          font-size: 1.06rem;
+        }
+
+        .article-body blockquote {
+          font-size: 1.06rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">מסה &middot; פיזיקה ופילוסופיה</div>
+          <h1>תורת המימוש: למה הטבע לא שומר את מה שאיש לא מסתכל עליו</h1>
+          <p class="article-deck">
+            מכניקת הקוונטים מוצגת בדרך כלל כמקום שבו העולם מפסיק להיות הגיוני.
+            אם קוראים אותה כהחלטה הנדסית, היא דווקא המקום היחיד שבו רואים בבירור
+            את העולם מסרב לבזבז מאמץ.
+          </p>
+          <div class="article-meta">דותן די קסטרו</div>
+          <div class="lang-switch">
+            <a href="implementation_theory.html" lang="en" dir="ltr">English version</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <blockquote>
+            אלוהים הוא לא פראייר.
+            <br />
+            &mdash; פתגם עברי
+          </blockquote>
+
+          <p>
+            הפתגם משמש בדרך כלל לחשבונאות מוסרית: אף אחד לא יוצא נקי לנצח,
+            הספרים מסתדרים בסוף. אני רוצה לשאול אותו למשהו צר יותר ומוזר יותר
+            &mdash; טענה הנדסית. מה שבא להלן הוא פילוסופיה, לא פיזיקה. הוא אינו
+            מנבא דבר, אינו אוסר דבר, ולא היה שורד מפגש עם שופט של כתב עת. זו דרך
+            לקרוא פיזיקה שכבר יש בידינו, והיא מוצעת ברוח הזו. אני רוצה גם לומר
+            מראש ששום דבר כאן אינו תלוי בשאלה אם אלוהים קיים; &rdquo;אלוהים&ldquo;
+            במסה הזו הוא מציין מקום עבור <em>מי או מה שהיה צריך לקבל את החלטות
+            התכן</em>, והטיעון נקרא אותו הדבר גם אם מתברר שזה אף אחד.
+          </p>
+
+          <p>
+            נתחיל בשני קצות העולם, שמתנהגים בצורה שונה לחלוטין. בתחתית, החומר הוא
+            בלתי-מוגדר.
+            <a href="https://he.wikipedia.org/wiki/עקרון_אי-הוודאות"
+              >עקרון אי-הוודאות של הייזנברג</a
+            >, שנוסח ב-1927, אומר שהמיקום והתנע אינם יכולים להיות חדים שניהם:
+            מכפלת אי-הוודאויות שלהם היא לפחות &#295;/2. הקריאה המודרנית המקובלת
+            &mdash; וזו שהניסויים חיזקו בהתמדה &mdash; אינה שאנחנו מודדים מגושמים
+            שמפריעים למה שהם בוחנים, אלא שאין שם זוג ערכים חדים שממתין להתגלות.
+            לאלקטרון אין מיקום סודי שהוא מסתיר מאיתנו. בקצה העליון, לעומת זאת,
+            העולם מוגדר בעקשנות ובשעמום. לכוכב לכת יש מיקום. וכך גם לכדור באולינג,
+            לנמלה, לספל קפה. שום דבר בעצמים רגילים אינו מטושטש, וכל המנגנון של
+            המכניקה הקלאסית עובד בזכות זה.
+          </p>
+
+          <p>
+            המעבר בין שני המשטרים האלה אינו עניין של טעם; אפשר לחשב אותו. לכל גוף
+            יש טשטוש קוונטי במיקום &mdash;
+            <a
+              href="https://en.wikipedia.org/wiki/Thermal_de_Broglie_wavelength"
+              >אורך הגל התרמי של דה-ברויי</a
+            >, <em>&lambda; = h/&radic;(2&pi;mkT)</em> &mdash; שמתכווץ כשורש
+            המסה. לכל גוף יש גם גודל פיזי, שגדל כשורש השלישי של המסה. שתי העקומות
+            נחתכות, והן נחתכות במקום מעניין. בטמפרטורת החדר, המסה שבה הטשטוש
+            הקוונטי של גוף שווה לקוטרו שלו היא כ-1.4 &times;
+            10<sup>&minus;27</sup> ק&quot;ג &mdash; בטווח של פי שניים ממסתו של
+            אטום מימן בודד.
+          </p>
+
+          <figure class="figure">
+            <img
+              src="fuzziness_by_scale_he.svg"
+              alt="תרשים עמודות של הטשטוש הקוונטי במיקום כשבריר מגודלו של הגוף עצמו בטמפרטורת החדר, מאלקטרון (פי 40 מגודלו) דרך אטום מימן (בערך 1), מולקולת C60, נגיף, גרגר אבק ונמלה, ועד אדם (3 כפול 10 בחזקת מינוס 25). קו מקווקו מסמן את נקודת החיתוך ביחס 1, סמוך למסה של אטום בודד."
+            />
+            <figcaption class="figure-caption">
+              הטשטוש הקוונטי ביחס לגודלו של הגוף עצמו, בטמפרטורת החדר. נקודת
+              החיתוך &mdash; שבה אי-ההגדרות של דבר גדולה כמו הדבר עצמו &mdash;
+              יושבת בערך על מסה של אטום אחד. מעליה הטשטוש צונח מצוק: עשרים
+              וחמישה סדרי גודל עד שמגיעים לאדם.
+            </figcaption>
+          </figure>
+
+          <p>
+            זו העובדה שדורשת הסבר. מתחת לאטום בודד, מותר לעולם להיות מעורפל לגבי
+            מיקומם של דברים. מעליו, הערפול קורס כל כך מהר שכבר בסקאלה של גרגר אבק
+            הוא טריליונית מן הגרגר, ובסקאלה של אדם הוא עשרים וחמישה סדרי גודל
+            מתחת לכל דבר שיכול להיות משמעותי. מדוע הדיוק מוקצב כך &mdash; בשפע
+            למעלה, ובהיעדר מוחלט למטה?
+          </p>
+
+          <p>
+            כאן אני רוצה לשאול את שאלת המהנדס ולא את שאלת הפיזיקאי. נניח שהיית
+            צריך <em>לתחזק</em> את העולם הזה: לשמור עליו עקבי, בכל מקום, עבור כל
+            חלקיק, לנצח. איפה היית חוסך? כל מי שבנה סימולציה גדולה עונה אותה
+            תשובה, כי יש רק תשובה טובה אחת: תחסוך היכן שאיש אינו מסתכל. מנועי
+            גרפיקה בזמן אמת מלטשים בדיוק את האינטואיציה הזו כבר ארבעים שנה. אתה
+            לא מרנדר את מה שמחוץ למסך. אתה לא שומר את הסלעים הבודדים על ההר הרחוק;
+            אתה שומר כלל שייצר סלעים סבירים אם מישהו יטרח ללכת לשם. אתה מחזיק
+            גרסה גסה של הכול וגרסה מדויקת של מעט הדברים שנבחנים כרגע, ומחליף
+            ביניהן ברגע הבחינה ולא לפניו. כל האמנות היא בהחלטה מה אפשר להשאיר
+            בלתי-מוכרע בלי שאיש ישים לב.
+          </p>
+
+          <p>
+            לאי-ההגדרות הקוונטית יש בדיוק את הצורה הזו. פונקציית הגל אינה תיאור
+            של מיקום מוגדר שמוסתר מאיתנו; היא <em>כלל לייצור מיקום</em> אם מישהו
+            יתעקש על אחד. סופרפוזיציה היא המצב של &rdquo;טרם הוכרע&ldquo;. מדידה
+            היא הקריאה שכופה הכרעה. והאקראיות &mdash; החלק שמטריד אנשים מאז 1927,
+            החלק שאיינשטיין לא הצליח לקבל &mdash; היא בדיוק איך שאחסון מאבד-מידע
+            נראה מבפנים. אם שמרת כלל במקום ערך, אתה יכול לשחזר את הסטטיסטיקה אבל
+            לא את התשובה הבודדת. התשובה מעולם לא נשמרה. אין למה להיות נאמן.
+          </p>
+
+          <p>
+            וכעת התלות בגודל נופלת מעצמה. קח אלקטרון אחד באטום אחד בתוך סלע. איש
+            אינו תלוי במיקומו. הזנח אותו לגמרי, החלף אותו בענן הסתברות, ושום דבר
+            במורד הזרם לא ישים לב &mdash; הכימיה עדיין עובדת, הסלע עדיין יושב שם,
+            הספרים עדיין מסתדרים. עכשיו קח את הסלע. מיקומו נושא משקל עבור כל דבר
+            שהוא נוגע בו: מה הוא מסתיר, על מה הוא לוחץ, מה ניתז ממנו, איפה נופל
+            צילו, מי מתוך מיליארד עצמים אחרים יתנגש בו במאה הקרובה. שגיאה שם אינה
+            נשארת מקומית; היא מתפשטת, והיא מתפשטת אל תוך דברים ש<em>כן</em>
+            נבחנים. ולכן העולם משלם דיוק מלא עבור צברים ומשלם כמעט כלום עבור
+            הבלתי-רלוונטי הבודד. הוא מוציא היכן שמסתכלים עליו. הוא לא פראייר.
+          </p>
+
+          <p>
+            האינטואיציה שמאחורי זה אינה חדשה, ולא יהיה הוגן להציג אותה ככזו.
+            קונרד צוזה הציע ב-1969 שהיקום הוא ממש אוטומט תאי;
+            <a href="https://arxiv.org/abs/1405.1548">חרארד 'ט הופט</a> מפתח כבר
+            שנים מצע דטרמיניסטי דמוי-אוטומט מתחת למכניקת הקוונטים;
+            <a href="https://simulation-argument.com/simulation.html"
+              >טיעון הסימולציה של ניק בוסטרום</a
+            >
+            (2003) הוא כיום החבר המוכר ביותר במשפחה &mdash; אם כי כדאי לזכור
+            שטענתו בפועל היא טרילמה, ולא קביעה שאנחנו מסומלצים. תורת המימוש, כפי
+            שאני משתמש במונח, צנועה יותר מכל אלה. היא אינה טוענת שאנחנו בתוך
+            מחשב. היא טוענת משהו חלש יותר, ולדעתי מעניין יותר: שלמכניקת הקוונטים
+            יש את ה<em>צורה</em> של תכן מוגבל-משאבים, ושהצורה הזו היא עובדה על
+            הפיזיקה בין אם מישהו מימש אותה ובין אם לא.
+          </p>
+
+          <p>
+            והצורה הזו אינה מטפורה בלבד, משום שלפיזיקה כבר יש סעיף תקציב.
+            <a href="https://en.wikipedia.org/wiki/Bekenstein_bound"
+              >חסם בקנשטיין</a
+            >
+            וה<a href="https://arxiv.org/abs/hep-th/0203101">עקרון ההולוגרפי</a>
+            אומרים שכמות המידע שאזור במרחב יכול להכיל היא סופית, ו&mdash; באופן
+            מדהים &mdash; שהיא מתכווננת עם <em>שטח הפנים</em> של האזור ולא עם
+            נפחו: כ-1.4 &times; 10<sup>69</sup> סיביות למטר מרובע. זו החתימה של
+            אילוץ אחסון, לא של רצף אינסופי.
+            <a href="https://en.wikipedia.org/wiki/Landauer%27s_principle"
+              >עקרון לנדאואר</a
+            >
+            מוסיף מחיר מדוד לכל פעולה: מחיקת סיבית אחת מפזרת לפחות
+            <em>kT</em>&nbsp;ln&nbsp;2 של אנרגיה, מה שהופך חישוב להוצאה פיזית ולא
+            להפשטה חינמית. יקום עם תקציב סיביות סופי ליחידת שטח ומחיר שאינו אפס
+            לכל סיבית שנמחקת הוא יקום שיש לו רואה חשבון.
+          </p>
+
+          <p>
+            ועכשיו ההשגות, שהן שלוש, והשנייה רצינית.
+          </p>
+
+          <p>
+            הראשונה היא שהפיזיקה כבר מסבירה את המעבר מקטן לגדול בלי לגייס את
+            חסכנותו של אף אחד.
+            <a href="https://arxiv.org/abs/quant-ph/0105127">דה-קוהרנטיות</a>
+            &mdash; שפותחה בידי צה, יוס, זורק ואחרים משנות השבעים ואילך &mdash;
+            מראה שגוף גדול משתזר עם סביבתו כה מהר שההתאבכות בין מיקומיו האפשריים
+            הופכת בלתי-נצפית כמעט מיידית; עבור גרגר אבק באוויר סדר הגודל של הזמן
+            הוא 10<sup>&minus;36</sup> שניות. הקלאסיות <em>נגזרת</em>, לא מתוכננת.
+            זה נכון לחלוטין, וזו הסיבה שהמסה הזו היא פילוסופיה ולא פיזיקה. אבל היא
+            עונה על שאלה אחרת. דה-קוהרנטיות מסבירה <em>כיצד</em> המנגנון עובד; היא
+            אינה מסבירה מדוע העולם רץ על מנגנון בעל התכונה הזו ולא על אחד בלעדיה.
+            העצלות של תוכנית מוסברת לגמרי מתוך המפרש שלה, ונשארת החלטה שמישהו
+            קיבל.
+          </p>
+
+          <p>
+            ההשגה השנייה היא זו שבאמת כואבת: מכניקת הקוונטים היא <em>יקרה</em>,
+            לא זולה. לתאר <em>n</em> חלקיקים קוונטיים מקיימי אינטראקציה דורש בערך
+            2<sup><em>n</em></sup> אמפליטודות; כמה עשרות מהם ימצו כל מחשב-על
+            קלאסי שנוכל לבנות, וזו כל הסיבה שמחשבים קוונטיים מעניינים. אם הטבע רצה
+            מציאה, דטרמיניזם קלאסי פשוט היה זול בהרבה. אני לא חושב שאפשר להניף יד
+            ולהעלים את זה, ואני מעדיף להשאיר את ההשגה עומדת מאשר להעמיד פנים. שתי
+            התשובות החלקיות שאני מוצא בהן ערך הן אלה. ראשית, העלות המעריכית היא
+            עלות הסימולציה של מכניקת הקוונטים <em>על מצע קלאסי</em>; על מצע
+            קוונטי, המצב הוא פשוט המצב, והמעריכיות שוכנת בתרגום שלנו ולא בדבר
+            עצמו. שנית, החיסכון שנטען כאן נוגע להתחייבות ל<em>ערכים מוגדרים</em>,
+            לא לניהול חשבונות של אמפליטודות &mdash; וערך מוגדר הוא בדיוק סוג הדבר
+            שאחר כך צריך לשמור על עקביותו מול כל השאר, לנצח, בכל רמת דיוק שמישהו
+            עשוי לדרוש בהמשך. אף אחת מהתשובות אינה מכרעת. העמדה הנכונה היא להחזיק
+            את הרעיון ברפיון.
+          </p>
+
+          <p>
+            ההשגה השלישית היא שסיפור שאינו יכול להפסיד אינו תיאוריה. נכון. היו
+            ניסיונות להפוך את משפחת הרעיונות הזו לניתנת לבדיקה:
+            <a href="https://arxiv.org/abs/1210.1847">בין, דאוודי וסאבאג'</a>
+            הצביעו על כך שאם היקום רץ על סריג מרחב-זמן קובייתי, קרינה קוסמית בעלת
+            האנרגיות הגבוהות ביותר אמורה להראות אניזוטרופיה כיוונית סמוך ל<a
+              href="https://en.wikipedia.org/wiki/Greisen%E2%80%93Zatsepin%E2%80%93Kuzmin_limit"
+              >חסם GZK</a
+            > &mdash; אפקט שאיש לא ראה. ה<a href="https://arxiv.org/abs/1512.01216"
+              >הולומטר</a
+            >
+            של פרמילאב חיפש את הרעד בסקאלת פלאנק שניבא מודל הולוגרפי מסוים ושלל
+            אותו. עד כה החיפושים חזרו ריקים, ולכן התווית הכנה למסה הזו היא
+            &rdquo;קריאה אפשרית&ldquo;, למרות המילה <em>תורה</em> בשמה.
+          </p>
+
+          <p>
+            מה שנותר מכל זה הוא דרך הסתכלות. מלמדים אותנו מכניקת קוונטים כקטלוג
+            של פרדוקסים &mdash; החתול, שני הסדקים, הפעולה מרחוק &mdash; והפדגוגיה
+            מותירה רושם שהסקאלה הקטנה היא המקום שבו היקום מאבד קוהרנטיות. הפוך את
+            התמונה והיא נקראת הפוך: הסקאלה הקטנה היא המקום היחיד שבו רואים את
+            היקום חסכן, שבו הוא מסרב לנהל ספרים שלעולם לא יתבקש להציג. הטשטוש
+            שבתחתית אינו פגם בתמונה. הוא הרזולוציה שבה התמונה עברה רינדור. שום דבר
+            אינו נשמר אם איש לא יבדוק אותו &mdash; וכל מה שכן נבדק, מסתדר.
+          </p>
+        </div>
+
+        <section class="references">
+          <h2>מקורות</h2>
+          <ol>
+            <li>
+              Heisenberg, W. &ldquo;&Uuml;ber den anschaulichen Inhalt der
+              quantentheoretischen Kinematik und Mechanik.&rdquo;
+              <em>Zeitschrift f&uuml;r Physik</em> 43, 172&ndash;198 (1927).
+            </li>
+            <li>Zuse, K. <em>Rechnender Raum.</em> Vieweg, 1969.</li>
+            <li>
+              Bostrom, N.
+              <a href="https://simulation-argument.com/simulation.html"
+                >&ldquo;Are You Living in a Computer Simulation?&rdquo;</a
+              >
+              <em>Philosophical Quarterly</em> 53(211), 243&ndash;255 (2003).
+            </li>
+            <li>
+              &rsquo;t Hooft, G.
+              <a href="https://arxiv.org/abs/1405.1548"
+                ><em>The Cellular Automaton Interpretation of Quantum
+                Mechanics.</em></a
+              >
+              Springer, 2016.
+            </li>
+            <li>
+              Bekenstein, J. D. &ldquo;Universal upper bound on the
+              entropy-to-energy ratio for bounded systems.&rdquo;
+              <em>Physical Review D</em> 23, 287 (1981).
+            </li>
+            <li>
+              Bousso, R.
+              <a href="https://arxiv.org/abs/hep-th/0203101"
+                >&ldquo;The holographic principle.&rdquo;</a
+              >
+              <em>Reviews of Modern Physics</em> 74, 825 (2002).
+            </li>
+            <li>
+              Landauer, R. &ldquo;Irreversibility and heat generation in the
+              computing process.&rdquo;
+              <em>IBM Journal of Research and Development</em> 5,
+              183&ndash;191 (1961).
+            </li>
+            <li>
+              Joos, E. &amp; Zeh, H. D. &ldquo;The emergence of classical
+              properties through interaction with the environment.&rdquo;
+              <em>Zeitschrift f&uuml;r Physik B</em> 59, 223&ndash;243 (1985).
+            </li>
+            <li>
+              Zurek, W. H.
+              <a href="https://arxiv.org/abs/quant-ph/0105127"
+                >&ldquo;Decoherence, einselection, and the quantum origins of
+                the classical.&rdquo;</a
+              >
+              <em>Reviews of Modern Physics</em> 75, 715 (2003).
+            </li>
+            <li>
+              Arndt, M. et al. &ldquo;Wave&ndash;particle duality of
+              C<sub>60</sub> molecules.&rdquo;
+              <em>Nature</em> 401, 680&ndash;682 (1999).
+            </li>
+            <li>
+              Fein, Y. Y. et al. &ldquo;Quantum superposition of molecules
+              beyond 25 kDa.&rdquo;
+              <em>Nature Physics</em> 15, 1242&ndash;1245 (2019).
+            </li>
+            <li>
+              Beane, S. R., Davoudi, Z. &amp; Savage, M. J.
+              <a href="https://arxiv.org/abs/1210.1847"
+                >&ldquo;Constraints on the universe as a numerical
+                simulation.&rdquo;</a
+              >
+              <em>European Physical Journal A</em> 50, 148 (2014).
+            </li>
+            <li>
+              Chou, A. S. et al. (Holometer Collaboration).
+              <a href="https://arxiv.org/abs/1512.01216"
+                >&ldquo;The Holometer: an instrument to probe Planckian quantum
+                geometry.&rdquo;</a
+              >
+              <em>Classical and Quantum Gravity</em> 34, 065005 (2017).
+            </li>
+          </ol>
+        </section>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&rarr; חזרה לכתבים</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>חיפה, ישראל</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>

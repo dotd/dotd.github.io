@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-label="Chart: thermal de Broglie wavelength as a fraction of an object's own size, from an electron to a human. The ratio falls from about 40 for an electron to 3 times 10 to the minus 25 for a human, crossing 1 at roughly the mass of a single atom.">
+  <style>
+    text { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .title { font-size: 23px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 13px; fill: #555; }
+    .row { font-size: 13px; fill: #1a1a1a; }
+    .val { font-size: 13px; fill: #555; }
+    .tick { font-size: 11px; fill: #555; }
+    .note { font-size: 12px; fill: #555; }
+    .cap { font-size: 12px; font-weight: 600; fill: #555; letter-spacing: 0.04em; }
+  </style>
+
+  <text class="title" x="18" y="34">Where the World Stops Being Fuzzy</text>
+  <text class="sub" x="18" y="58">Quantum positional fuzziness as a fraction of the object&#8217;s own size, at room temperature.</text>
+
+  <!-- crossover marker -->
+  <line x1="193.6" y1="92" x2="193.6" y2="378" stroke="#a89878" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text class="note" x="201" y="88">fuzziness = the object&#8217;s own size</text>
+
+  <!-- rows -->
+  <text class="row" x="140" y="116" text-anchor="end">Electron (in an atom)</text>
+  <rect x="150" y="100" width="8.7" height="22" fill="#9b8a5f"/>
+  <text class="val" x="880" y="116" text-anchor="end">40&#215;</text>
+
+  <text class="row" x="140" y="156" text-anchor="end">Hydrogen atom</text>
+  <rect x="150" y="140" width="45.1" height="22" fill="#9b8a5f"/>
+  <text class="val" x="880" y="156" text-anchor="end">&#8776; 1</text>
+
+  <text class="row" x="140" y="196" text-anchor="end">C&#8326;&#8320; molecule</text>
+  <rect x="150" y="180" width="96.8" height="22" fill="#5a4a30"/>
+  <text class="val" x="880" y="196" text-anchor="end">4 &#215; 10&#8315;&#179;</text>
+
+  <text class="row" x="140" y="236" text-anchor="end">Virus (100 nm)</text>
+  <rect x="150" y="220" width="202.7" height="22" fill="#5a4a30"/>
+  <text class="val" x="880" y="236" text-anchor="end">5 &#215; 10&#8315;&#8312;</text>
+
+  <text class="row" x="140" y="276" text-anchor="end">Dust grain (10 &#181;m)</text>
+  <rect x="150" y="260" width="313.9" height="22" fill="#5a4a30"/>
+  <text class="val" x="880" y="276" text-anchor="end">4 &#215; 10&#8315;&#185;&#178;</text>
+
+  <text class="row" x="140" y="316" text-anchor="end">Ant (5 mg)</text>
+  <rect x="150" y="300" width="444.6" height="22" fill="#5a4a30"/>
+  <text class="val" x="880" y="316" text-anchor="end">4 &#215; 10&#8315;&#185;&#8313;</text>
+
+  <text class="row" x="140" y="356" text-anchor="end">Human (70 kg)</text>
+  <rect x="150" y="340" width="577.5" height="22" fill="#5a4a30"/>
+  <text class="val" x="880" y="356" text-anchor="end">3 &#215; 10&#8315;&#178;&#8309;</text>
+
+  <!-- axis -->
+  <line x1="150" y1="378" x2="760" y2="378" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="193.6" y1="378" x2="193.6" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="324.3" y1="378" x2="324.3" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="455.0" y1="378" x2="455.0" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="585.7" y1="378" x2="585.7" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <line x1="716.4" y1="378" x2="716.4" y2="386" stroke="#c4bdb1" stroke-width="1.5"/>
+  <text class="tick" x="193.6" y="402" text-anchor="middle">1</text>
+  <text class="tick" x="324.3" y="402" text-anchor="middle">10&#8315;&#8310;</text>
+  <text class="tick" x="455.0" y="402" text-anchor="middle">10&#8315;&#185;&#178;</text>
+  <text class="tick" x="585.7" y="402" text-anchor="middle">10&#8315;&#185;&#8312;</text>
+  <text class="tick" x="716.4" y="402" text-anchor="middle">10&#8315;&#178;&#8308;</text>
+
+  <text class="cap" x="150" y="430">SHARPNESS THE WORLD MUST MAINTAIN &#8594;</text>
+</svg>

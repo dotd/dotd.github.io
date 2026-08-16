@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implementation Theory: Why Nature Doesn&rsquo;t Store What Nobody Looks At &mdash; Dotan Di Castro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a1a;
+        --color-text-secondary: #555;
+        --color-accent: #2a2a2a;
+        --color-border: #e0ddd8;
+        --color-tag-bg: #f0eeea;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-serif: "Newsreader", Georgia, serif;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: var(--color-text);
+        text-decoration-color: var(--color-border);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s;
+      }
+
+      a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(250, 250, 248, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--color-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--color-text);
+      }
+
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .article-header {
+        padding: 8rem 0 2rem;
+      }
+
+      .article-eyebrow {
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.2rem;
+      }
+
+      .article-header h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      .article-deck {
+        margin-top: 1.2rem;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+        max-width: 36rem;
+      }
+
+      .article-meta {
+        margin-top: 1.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+        letter-spacing: 0.02em;
+      }
+
+      .lang-switch {
+        margin-top: 0.8rem;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      .lang-switch a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1px;
+      }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: var(--color-border);
+        margin: 2.5rem 0;
+      }
+
+      .article-body p {
+        margin-bottom: 1.4rem;
+        font-family: var(--font-serif);
+        font-size: 1.18rem;
+        line-height: 1.75;
+        color: #232323;
+      }
+
+      .article-body p:first-of-type::first-letter {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        float: left;
+        font-size: 4.2rem;
+        line-height: 0.9;
+        padding-top: 0.4rem;
+        padding-right: 0.65rem;
+        padding-bottom: 0;
+        color: var(--color-text);
+      }
+
+      .article-body blockquote {
+        margin: 1.8rem 0;
+        padding: 0.2rem 0 0.2rem 1.6rem;
+        border-left: 3px solid #c4bdb1;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.18rem;
+        line-height: 1.7;
+        color: #3a3a3a;
+      }
+
+      .article-body em {
+        font-style: italic;
+      }
+
+      .article-body a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 3px;
+      }
+
+      .article-body a:hover {
+        text-decoration-color: var(--color-text);
+      }
+
+      .figure {
+        margin: 2.5rem 0 2rem;
+      }
+
+      .figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .figure-caption {
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+        margin-top: 0.9rem;
+        font-style: italic;
+        line-height: 1.6;
+        max-width: 34rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .references {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        font-family: var(--font-sans);
+      }
+
+      .references h2 {
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1rem;
+      }
+
+      .references ol {
+        padding-left: 1.2rem;
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: #3a3a3a;
+      }
+
+      .references li {
+        margin-bottom: 0.6rem;
+      }
+
+      .references a {
+        text-decoration: underline;
+        text-decoration-color: #c4bdb1;
+        text-underline-offset: 2px;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+      }
+
+      .back-link:hover {
+        color: var(--color-text);
+      }
+
+      footer {
+        margin-top: 4rem;
+        padding: 3rem 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--color-text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1.2rem;
+        }
+
+        .article-body p {
+          font-size: 1.08rem;
+        }
+
+        .article-body blockquote {
+          font-size: 1.08rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-links {
+          gap: 0.8rem;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Dotan Di Castro</a>
+        <ul class="nav-links">
+          <li><a href="../../writings.html" class="active">Writings</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article>
+      <header class="article-header">
+        <div class="container">
+          <div class="article-eyebrow">Essay &middot; Physics &amp; Philosophy</div>
+          <h1>Implementation Theory: Why Nature Doesn&rsquo;t Store What Nobody Looks At</h1>
+          <p class="article-deck">
+            Quantum mechanics is usually presented as the place where the world
+            stops making sense. Read as an engineering decision, it is the one
+            place where the world visibly declines to waste effort.
+          </p>
+          <div class="article-meta">By Dotan Di Castro</div>
+          <div class="lang-switch">
+            <a href="implementation_theory_he.html" lang="he" dir="rtl">גרסה עברית</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="divider"></div>
+
+        <div class="article-body">
+          <blockquote>
+            אלוהים הוא לא פראייר.
+            <br />
+            <em>God is nobody&rsquo;s fool.</em>
+            <br />
+            &mdash; Hebrew saying
+          </blockquote>
+
+          <p>
+            The phrase is normally used about moral accounting: nobody gets away
+            with anything forever, the books eventually balance. I want to borrow
+            it for something narrower and stranger &mdash; a claim about
+            engineering. What follows is philosophy, not physics. It predicts
+            nothing, forbids nothing, and would not survive contact with a
+            referee. It is a way of reading a piece of physics we already have,
+            and it is offered in that spirit. I also want to say at the outset
+            that nothing here depends on whether a god exists; &ldquo;God&rdquo;
+            in this essay is a placeholder for <em>whoever or whatever had to
+            make the design decisions</em>, and the argument reads the same if
+            that turns out to be nobody at all.
+          </p>
+
+          <p>
+            Start with the two ends of the world, which behave in flatly
+            different ways. At the bottom, matter is indeterminate.
+            <a
+              href="https://en.wikipedia.org/wiki/Uncertainty_principle"
+              >Heisenberg&rsquo;s principle</a
+            >, stated in 1927, says that position and momentum cannot both be
+            sharp: their uncertainties multiply to at least &#295;/2. The
+            standard modern reading &mdash; and the one the experiments have
+            steadily reinforced &mdash; is not that we are clumsy measurers who
+            disturb what we probe, but that there is no sharp pair of values
+            sitting there waiting to be found. The electron does not have a
+            secret location it is keeping from us. At the top, the world is
+            stubbornly, boringly definite. A planet has a position. So does a
+            bowling ball, an ant, a coffee cup. Nothing about ordinary objects is
+            fuzzy, and the whole apparatus of classical mechanics works because
+            of it.
+          </p>
+
+          <p>
+            The transition between these two regimes is not a matter of taste;
+            it can be computed. Every object has a quantum positional fuzziness
+            &mdash; its
+            <a
+              href="https://en.wikipedia.org/wiki/Thermal_de_Broglie_wavelength"
+              >thermal de Broglie wavelength</a
+            >, <em>&lambda; = h/&radic;(2&pi;mkT)</em> &mdash; which shrinks as
+            the square root of mass. Every object also has a physical size, which
+            <em>grows</em> as the cube root of mass. The two curves cross, and
+            they cross in an interesting place. At room temperature, the mass at
+            which a thing&rsquo;s quantum fuzziness equals its own diameter is
+            about 1.4 &times; 10<sup>&minus;27</sup> kg &mdash; within a factor
+            of two of a single hydrogen atom.
+          </p>
+
+          <figure class="figure">
+            <img
+              src="fuzziness_by_scale.svg"
+              alt="Bar chart of quantum positional fuzziness as a fraction of an object's own size at room temperature, from an electron (about 40 times its size) through a hydrogen atom (about 1), a C60 molecule, a virus, a dust grain and an ant, to a human (3 times 10 to the minus 25). A dashed line marks the crossover at ratio 1, near the mass of a single atom."
+            />
+            <figcaption class="figure-caption">
+              Quantum fuzziness relative to an object&rsquo;s own size, at room
+              temperature. The crossover &mdash; where a thing&rsquo;s
+              indeterminacy is as large as the thing &mdash; sits at roughly the
+              mass of one atom. Above it, the fuzziness falls off a cliff:
+              twenty-five orders of magnitude by the time you reach a person.
+            </figcaption>
+          </figure>
+
+          <p>
+            That is the fact to be explained. Below one atom, the world is
+            allowed to be vague about where things are. Above it, the vagueness
+            collapses so fast that by the scale of a dust grain it is already a
+            trillionth of the grain, and by the scale of a person it is
+            twenty-five orders of magnitude below anything that could matter. Why
+            should precision be rationed this way &mdash; lavish at the top,
+            absent at the bottom?
+          </p>
+
+          <p>
+            Here is where I want to ask the engineer&rsquo;s question rather than
+            the physicist&rsquo;s. Suppose you had to <em>maintain</em> this
+            world: keep it consistent, everywhere, for every particle, forever.
+            Where would you cut corners? Anyone who has built a large simulation
+            gives the same answer, because there is only one good answer: cut
+            where nobody is looking. Real-time graphics engines have spent forty
+            years refining exactly this instinct. You do not render what is off
+            screen. You do not store the individual rocks on the distant
+            mountain; you store a rule that will produce plausible rocks if
+            somebody walks over there. You keep a coarse version of everything
+            and a fine version of the few things being examined, and you swap
+            between them at the moment of examination and not before. The whole
+            art is deciding what can be left unresolved without anyone noticing.
+          </p>
+
+          <p>
+            Quantum indeterminacy has precisely this shape. The wavefunction is
+            not a description of a definite position being hidden from us; it is
+            a <em>rule for producing a position</em> should anyone insist on one.
+            Superposition is the state of not having been resolved yet.
+            Measurement is the call that forces resolution. And the randomness
+            &mdash; the part that has bothered people since 1927, the part
+            Einstein could not accept &mdash; is exactly what lossy storage looks
+            like from the inside. If you keep a rule instead of a value, you can
+            reproduce the statistics but not the individual answer. The answer
+            was never kept. There is nothing to be faithful to.
+          </p>
+
+          <p>
+            And now the size dependence falls out on its own. Take one electron
+            in an atom in a rock. Nobody depends on where it is. Neglect it
+            entirely, replace it with a probability cloud, and nothing downstream
+            notices &mdash; the chemistry still works, the rock still sits there,
+            the ledger still balances. Now take the rock. Its position is
+            load-bearing for everything it touches: what it occludes, what it
+            presses on, what bounces off it, where its shadow lands, which of a
+            billion other objects will collide with it in the next century. An
+            error there does not stay local; it propagates, and it propagates
+            into things that <em>are</em> being examined. So the world pays full
+            precision for aggregates and pays essentially nothing for the
+            individually irrelevant. It spends where it is watched. It is nobody&rsquo;s
+            fool.
+          </p>
+
+          <p>
+            The instinct behind this is not new, and it would be dishonest to
+            present it as such. Konrad Zuse proposed in 1969 that the universe is
+            literally a cellular automaton;
+            <a href="https://arxiv.org/abs/1405.1548">Gerard &rsquo;t Hooft</a>
+            has spent years developing a deterministic, automaton-like substrate
+            beneath quantum mechanics; and
+            <a href="https://simulation-argument.com/simulation.html"
+              >Nick Bostrom&rsquo;s simulation argument</a
+            >
+            (2003) is now the best-known member of the family &mdash; though it
+            is worth remembering that Bostrom&rsquo;s actual claim is a trilemma,
+            not an assertion that we are simulated. Implementation Theory, as I
+            am using the term, is more modest than any of these. It does not
+            claim that we are inside a computer. It claims something weaker and,
+            I think, more interesting: that quantum mechanics has the
+            <em>shape</em> of a resource-bounded design, and that this shape is a
+            fact about the physics whether or not anybody implemented it.
+          </p>
+
+          <p>
+            The shape is not merely a metaphor, either, because physics already
+            has a budget line. The
+            <a href="https://en.wikipedia.org/wiki/Bekenstein_bound"
+              >Bekenstein bound</a
+            >
+            and the
+            <a href="https://arxiv.org/abs/hep-th/0203101"
+              >holographic principle</a
+            >
+            say that the information a region of space can contain is finite, and
+            &mdash; astonishingly &mdash; that it scales with the region&rsquo;s
+            <em>surface area</em> rather than its volume: about 1.4 &times;
+            10<sup>69</sup> bits per square meter. That is the signature of a
+            storage constraint, not of an unbounded continuum.
+            <a href="https://en.wikipedia.org/wiki/Landauer%27s_principle"
+              >Landauer&rsquo;s principle</a
+            >
+            adds a metered cost per operation: erasing one bit dissipates at
+            least <em>kT</em>&nbsp;ln&nbsp;2 of energy, which makes computation a
+            physical expense rather than a free abstraction. A universe with a
+            finite bit budget per unit area and a nonzero price per bit erased is
+            a universe with an accountant.
+          </p>
+
+          <p>
+            Now the objections, of which there are three, and the second is
+            serious.
+          </p>
+
+          <p>
+            The first is that physics already explains the small-to-large
+            transition without invoking anyone&rsquo;s parsimony.
+            <a href="https://arxiv.org/abs/quant-ph/0105127">Decoherence</a>
+            &mdash; developed by Zeh, Joos, Zurek and others from the 1970s
+            onward &mdash; shows that a large object entangles with its
+            environment so rapidly that interference between its possible
+            positions becomes unobservable almost instantly; for a dust grain in
+            air the timescale is on the order of 10<sup>&minus;36</sup> seconds.
+            Classicality is <em>derived</em>, not designed. This is entirely
+            correct, and it is the reason the essay is philosophy rather than
+            physics. But it answers a different question. Decoherence explains
+            <em>how</em> the mechanism works; it does not explain why the world
+            runs on a mechanism with this property rather than one without it. A
+            program&rsquo;s laziness is fully explicable from its interpreter,
+            and remains a decision somebody made.
+          </p>
+
+          <p>
+            The second objection is the one that actually hurts: quantum
+            mechanics is <em>expensive</em>, not cheap. Describing <em>n</em>
+            interacting quantum particles takes on the order of
+            2<sup><em>n</em></sup> amplitudes; a few dozen of them will exhaust
+            any classical supercomputer we can build, which is the entire reason
+            quantum computers are interesting. If nature wanted a bargain, plain
+            classical determinism would have been far cheaper. I do not think
+            this can be waved away, and I would rather leave it standing than
+            pretend otherwise. The two partial replies I find worth anything are
+            these. First, that exponential cost is the cost of simulating quantum
+            mechanics <em>on a classical substrate</em>; on a quantum substrate
+            the state is simply the state, and the exponential lives in our
+            translation rather than in the thing itself. Second, the thrift being
+            claimed here is about committing to <em>definite values</em>, not
+            about amplitude bookkeeping &mdash; and a definite value is precisely
+            the kind of thing that must then be kept consistent with everything
+            else, forever, at whatever precision anyone might later demand.
+            Neither reply is decisive. The right posture is to hold the idea
+            loosely.
+          </p>
+
+          <p>
+            The third objection is that a story which cannot lose is not a
+            theory. Fair. There have been attempts to make this family of ideas
+            testable:
+            <a href="https://arxiv.org/abs/1210.1847"
+              >Beane, Davoudi and Savage</a
+            >
+            pointed out that if the universe ran on a cubic spacetime lattice,
+            the highest-energy cosmic rays should show a directional anisotropy
+            near the
+            <a href="https://en.wikipedia.org/wiki/Greisen%E2%80%93Zatsepin%E2%80%93Kuzmin_limit"
+              >GZK cutoff</a
+            >, an effect nobody has seen. Fermilab&rsquo;s
+            <a href="https://arxiv.org/abs/1512.01216">Holometer</a> looked for
+            the Planck-scale jitter predicted by one specific holographic-noise
+            model and ruled it out. So far the searches have come back empty,
+            which is why the honest label for this piece is &ldquo;a possible
+            reading,&rdquo; despite the word <em>theory</em> in its name.
+          </p>
+
+          <p>
+            What survives all that is a way of looking. We are taught quantum
+            mechanics as a catalogue of paradoxes &mdash; the cat, the two slits,
+            the spooky action &mdash; and the pedagogy leaves the impression that
+            the small scale is where the universe becomes incoherent. Turn the
+            picture around and it reads as the opposite: the small scale is the
+            one place where the universe is visibly economical, where it declines
+            to keep books it will never be asked to produce. The fuzziness at the
+            bottom is not a flaw in the image. It is the resolution the image was
+            rendered at. Nothing is stored that nobody will check &mdash; and
+            everything that gets checked, adds up.
+          </p>
+        </div>
+
+        <section class="references">
+          <h2>References</h2>
+          <ol>
+            <li>
+              Heisenberg, W. &ldquo;&Uuml;ber den anschaulichen Inhalt der
+              quantentheoretischen Kinematik und Mechanik.&rdquo;
+              <em>Zeitschrift f&uuml;r Physik</em> 43, 172&ndash;198 (1927).
+            </li>
+            <li>
+              Zuse, K. <em>Rechnender Raum.</em> Vieweg, 1969.
+            </li>
+            <li>
+              Bostrom, N.
+              <a href="https://simulation-argument.com/simulation.html"
+                >&ldquo;Are You Living in a Computer Simulation?&rdquo;</a
+              >
+              <em>Philosophical Quarterly</em> 53(211), 243&ndash;255 (2003).
+            </li>
+            <li>
+              &rsquo;t Hooft, G.
+              <a href="https://arxiv.org/abs/1405.1548"
+                ><em>The Cellular Automaton Interpretation of Quantum
+                Mechanics.</em></a
+              >
+              Springer, 2016.
+            </li>
+            <li>
+              Bekenstein, J. D. &ldquo;Universal upper bound on the
+              entropy-to-energy ratio for bounded systems.&rdquo;
+              <em>Physical Review D</em> 23, 287 (1981).
+            </li>
+            <li>
+              Bousso, R.
+              <a href="https://arxiv.org/abs/hep-th/0203101"
+                >&ldquo;The holographic principle.&rdquo;</a
+              >
+              <em>Reviews of Modern Physics</em> 74, 825 (2002).
+            </li>
+            <li>
+              Landauer, R. &ldquo;Irreversibility and heat generation in the
+              computing process.&rdquo;
+              <em>IBM Journal of Research and Development</em> 5,
+              183&ndash;191 (1961).
+            </li>
+            <li>
+              Joos, E. &amp; Zeh, H. D. &ldquo;The emergence of classical
+              properties through interaction with the environment.&rdquo;
+              <em>Zeitschrift f&uuml;r Physik B</em> 59, 223&ndash;243 (1985).
+            </li>
+            <li>
+              Zurek, W. H.
+              <a href="https://arxiv.org/abs/quant-ph/0105127"
+                >&ldquo;Decoherence, einselection, and the quantum origins of
+                the classical.&rdquo;</a
+              >
+              <em>Reviews of Modern Physics</em> 75, 715 (2003).
+            </li>
+            <li>
+              Arndt, M. et al. &ldquo;Wave&ndash;particle duality of
+              C<sub>60</sub> molecules.&rdquo;
+              <em>Nature</em> 401, 680&ndash;682 (1999).
+            </li>
+            <li>
+              Fein, Y. Y. et al. &ldquo;Quantum superposition of molecules
+              beyond 25 kDa.&rdquo;
+              <em>Nature Physics</em> 15, 1242&ndash;1245 (2019).
+            </li>
+            <li>
+              Beane, S. R., Davoudi, Z. &amp; Savage, M. J.
+              <a href="https://arxiv.org/abs/1210.1847"
+                >&ldquo;Constraints on the universe as a numerical
+                simulation.&rdquo;</a
+              >
+              <em>European Physical Journal A</em> 50, 148 (2014).
+            </li>
+            <li>
+              Chou, A. S. et al. (Holometer Collaboration).
+              <a href="https://arxiv.org/abs/1512.01216"
+                >&ldquo;The Holometer: an instrument to probe Planckian quantum
+                geometry.&rdquo;</a
+              >
+              <em>Classical and Quantum Gravity</em> 34, 065005 (2017).
+            </li>
+          </ol>
+        </section>
+
+        <div class="divider"></div>
+
+        <a href="../../writings.html" class="back-link">&larr; Back to writings</a>
+
+        <footer>
+          <div class="footer-inner">
+            <span>&copy; 2026 Dotan Di Castro</span>
+            <span>Haifa, Israel</span>
+          </div>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
